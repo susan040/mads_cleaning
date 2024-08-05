@@ -5,7 +5,7 @@ class AppColors {
   static const secondaryColor = Color(0xFFF28500);
   static const tertiaryColor = Color(0xFFFFFFFF);
   static const backGroundColor = tertiaryColor;
-  static const borderColor = Color(0xFFA3A3A3);
+  static const borderColor = Color.fromARGB(255, 201, 201, 201);
   static const textColor = Color(0xFF303030);
   static const textColorAccent = Color(0xFFC5C5C5);
   static const hintTextColor = borderColor;
@@ -22,6 +22,7 @@ class AppColors {
   static const rejected = Color.fromRGBO(255, 59, 59, 1);
 
   static Color shadowColor = const Color(0xFF494949).withOpacity(0.06);
+
   static Color lightBlue = const Color(0xFF34AAD0);
 
   static final shimmerBase = Colors.grey.withOpacity(0.20);

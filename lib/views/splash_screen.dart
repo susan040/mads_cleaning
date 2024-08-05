@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:mads_cleaning/controller/splash_screen_controller.dart';
 import 'package:mads_cleaning/utils/colors.dart';
@@ -12,18 +11,23 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: SafeArea(
-            child: Center(
+        body: Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          SvgPicture.asset(ImagePath.logo),
+          Image.asset(
+            ImagePath.logo,
+            height: 195,
+            width: 195,
+          ),
+          const SizedBox(height: 45),
           const CircularProgressIndicator(
             backgroundColor: AppColors.secondaryColor,
             valueColor: AlwaysStoppedAnimation(AppColors.primaryColor),
-          )
+          ),
+          const SizedBox(height: 130),
         ],
       ),
-    )));
+    ));
   }
 }

@@ -17,6 +17,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: "Mads Cleaning",
       theme: basicTheme(),
+      themeMode: ThemeMode.light,
       home: SplashScreen(),
     );
   }
