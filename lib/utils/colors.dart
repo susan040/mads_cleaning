@@ -14,6 +14,7 @@ class AppColors {
   static const primeYellow = Color(0xFFFFCE50);
 
   static const extraWhite = Color(0xFFFFFFFF);
+  static const skyBlue = Color(0xFF36C2CE);
 
   static const unselectedGrey = Color(0xFFB7B7B7);
   static const textGreyColor = Color(0xFF7C7A7A);
@@ -23,7 +24,7 @@ class AppColors {
 
   static Color shadowColor = const Color(0xFF494949).withOpacity(0.06);
 
-  static Color lightBlue = const Color(0xFF34AAD0);
+  static Color lightBlue = const Color(0xFFE5FCFF);
 
   static final shimmerBase = Colors.grey.withOpacity(0.20);
   static const Color shimmerHighlight = Color(0xFFE1E1E1);

@@ -25,7 +25,7 @@ class SplashScreen extends StatelessWidget {
             backgroundColor: AppColors.secondaryColor,
             valueColor: AlwaysStoppedAnimation(AppColors.primaryColor),
           ),
-          const SizedBox(height: 130),
+          const SizedBox(height: 60),
         ],
       ),
     ));
