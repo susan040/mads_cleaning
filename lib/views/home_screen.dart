@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:mads_cleaning/utils/colors.dart';
 import 'package:mads_cleaning/utils/custom_text_style.dart';
@@ -81,7 +82,7 @@ class HomeScreen extends StatelessWidget {
                             width: 165,
                             child: Text(
                                 "Book Now! Easy, Reliable, and Professional Cleaning Services.",
-                                style: CustomTextStyles.f14W400(
+                                style: CustomTextStyles.f12W400(
                                     color: AppColors.extraWhite)),
                           ),
                           const SizedBox(height: 10),
@@ -182,11 +183,19 @@ class HomeScreen extends StatelessWidget {
                       text:
                           "I love the Mads Cleaning and Gardening app! Booking is easy, and the professionals always do an amazing job. Highly recommend!")
                 ]),
-              )
+              ),
+              Container()
             ],
           ),
         ),
       ),
+      floatingActionButton: Container(
+          height: 40,
+          width: 40,
+          decoration: BoxDecoration(
+              color: AppColors.primaryColor,
+              borderRadius: BorderRadius.circular(100)),
+          child: Center(child: SvgPicture.asset(ImagePath.message))),
     );
   }
 }
@@ -204,14 +213,13 @@ class TestimonialWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(left: 18, bottom: 20),
-      height: 148,
+      margin: const EdgeInsets.only(left: 18, bottom: 10),
+      height: 165,
       width: 235,
       decoration: BoxDecoration(
           color: AppColors.lightBlue, borderRadius: BorderRadius.circular(5)),
       child: Padding(
-        padding:
-            const EdgeInsets.only(left: 14, top: 14, right: 14, bottom: 10),
+        padding: const EdgeInsets.only(left: 14, top: 14, right: 14),
         child: Column(children: [
           Row(children: [
             ClipRRect(

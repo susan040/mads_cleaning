@@ -12,52 +12,48 @@ class HistoryScreenController extends GetxController {
         return AlertDialog(
           contentPadding:
               const EdgeInsets.symmetric(horizontal: 12, vertical: 20),
-          title: Text('Are you sure you want to delete?',
+          title: Text('Are you sure you want to cancel?',
               style: CustomTextStyles.f16W700()),
           content: Text(
-            "Your booked service will be deleted from the list",
+            "Your booked service will be cancelled",
             style: CustomTextStyles.f12W400(color: AppColors.lGrey),
           ),
           actions: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.red,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8.0),
-                    ),
-                  ),
-                  onPressed: () {
-                    Navigator.of(context).pop(); // Close the dialog
-                    // Add logic to actually remove the item
+                InkWell(
+                  onTap: () {
+                    Navigator.of(context).pop();
                   },
-                  child: const Text(
-                    'Yes',
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                  child: Container(
+                    height: 44,
+                    width: Get.width / 3.2,
+                    decoration: BoxDecoration(
+                      color: AppColors.extraWhite,
+                      border: Border.all(width: 0.7),
+                      borderRadius: BorderRadius.circular(5),
                     ),
+                    child: Center(
+                        child: Text('No', style: CustomTextStyles.f14W400())),
                   ),
                 ),
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.grey,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8.0),
-                    ),
-                  ),
-                  onPressed: () {
-                    Navigator.of(context).pop(); // Close the dialog
+                const SizedBox(width: 14),
+                InkWell(
+                  onTap: () {
+                    Navigator.of(context).pop();
                   },
-                  child: const Text(
-                    'No',
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                  child: Container(
+                    height: 44,
+                    width: Get.width / 3.2,
+                    decoration: BoxDecoration(
+                      color: AppColors.rejected,
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    child: Center(
+                      child: Text('Yes',
+                          style: CustomTextStyles.f14W400(
+                              color: AppColors.extraWhite)),
                     ),
                   ),
                 ),
