@@ -6,6 +6,7 @@ import 'package:mads_cleaning/utils/custom_text_style.dart';
 import 'package:mads_cleaning/utils/validator.dart';
 import 'package:mads_cleaning/views/auth/register_screen.dart';
 import 'package:mads_cleaning/views/dash_screen.dart';
+import 'package:mads_cleaning/views/forgot_password/forgot_password_screen.dart';
 import 'package:mads_cleaning/widgets/custom/custom_password_fields.dart';
 import 'package:mads_cleaning/widgets/custom/custom_textfield.dart';
 import 'package:mads_cleaning/widgets/custom/elevated_button.dart';
@@ -57,10 +58,15 @@ class LoginScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Text(
-                    "Forget Password?",
-                    style: CustomTextStyles.f14W400(
-                        color: AppColors.secondaryColor),
+                  InkWell(
+                    onTap: () {
+                      Get.to(() => ForgotPasswordScreen());
+                    },
+                    child: Text(
+                      "Forget Password?",
+                      style: CustomTextStyles.f14W400(
+                          color: AppColors.secondaryColor),
+                    ),
                   ),
                 ],
               ),
