@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mads_cleaning/utils/colors.dart';
 import 'package:mads_cleaning/utils/custom_text_style.dart';
-import 'package:mads_cleaning/views/service_description_screen.dart';
+import 'package:mads_cleaning/views/dashboard/service_description_screen.dart';
 
 class ServicesWidget extends StatelessWidget {
   const ServicesWidget({

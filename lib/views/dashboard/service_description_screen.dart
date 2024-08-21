@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:mads_cleaning/utils/colors.dart';
 import 'package:mads_cleaning/utils/custom_text_style.dart';
 import 'package:mads_cleaning/utils/image_path.dart';
+import 'package:mads_cleaning/views/appointment/appointment_booking_screen.dart';
 import 'package:mads_cleaning/widgets/custom/elevated_button.dart';
 
 class ServiceDescriptionScreen extends StatelessWidget {
@@ -155,7 +156,11 @@ class ServiceDescriptionScreen extends StatelessWidget {
               padding: const EdgeInsets.only(
                   left: 18, right: 18, top: 10, bottom: 25),
               child: InkWell(
-                onTap: () {},
+                splashColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                onTap: () {
+                  Get.to(() => AppointmentBookingScreen());
+                },
                 child: Row(
                   children: [
                     const Text(
@@ -194,7 +199,8 @@ class ServiceDescriptionScreen extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: Padding(
-        padding: const EdgeInsets.only(left: 18, right: 18, bottom: 16),
+        padding:
+            const EdgeInsets.only(left: 18, right: 18, bottom: 16, top: 10),
         child: SizedBox(
           height: 60,
           child: CustomElevatedButton(title: "Book Now", onTap: () {}),

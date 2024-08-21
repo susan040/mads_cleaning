@@ -59,6 +59,8 @@ class LoginScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   InkWell(
+                    splashColor: Colors.transparent,
+                    highlightColor: Colors.transparent,
                     onTap: () {
                       Get.to(() => ForgotPasswordScreen());
                     },
@@ -81,6 +83,8 @@ class LoginScreen extends StatelessWidget {
                   child: Text("Don't have an account?",
                       style: CustomTextStyles.f14W400())),
               InkWell(
+                  splashColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
                   onTap: () {
                     Get.offAll(() => RegisterScreen());
                   },

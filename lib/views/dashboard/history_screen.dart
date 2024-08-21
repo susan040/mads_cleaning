@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_slidable/flutter_slidable.dart'; // Import Slidable
 import 'package:get/get.dart';
-import 'package:mads_cleaning/controller/history_screen_controller.dart';
+import 'package:mads_cleaning/controller/dashboard/history_screen_controller.dart';
 import 'package:mads_cleaning/utils/colors.dart';
 import 'package:mads_cleaning/utils/custom_text_style.dart';
 import 'package:mads_cleaning/utils/image_path.dart';
-import 'package:mads_cleaning/views/booked_details_screen.dart';
+import 'package:mads_cleaning/views/dashboard/booked_details_screen.dart';
 
 class HistoryScreen extends StatelessWidget {
   final c = Get.put(HistoryScreenController());

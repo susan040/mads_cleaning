@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mads_cleaning/views/history_screen.dart';
-import 'package:mads_cleaning/views/home_screen.dart';
-import 'package:mads_cleaning/views/profile_screen.dart';
+import 'package:mads_cleaning/views/dashboard/history_screen.dart';
+import 'package:mads_cleaning/views/dashboard/home_screen.dart';
+import 'package:mads_cleaning/views/profile/profile_screen.dart';
 
 class DashScreenController extends GetxController{
   final dashKey = GlobalKey<ScaffoldState>();

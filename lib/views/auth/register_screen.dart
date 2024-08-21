@@ -151,6 +151,8 @@ class RegisterScreen extends StatelessWidget {
                       child: Text("Already have an account?",
                           style: CustomTextStyles.f14W400())),
                   InkWell(
+                      splashColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
                       onTap: () {
                         Get.offAll(() => LoginScreen());
                       },

@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:mads_cleaning/utils/colors.dart';
 import 'package:mads_cleaning/utils/custom_text_style.dart';
 import 'package:mads_cleaning/utils/image_path.dart';
-import 'package:mads_cleaning/views/all_services_screen.dart';
+import 'package:mads_cleaning/views/dashboard/all_services_screen.dart';
 import 'package:mads_cleaning/widgets/rating_widget.dart';
 import 'package:mads_cleaning/widgets/services_widget.dart';
 

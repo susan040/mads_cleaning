@@ -47,7 +47,8 @@ class CustomTextField extends StatelessWidget {
     this.maxCharacters,
     this.focusNode,
     this.labelText,
-    this.prefixIconColor, this.preIconSize,
+    this.prefixIconColor,
+    this.preIconSize,
   });
 
   @override
@@ -72,7 +73,6 @@ class CustomTextField extends StatelessWidget {
                 labelText!,
                 style: CustomTextStyles.f16W400(
                   color: AppColors.primaryColor,
-                  
                 ),
               )
             : null,
@@ -113,9 +113,9 @@ class CustomTextField extends StatelessWidget {
             : const TextStyle(fontSize: 0),
         hintText: hint,
         hintStyle:
-            CustomTextStyles.f16W400(color: AppColors.secondaryTextColor),
+            CustomTextStyles.f14W400(color: AppColors.secondaryTextColor),
       ),
-      style: CustomTextStyles.f16W400(
+      style: CustomTextStyles.f14W400(
           color: readOnly ? AppColors.secondaryTextColor : null),
     );
   }

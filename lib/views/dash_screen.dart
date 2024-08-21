@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:mads_cleaning/controller/dash_screen_controller.dart';
+import 'package:mads_cleaning/controller/dashboard/dash_screen_controller.dart';
 import 'package:mads_cleaning/utils/colors.dart';
 import 'package:mads_cleaning/utils/image_path.dart';
 

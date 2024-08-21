@@ -1,9 +1,16 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:mads_cleaning/utils/colors.dart';
 import 'package:mads_cleaning/utils/custom_text_style.dart';
 import 'package:mads_cleaning/utils/image_path.dart';
+import 'package:mads_cleaning/views/dashboard/about_us_screen.dart';
+import 'package:mads_cleaning/views/auth/login_screen.dart';
+import 'package:mads_cleaning/views/dashboard/change_password_screen.dart';
+import 'package:mads_cleaning/views/dashboard/faq_screen.dart';
+import 'package:mads_cleaning/views/dashboard/notification_screen.dart';
+import 'package:mads_cleaning/views/profile/edit_profile_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -64,7 +71,11 @@ class ProfileScreen extends StatelessWidget {
             ),
             const SizedBox(height: 7),
             InkWell(
-              onTap: () {},
+              splashColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+              onTap: () {
+                Get.to(() => EditProfileScreen());
+              },
               child: Padding(
                   padding: const EdgeInsets.only(top: 35),
                   child: Row(
@@ -82,7 +93,11 @@ class ProfileScreen extends StatelessWidget {
                   )),
             ),
             InkWell(
-              onTap: () {},
+              splashColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+              onTap: () {
+                Get.to(() => NotificationScreen());
+              },
               child: Padding(
                 padding: const EdgeInsets.only(top: 35),
                 child: Row(
@@ -117,7 +132,11 @@ class ProfileScreen extends StatelessWidget {
               ),
             ),
             InkWell(
-              onTap: () {},
+              splashColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+              onTap: () {
+                Get.to(() => FaqScreen());
+              },
               child: Padding(
                   padding: const EdgeInsets.only(top: 35),
                   child: Row(
@@ -135,7 +154,11 @@ class ProfileScreen extends StatelessWidget {
                   )),
             ),
             InkWell(
-              onTap: () {},
+              splashColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+              onTap: () {
+                Get.to(() => const AboutUsScreen());
+              },
               child: Padding(
                   padding: const EdgeInsets.only(top: 35),
                   child: Row(
@@ -153,7 +176,11 @@ class ProfileScreen extends StatelessWidget {
                   )),
             ),
             InkWell(
-              onTap: () {},
+              splashColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+              onTap: () {
+                Get.to(() => ChangePasswordScreen());
+              },
               child: Padding(
                   padding: const EdgeInsets.only(top: 35),
                   child: Row(
@@ -172,7 +199,11 @@ class ProfileScreen extends StatelessWidget {
                   )),
             ),
             InkWell(
-              onTap: () {},
+              splashColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+              onTap: () {
+                Get.offAll(() => LoginScreen());
+              },
               child: Padding(
                   padding: const EdgeInsets.only(top: 35),
                   child: Row(
