@@ -6,6 +6,7 @@ import 'package:mads_cleaning/utils/colors.dart';
 import 'package:mads_cleaning/utils/custom_text_style.dart';
 import 'package:mads_cleaning/utils/image_path.dart';
 import 'package:mads_cleaning/views/appointment/appointment_booking_screen.dart';
+import 'package:mads_cleaning/views/service_booking/window_cleaning_screen.dart';
 import 'package:mads_cleaning/widgets/custom/elevated_button.dart';
 
 class ServiceDescriptionScreen extends StatelessWidget {
@@ -203,7 +204,11 @@ class ServiceDescriptionScreen extends StatelessWidget {
             const EdgeInsets.only(left: 18, right: 18, bottom: 16, top: 10),
         child: SizedBox(
           height: 60,
-          child: CustomElevatedButton(title: "Book Now", onTap: () {}),
+          child: CustomElevatedButton(
+              title: "Book Now",
+              onTap: () {
+                Get.to(() => WindowCleaningScreen());
+              }),
         ),
       ),
     );

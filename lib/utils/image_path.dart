@@ -22,7 +22,7 @@ class ImagePath {
   static const String verifyEmail = "$baseImagePath/verify_email.png";
   static const String newPassword = "$baseImagePath/new_password.png";
   static const String appointmentBooked = "$baseImagePath/appointment_booked.png";
-
+  static const String serviceBooked = "$baseImagePath/service_booked.png";
 
   static const String eye = "$baseIconPath/eye.svg";
   static const String eyeOff = "$baseIconPath/eye_off.svg";
