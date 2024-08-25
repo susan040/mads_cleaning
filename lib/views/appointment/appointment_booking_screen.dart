@@ -52,7 +52,7 @@ class AppointmentBookingScreen extends StatelessWidget {
                           controller: c.fullNameController,
                           validator: Validators.checkFieldEmpty,
                           hint: "Full Name",
-                          textInputAction: TextInputAction.next,
+                          textInputAction: TextInputAction.done,
                           textInputType: TextInputType.text),
                     ),
                     const SizedBox(width: 18),
@@ -62,7 +62,7 @@ class AppointmentBookingScreen extends StatelessWidget {
                           controller: c.addressController,
                           validator: Validators.checkFieldEmpty,
                           hint: "Address",
-                          textInputAction: TextInputAction.next,
+                          textInputAction: TextInputAction.done,
                           textInputType: TextInputType.text),
                     ),
                   ]),
@@ -74,7 +74,8 @@ class AppointmentBookingScreen extends StatelessWidget {
                       controller: c.emailController,
                       validator: Validators.checkEmailField,
                       hint: "Email",
-                      textInputAction: TextInputAction.next,
+                      textCapitalization: TextCapitalization.none,
+                      textInputAction: TextInputAction.done,
                       textInputType: TextInputType.emailAddress),
                 ),
                 Padding(
@@ -195,8 +196,9 @@ class AppointmentBookingScreen extends StatelessWidget {
                       const EdgeInsets.only(left: 18, right: 18, bottom: 18),
                   child: TextFormField(
                     style: CustomTextStyles.f14W400(),
-                    keyboardType: TextInputType.multiline,
+                    // keyboardType: TextInputType.multiline,
                     maxLines: 6,
+                    textInputAction: TextInputAction.done,
                     decoration: InputDecoration(
                       hintText: "Write Message",
                       enabledBorder: OutlineInputBorder(

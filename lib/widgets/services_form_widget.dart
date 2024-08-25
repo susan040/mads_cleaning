@@ -32,7 +32,7 @@ class ServiceFormWidget extends StatelessWidget {
                 controller: c.fullNameController,
                 validator: Validators.checkFieldEmpty,
                 hint: "Full Name",
-                textInputAction: TextInputAction.next,
+                textInputAction: TextInputAction.done,
                 textInputType: TextInputType.text),
           ),
           const SizedBox(width: 18),
@@ -42,7 +42,7 @@ class ServiceFormWidget extends StatelessWidget {
                 controller: c.addressController,
                 validator: Validators.checkFieldEmpty,
                 hint: "Address",
-                textInputAction: TextInputAction.next,
+                textInputAction: TextInputAction.done,
                 textInputType: TextInputType.text),
           ),
         ]),
@@ -53,7 +53,8 @@ class ServiceFormWidget extends StatelessWidget {
             controller: c.emailController,
             validator: Validators.checkEmailField,
             hint: "Email",
-            textInputAction: TextInputAction.next,
+            textCapitalization: TextCapitalization.none,
+            textInputAction: TextInputAction.done,
             textInputType: TextInputType.emailAddress),
       ),
       Padding(
@@ -132,6 +133,7 @@ class ServiceFormWidget extends StatelessWidget {
     ]);
   }
 }
+
 class MessageWidget extends StatelessWidget {
   const MessageWidget({
     super.key,
@@ -143,36 +145,33 @@ class MessageWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding:
-          const EdgeInsets.only(left: 18, right: 18, bottom: 18),
+      padding: const EdgeInsets.only(left: 18, right: 18, bottom: 18),
       child: TextFormField(
         style: CustomTextStyles.f14W400(),
-        keyboardType: TextInputType.multiline,
         maxLines: 6,
+        textInputAction: TextInputAction.done,
         decoration: InputDecoration(
           hintText: "Write Message",
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(5),
-            borderSide: const BorderSide(
-                width: 1, color: AppColors.secondaryTextColor),
+            borderSide:
+                const BorderSide(width: 1, color: AppColors.secondaryTextColor),
           ),
           focusedErrorBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(5),
-            borderSide: const BorderSide(
-                width: 1, color: AppColors.errorColor),
+            borderSide: const BorderSide(width: 1, color: AppColors.errorColor),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(5),
-            borderSide: const BorderSide(
-                width: 1, color: AppColors.primaryColor),
+            borderSide:
+                const BorderSide(width: 1, color: AppColors.primaryColor),
           ),
           errorBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(5),
-            borderSide: const BorderSide(
-                width: 1, color: AppColors.errorColor),
+            borderSide: const BorderSide(width: 1, color: AppColors.errorColor),
           ),
-          hintStyle: CustomTextStyles.f16W400(
-              color: AppColors.secondaryTextColor),
+          hintStyle:
+              CustomTextStyles.f16W400(color: AppColors.secondaryTextColor),
         ),
         validator: Validators.checkFieldEmpty,
         controller: c.messageController,
@@ -180,4 +179,3 @@ class MessageWidget extends StatelessWidget {
     );
   }
 }
-

@@ -44,7 +44,7 @@ class RegisterScreen extends StatelessWidget {
                       hint: "Full Name",
                       preIconPath: Icons.person,
                       preIconSize: 22,
-                      textInputAction: TextInputAction.next,
+                      textInputAction: TextInputAction.done,
                       textInputType: TextInputType.text),
                   const SizedBox(height: 18),
                   Text("Email", style: CustomTextStyles.f14W400()),
@@ -55,7 +55,8 @@ class RegisterScreen extends StatelessWidget {
                       hint: "Email",
                       preIconPath: Icons.email,
                       preIconSize: 18,
-                      textInputAction: TextInputAction.next,
+                      textCapitalization: TextCapitalization.none,
+                      textInputAction: TextInputAction.done,
                       textInputType: TextInputType.emailAddress),
                   const SizedBox(height: 18),
                   Text("Address", style: CustomTextStyles.f14W400()),
@@ -66,7 +67,7 @@ class RegisterScreen extends StatelessWidget {
                       hint: "Address",
                       preIconPath: Icons.house_sharp,
                       preIconSize: 21,
-                      textInputAction: TextInputAction.next,
+                      textInputAction: TextInputAction.done,
                       textInputType: TextInputType.text),
                   const SizedBox(height: 18),
                   Text("Phone No", style: CustomTextStyles.f14W400()),
@@ -150,15 +151,16 @@ class RegisterScreen extends StatelessWidget {
                   Center(
                       child: Text("Already have an account?",
                           style: CustomTextStyles.f14W400())),
-                  InkWell(
-                      splashColor: Colors.transparent,
-                      highlightColor: Colors.transparent,
-                      onTap: () {
-                        Get.offAll(() => LoginScreen());
-                      },
-                      child: Center(
-                          child: Text("Login",
-                              style: CustomTextStyles.f14W700()))),
+                  Center(
+                    child: InkWell(
+                        splashColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () {
+                          Get.offAll(() => LoginScreen());
+                        },
+                        child:
+                            Text("Login", style: CustomTextStyles.f14W700())),
+                  ),
                 ],
               ),
             )),

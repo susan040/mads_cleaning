@@ -50,7 +50,7 @@ class WindowCleaningScreen extends StatelessWidget {
                       controller: c.noOfWindowsController,
                       validator: Validators.checkFieldEmpty,
                       hint: "No of Windows",
-                      textInputAction: TextInputAction.next,
+                      textInputAction: TextInputAction.done,
                       textInputType: TextInputType.number),
                 ),
                 Padding(
@@ -65,7 +65,7 @@ class WindowCleaningScreen extends StatelessWidget {
                       controller: c.noOfStoryController,
                       validator: Validators.checkFieldEmpty,
                       hint: "No of Story (House)",
-                      textInputAction: TextInputAction.next,
+                      textInputAction: TextInputAction.done,
                       textInputType: TextInputType.number),
                 ),
                 Padding(
@@ -76,7 +76,7 @@ class WindowCleaningScreen extends StatelessWidget {
                 ),
                 Padding(
                   padding:
-                      const EdgeInsets.only(left: 18, right: 18, bottom: 10),
+                      const EdgeInsets.only(left: 18, right: 18, bottom: 22),
                   child: DropdownButtonFormField(
                     onChanged: (value) {
                       c.selectWindowOption.value = value.toString();
@@ -124,6 +124,11 @@ class WindowCleaningScreen extends StatelessWidget {
                           color: AppColors.secondaryTextColor),
                     ),
                   ),
+                ),
+                Padding(
+                  padding:
+                      const EdgeInsets.only(left: 18, right: 18, bottom: 10),
+                  child: Text("Message", style: CustomTextStyles.f14W700()),
                 ),
                 MessageWidget(c: c)
               ],

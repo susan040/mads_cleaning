@@ -50,7 +50,7 @@ class LeaseCleaningScreen extends StatelessWidget {
                       controller: c.noOfBedroomsController,
                       validator: Validators.checkFieldEmpty,
                       hint: "No of Bedrooms",
-                      textInputAction: TextInputAction.next,
+                      textInputAction: TextInputAction.done,
                       textInputType: TextInputType.number),
                 ),
                 Padding(
@@ -66,7 +66,7 @@ class LeaseCleaningScreen extends StatelessWidget {
                       controller: c.noOfBathroomsController,
                       validator: Validators.checkFieldEmpty,
                       hint: "No of Bathrooms",
-                      textInputAction: TextInputAction.next,
+                      textInputAction: TextInputAction.done,
                       textInputType: TextInputType.number),
                 ),
                 Padding(
@@ -147,7 +147,7 @@ class LeaseCleaningScreen extends StatelessWidget {
                       controller: c.noOfCarpetSteamController,
                       validator: Validators.checkFieldEmpty,
                       hint: "No of carpet areas",
-                      textInputAction: TextInputAction.next,
+                      textInputAction: TextInputAction.done,
                       textInputType: TextInputType.number),
                 ),
                 Padding(

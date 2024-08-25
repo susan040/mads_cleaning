@@ -40,6 +40,7 @@ class LoginScreen extends StatelessWidget {
                   hint: "email",
                   preIconPath: Icons.email,
                   preIconSize: 14,
+                  textCapitalization: TextCapitalization.none,
                   textInputAction: TextInputAction.done,
                   textInputType: TextInputType.emailAddress),
               const SizedBox(height: 20),
@@ -72,7 +73,7 @@ class LoginScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              const SizedBox(height: 30),
+              const SizedBox(height: 22),
               CustomElevatedButton(
                   title: "Login",
                   onTap: () {
@@ -82,15 +83,15 @@ class LoginScreen extends StatelessWidget {
               Center(
                   child: Text("Don't have an account?",
                       style: CustomTextStyles.f14W400())),
-              InkWell(
-                  splashColor: Colors.transparent,
-                  highlightColor: Colors.transparent,
-                  onTap: () {
-                    Get.offAll(() => RegisterScreen());
-                  },
-                  child: Center(
-                      child:
-                          Text("Sign Up", style: CustomTextStyles.f14W700()))),
+              Center(
+                child: InkWell(
+                    splashColor: Colors.transparent,
+                    highlightColor: Colors.transparent,
+                    onTap: () {
+                      Get.offAll(() => RegisterScreen());
+                    },
+                    child: Text("Sign Up", style: CustomTextStyles.f14W700())),
+              ),
             ],
           ),
         )),

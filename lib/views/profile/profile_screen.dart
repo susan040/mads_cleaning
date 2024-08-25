@@ -70,14 +70,14 @@ class ProfileScreen extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 7),
-            InkWell(
-              splashColor: Colors.transparent,
-              highlightColor: Colors.transparent,
-              onTap: () {
-                Get.to(() => EditProfileScreen());
-              },
-              child: Padding(
-                  padding: const EdgeInsets.only(top: 35),
+            Padding(
+                padding: const EdgeInsets.only(top: 35),
+                child: InkWell(
+                  splashColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                  onTap: () {
+                    Get.to(() => EditProfileScreen());
+                  },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -90,16 +90,16 @@ class ProfileScreen extends StatelessWidget {
                       ),
                       SvgPicture.asset(ImagePath.arrow)
                     ],
-                  )),
-            ),
-            InkWell(
-              splashColor: Colors.transparent,
-              highlightColor: Colors.transparent,
-              onTap: () {
-                Get.to(() => NotificationScreen());
-              },
-              child: Padding(
-                padding: const EdgeInsets.only(top: 35),
+                  ),
+                )),
+            Padding(
+              padding: const EdgeInsets.only(top: 35),
+              child: InkWell(
+                splashColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                onTap: () {
+                  Get.to(() => const NotificationScreen());
+                },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -131,14 +131,14 @@ class ProfileScreen extends StatelessWidget {
                 ),
               ),
             ),
-            InkWell(
-              splashColor: Colors.transparent,
-              highlightColor: Colors.transparent,
-              onTap: () {
-                Get.to(() => FaqScreen());
-              },
-              child: Padding(
-                  padding: const EdgeInsets.only(top: 35),
+            Padding(
+                padding: const EdgeInsets.only(top: 35),
+                child: InkWell(
+                  splashColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                  onTap: () {
+                    Get.to(() => const FaqScreen());
+                  },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -151,16 +151,16 @@ class ProfileScreen extends StatelessWidget {
                       ),
                       SvgPicture.asset(ImagePath.arrow)
                     ],
-                  )),
-            ),
-            InkWell(
-              splashColor: Colors.transparent,
-              highlightColor: Colors.transparent,
-              onTap: () {
-                Get.to(() => const AboutUsScreen());
-              },
-              child: Padding(
-                  padding: const EdgeInsets.only(top: 35),
+                  ),
+                )),
+            Padding(
+                padding: const EdgeInsets.only(top: 35),
+                child: InkWell(
+                  splashColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                  onTap: () {
+                    Get.to(() => const AboutUsScreen());
+                  },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -173,16 +173,16 @@ class ProfileScreen extends StatelessWidget {
                       ),
                       SvgPicture.asset(ImagePath.arrow)
                     ],
-                  )),
-            ),
-            InkWell(
-              splashColor: Colors.transparent,
-              highlightColor: Colors.transparent,
-              onTap: () {
-                Get.to(() => ChangePasswordScreen());
-              },
-              child: Padding(
-                  padding: const EdgeInsets.only(top: 35),
+                  ),
+                )),
+            Padding(
+                padding: const EdgeInsets.only(top: 35),
+                child: InkWell(
+                  splashColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                  onTap: () {
+                    Get.to(() => ChangePasswordScreen());
+                  },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -196,16 +196,16 @@ class ProfileScreen extends StatelessWidget {
                       ),
                       SvgPicture.asset(ImagePath.arrow)
                     ],
-                  )),
-            ),
-            InkWell(
-              splashColor: Colors.transparent,
-              highlightColor: Colors.transparent,
-              onTap: () {
-                Get.offAll(() => LoginScreen());
-              },
-              child: Padding(
-                  padding: const EdgeInsets.only(top: 35),
+                  ),
+                )),
+            Padding(
+                padding: const EdgeInsets.only(top: 35),
+                child: InkWell(
+                  splashColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                  onTap: () {
+                    Get.offAll(() => LoginScreen());
+                  },
                   child: Row(
                     children: [
                       SvgPicture.asset(ImagePath.logOut,
@@ -215,8 +215,8 @@ class ProfileScreen extends StatelessWidget {
                           style: CustomTextStyles.f14W600(
                               color: AppColors.rejected)),
                     ],
-                  )),
-            ),
+                  ),
+                )),
           ],
         ),
       ),

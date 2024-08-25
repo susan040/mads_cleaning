@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mads_cleaning/utils/theme.dart';
 import 'package:mads_cleaning/views/splash_screen.dart';
 
 void main() {
@@ -16,7 +15,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: "Mads Cleaning",
-      theme: basicTheme(),
+      theme: ThemeData(useMaterial3: false),
       themeMode: ThemeMode.light,
       home: SplashScreen(),
     );

@@ -10,15 +10,19 @@ class HistoryScreenController extends GetxController {
       barrierDismissible: false,
       builder: (context) {
         return AlertDialog(
-          contentPadding:
-              const EdgeInsets.symmetric(horizontal: 12, vertical: 20),
-          title: Text('Are you sure you want to cancel?',
-              style: CustomTextStyles.f16W700()),
+          contentPadding: const EdgeInsets.symmetric(vertical: 7),
+          title: Text(
+            'Are your sure to delete?',
+            style: CustomTextStyles.f16W700(),
+            textAlign: TextAlign.center,
+          ),
           content: Text(
-            "Your booked service will be cancelled",
+            "Your booked services will be delete from the list",
             style: CustomTextStyles.f12W400(color: AppColors.lGrey),
+            textAlign: TextAlign.center,
           ),
           actions: [
+            const SizedBox(height: 5),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -59,6 +63,7 @@ class HistoryScreenController extends GetxController {
                 ),
               ],
             ),
+            const SizedBox(height: 10)
           ],
         );
       },

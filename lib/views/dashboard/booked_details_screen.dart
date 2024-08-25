@@ -31,24 +31,27 @@ class BookedDetailsScreen extends StatelessWidget {
         child: Stack(
           children: [
             // Background Image
-            Image.asset(
-              ImagePath.background,
-              fit: BoxFit.cover,
-              width: double.infinity,
-              //height: double.infinity,
+            Padding(
+              padding: const EdgeInsets.only(left: 10, right: 10, top: 14),
+              child: Image.asset(
+                ImagePath.background,
+                fit: BoxFit.cover,
+                width: double.infinity,
+                //height: double.infinity,
+              ),
             ),
 
             // Padding with details
             Padding(
               padding: const EdgeInsets.only(
-                  left: 25, right: 25, top: 25, bottom: 25),
+                  left: 35, right: 40, top: 40, bottom: 25),
               child: Column(
                 children: [
                   ClipRRect(
                     borderRadius: BorderRadius.circular(5),
                     child: CachedNetworkImage(
                       fit: BoxFit.cover,
-                      height: MediaQuery.of(context).size.height / 3,
+                      height: MediaQuery.of(context).size.height / 2.8,
                       width: double.infinity,
                       imageUrl:
                           "https://ecoglowcleaning.com/wp-content/uploads/2022/11/Cleaning-service-employees-wit.jpg",
@@ -126,14 +129,16 @@ class BookedDetailsScreen extends StatelessWidget {
       builder: (context) {
         return AlertDialog(
           contentPadding:
-              const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+              const EdgeInsets.symmetric(horizontal: 20, vertical: 7),
           title: Text('Are you sure you want to cancel?',
               style: CustomTextStyles.f16W700()),
           content: Text(
             "Your booked service will be cancelled",
             style: CustomTextStyles.f12W400(color: AppColors.lGrey),
+            textAlign: TextAlign.center,
           ),
           actions: [
+            const SizedBox(height: 5),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -174,6 +179,7 @@ class BookedDetailsScreen extends StatelessWidget {
                 ),
               ],
             ),
+            const SizedBox(height: 10)
           ],
         );
       },
