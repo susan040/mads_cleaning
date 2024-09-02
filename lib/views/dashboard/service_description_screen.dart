@@ -15,6 +15,7 @@ class ServiceDescriptionScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.extraWhite,
       appBar: AppBar(
         elevation: 2,
         centerTitle: false,

@@ -9,6 +9,7 @@ class NetworkErrorScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.extraWhite,
       body: SafeArea(
           child: Center(
         child: Column(

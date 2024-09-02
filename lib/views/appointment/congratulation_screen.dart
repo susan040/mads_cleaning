@@ -12,6 +12,7 @@ class CongratulationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.extraWhite,
       body: SafeArea(
           child: Column(
         mainAxisAlignment: MainAxisAlignment.center,

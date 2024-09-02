@@ -14,6 +14,7 @@ class ChangePasswordScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.extraWhite,
       appBar: AppBar(
         elevation: 2,
         centerTitle: false,
@@ -81,7 +82,8 @@ class ChangePasswordScreen extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: Padding(
-        padding: const EdgeInsets.only(left: 18, right: 18, bottom: 16, top: 10),
+        padding:
+            const EdgeInsets.only(left: 18, right: 18, bottom: 16, top: 10),
         child: SizedBox(
           height: 60,
           child: CustomElevatedButton(title: "Change Password", onTap: () {}),
