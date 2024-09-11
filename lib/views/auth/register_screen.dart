@@ -6,7 +6,6 @@ import 'package:mads_cleaning/utils/colors.dart';
 import 'package:mads_cleaning/utils/custom_text_style.dart';
 import 'package:mads_cleaning/utils/validator.dart';
 import 'package:mads_cleaning/views/auth/login_screen.dart';
-import 'package:mads_cleaning/views/dash_screen.dart';
 import 'package:mads_cleaning/widgets/custom/custom_password_fields.dart';
 import 'package:mads_cleaning/widgets/custom/custom_textfield.dart';
 import 'package:mads_cleaning/widgets/custom/elevated_button.dart';
@@ -145,7 +144,7 @@ class RegisterScreen extends StatelessWidget {
                   CustomElevatedButton(
                       title: "Sign Up",
                       onTap: () {
-                        Get.offAll(() => DashScreen());
+                        c.onSubmit();
                       }),
                   const SizedBox(height: 27),
                   Center(
@@ -153,13 +152,15 @@ class RegisterScreen extends StatelessWidget {
                           style: CustomTextStyles.f14W400())),
                   Center(
                     child: InkWell(
-                        splashColor: Colors.transparent,
-                        highlightColor: Colors.transparent,
                         onTap: () {
                           Get.offAll(() => LoginScreen());
                         },
-                        child:
-                            Text("Login", style: CustomTextStyles.f14W700())),
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                              left: 4, right: 4, top: 2, bottom: 2),
+                          child:
+                              Text("Login", style: CustomTextStyles.f14W700()),
+                        )),
                   ),
                 ],
               ),

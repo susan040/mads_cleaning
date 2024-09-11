@@ -172,8 +172,7 @@ class ServiceDescriptionScreen extends StatelessWidget {
                     ),
                     const SizedBox(width: 13),
                     InkWell(
-                      splashColor: Colors.transparent,
-                      highlightColor: Colors.transparent,
+                      highlightColor: Colors.black,
                       onTap: () {
                         Get.to(() => AppointmentBookingScreen());
                       },

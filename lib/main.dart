@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:mads_cleaning/controller/core_controller.dart';
 import 'package:mads_cleaning/views/splash_screen.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await GetStorage.init();
   runApp(const MyApp());
 }
 
@@ -17,6 +21,9 @@ class MyApp extends StatelessWidget {
       title: "Mads Cleaning",
       theme: ThemeData(useMaterial3: false),
       themeMode: ThemeMode.light,
+      initialBinding: BindingsBuilder(() {
+        Get.put(CoreController());
+      }),
       home: SplashScreen(),
     );
   }

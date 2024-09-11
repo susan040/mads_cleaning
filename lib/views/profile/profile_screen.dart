@@ -2,19 +2,19 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:mads_cleaning/controller/core_controller.dart';
 import 'package:mads_cleaning/utils/colors.dart';
 import 'package:mads_cleaning/utils/custom_text_style.dart';
 import 'package:mads_cleaning/utils/image_path.dart';
 import 'package:mads_cleaning/views/dashboard/about_us_screen.dart';
-import 'package:mads_cleaning/views/auth/login_screen.dart';
 import 'package:mads_cleaning/views/dashboard/change_password_screen.dart';
 import 'package:mads_cleaning/views/dashboard/faq_screen.dart';
 import 'package:mads_cleaning/views/dashboard/notification_screen.dart';
 import 'package:mads_cleaning/views/profile/edit_profile_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({super.key});
-
+  final coreController = Get.put(CoreController());
+  ProfileScreen({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,14 +58,20 @@ class ProfileScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(height: 7),
-                    Text("Hungry Sharma", style: CustomTextStyles.f16W700()),
+                    Obx(() => Text(
+                        coreController.currentUser.value!.name.toString(),
+                        style: CustomTextStyles.f16W700())),
                     const SizedBox(height: 2),
-                    Text("example@gmail.com",
-                        style: CustomTextStyles.f14W500()),
+                    Obx(() => Text(
+                        coreController.currentUser.value!.email.toString(),
+                        style: CustomTextStyles.f14W500())),
                     const SizedBox(height: 2),
-                    Text("+613489534340",
-                        style:
-                            CustomTextStyles.f14W400(color: AppColors.lGrey)),
+                    Obx(
+                      () => Text(
+                          coreController.currentUser.value!.phone.toString(),
+                          style:
+                              CustomTextStyles.f14W400(color: AppColors.lGrey)),
+                    ),
                   ],
                 )
               ],
@@ -74,8 +80,6 @@ class ProfileScreen extends StatelessWidget {
             Padding(
                 padding: const EdgeInsets.only(top: 35),
                 child: InkWell(
-                  splashColor: Colors.transparent,
-                  highlightColor: Colors.transparent,
                   onTap: () {
                     Get.to(() => EditProfileScreen());
                   },
@@ -96,8 +100,8 @@ class ProfileScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(top: 35),
               child: InkWell(
-                splashColor: Colors.transparent,
-                highlightColor: Colors.transparent,
+                // splashColor: Colors.transparent,
+                // highlightColor: Colors.transparent,
                 onTap: () {
                   Get.to(() => const NotificationScreen());
                 },
@@ -135,8 +139,8 @@ class ProfileScreen extends StatelessWidget {
             Padding(
                 padding: const EdgeInsets.only(top: 35),
                 child: InkWell(
-                  splashColor: Colors.transparent,
-                  highlightColor: Colors.transparent,
+                  //splashColor: Colors.transparent,
+                  // highlightColor: Colors.transparent,
                   onTap: () {
                     Get.to(() => const FaqScreen());
                   },
@@ -157,8 +161,8 @@ class ProfileScreen extends StatelessWidget {
             Padding(
                 padding: const EdgeInsets.only(top: 35),
                 child: InkWell(
-                  splashColor: Colors.transparent,
-                  highlightColor: Colors.transparent,
+                  // splashColor: Colors.transparent,
+                  // highlightColor: Colors.transparent,
                   onTap: () {
                     Get.to(() => const AboutUsScreen());
                   },
@@ -179,8 +183,8 @@ class ProfileScreen extends StatelessWidget {
             Padding(
                 padding: const EdgeInsets.only(top: 35),
                 child: InkWell(
-                  splashColor: Colors.transparent,
-                  highlightColor: Colors.transparent,
+                  //splashColor: Colors.transparent,
+                  // highlightColor: Colors.transparent,
                   onTap: () {
                     Get.to(() => ChangePasswordScreen());
                   },
@@ -202,10 +206,10 @@ class ProfileScreen extends StatelessWidget {
             Padding(
                 padding: const EdgeInsets.only(top: 35),
                 child: InkWell(
-                  splashColor: Colors.transparent,
-                  highlightColor: Colors.transparent,
+                  // splashColor: Colors.transparent,
+                  // highlightColor: Colors.transparent,
                   onTap: () {
-                    Get.offAll(() => LoginScreen());
+                    coreController.logOut();
                   },
                   child: Row(
                     children: [

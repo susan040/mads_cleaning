@@ -125,8 +125,8 @@ class ServiceBookedWidget extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.only(left: 18, right: 18, top: 14),
         child: InkWell(
-          splashColor: Colors.transparent,
-          highlightColor: Colors.transparent,
+          hoverColor: AppColors.accepted,
+          highlightColor: AppColors.borderColor,
           onTap: () {
             Get.to(() => const BookedDetailsScreen());
           },
