@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:mads_cleaning/model/all_services.dart';
 import 'package:mads_cleaning/utils/colors.dart';
 import 'package:mads_cleaning/utils/custom_text_style.dart';
 import 'package:mads_cleaning/utils/image_path.dart';
@@ -10,7 +11,9 @@ import 'package:mads_cleaning/views/service_booking/window_cleaning_screen.dart'
 import 'package:mads_cleaning/widgets/custom/elevated_button.dart';
 
 class ServiceDescriptionScreen extends StatelessWidget {
-  const ServiceDescriptionScreen({super.key});
+  const ServiceDescriptionScreen({super.key, required this.service});
+
+  final Services service;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +30,7 @@ class ServiceDescriptionScreen extends StatelessWidget {
             color: Colors.black,
           ),
         ),
-        title: Text("Window Cleaning Service",
+        title: Text(service.name ?? "",
             style: CustomTextStyles.f14W700(color: AppColors.textColor)),
       ),
       body: SafeArea(
@@ -51,19 +54,19 @@ class ServiceDescriptionScreen extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 18, right: 18, top: 20),
-                child: Text("Window Cleaning Services",
-                    style: CustomTextStyles.f18W700()),
+                child:
+                    Text(service.name ?? "", style: CustomTextStyles.f18W700()),
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 18, right: 18, top: 5),
-                child: Text("\$50/day",
+                child: Text("\$${service.price}/day",
                     style: CustomTextStyles.f16W700(
                         color: AppColors.secondaryColor)),
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 18, right: 18, top: 5),
                 child: Text(
-                  "We are ruling the cleaning industry for a decade now, and have been the favorite of our clients since then. Be it a monthly cleaning task or once a year task, we are a professional and we know how to execute both. We serve with the most professional services and will be at your doorstep whenever you need our help. We are the most renowned window cleaning services for many years serving our clients with the best cleaning services. Our window cleaning services are the best in the industry, and we try to deliver our best window cleaning services at the most affordable rates. Our well-trained expert team of window cleaners has made us stand among the top window cleaning company.",
+                  service.description ?? "",
                   style: CustomTextStyles.f14W400(),
                   textAlign: TextAlign.justify,
                 ),
@@ -109,7 +112,7 @@ class ServiceDescriptionScreen extends StatelessWidget {
                     SvgPicture.asset(ImagePath.location, height: 18, width: 14),
                     const SizedBox(width: 17),
                     Text(
-                      "34 Amy Street, West Moonah , TAS 7009",
+                      service.location ?? "",
                       style: CustomTextStyles.f12W400(color: AppColors.lGrey),
                     )
                   ],

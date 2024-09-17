@@ -2,6 +2,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:mads_cleaning/controller/dashboard/all_serivces_controller.dart';
+import 'package:mads_cleaning/model/all_services.dart';
 import 'package:mads_cleaning/utils/colors.dart';
 import 'package:mads_cleaning/utils/custom_text_style.dart';
 import 'package:mads_cleaning/utils/image_path.dart';
@@ -10,7 +12,8 @@ import 'package:mads_cleaning/widgets/rating_widget.dart';
 import 'package:mads_cleaning/widgets/services_widget.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+  final c = Get.put(AllSerivcesController());
+  HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -129,32 +132,36 @@ class HomeScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.only(left: 18, right: 18, top: 13),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    ServicesWidget(
-                        image: ImagePath.windowCleaning,
-                        name: "Window Cleaning"),
-                    ServicesWidget(
-                        image: ImagePath.officeCleaning,
-                        name: "Office Cleaning"),
-                  ],
-                ),
-              ),
-              const Padding(
-                padding: EdgeInsets.only(left: 18, top: 18, right: 18),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    ServicesWidget(
-                        image: ImagePath.carpetCleaning,
-                        name: "Carpet Cleaning"),
-                    ServicesWidget(
-                        image: ImagePath.gardenCleaning,
-                        name: "Garden Cleaning"),
-                  ],
+              Padding(
+                padding: const EdgeInsets.only(left: 18, right: 18, top: 13),
+                child: Obx(
+                  () => (c.loading.value)
+                      ? const Center(child: CircularProgressIndicator())
+                      : c.allServices.isEmpty
+                          ? Center(
+                              child: Text(
+                              "No services",
+                              style: CustomTextStyles.f14W400(
+                                  color: AppColors.textGreyColor),
+                            ))
+                          : GridView.builder(
+                              gridDelegate:
+                                  const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 2,
+                                mainAxisSpacing: 18,
+                                crossAxisSpacing: 18,
+                                childAspectRatio: 3 / 2.5,
+                              ),
+                              shrinkWrap: true,
+                              physics: const NeverScrollableScrollPhysics(),
+                              itemCount: c.allServices.length > 4
+                                  ? 4
+                                  : c.allServices.length,
+                              itemBuilder: (context, index) {
+                                Services services = c.allServices[index];
+                                return ServicesWidget(services: services);
+                              },
+                            ),
                 ),
               ),
               Padding(
@@ -182,7 +189,7 @@ class HomeScreen extends StatelessWidget {
                           "https://images.pexels.com/photos/1386604/pexels-photo-1386604.jpeg",
                       name: "— Sarah J.",
                       text:
-                          "I love the Mads Cleaning and Gardening app! Booking is easy, and the professionals always do an amazing job. Highly recommend!")
+                          "I love the Mads Cleaning and Gardening app! Booking is easy, and the professionals always do an amazing job. Highly recommend!"),
                 ]),
               ),
               Container()

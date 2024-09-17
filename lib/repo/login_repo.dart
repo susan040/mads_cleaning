@@ -20,8 +20,8 @@ class LoginRepo {
         "email": email,
         "password": password,
       };
-      http.Response response =
-          await http.post(Uri.parse(Api.login), headers: headers, body: body);
+      http.Response response = await http.post(Uri.parse(Api.loginUrl),
+          headers: headers, body: body);
       dynamic data = jsonDecode(response.body);
       if (response.statusCode >= 200 && response.statusCode < 300) {
         String accessToken = json.encode(["token"]);

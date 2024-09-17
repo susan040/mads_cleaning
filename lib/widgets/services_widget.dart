@@ -1,22 +1,27 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mads_cleaning/controller/dashboard/all_serivces_controller.dart';
+import 'package:mads_cleaning/model/all_services.dart';
 import 'package:mads_cleaning/utils/colors.dart';
 import 'package:mads_cleaning/utils/custom_text_style.dart';
+import 'package:mads_cleaning/utils/image_path.dart';
 import 'package:mads_cleaning/views/dashboard/service_description_screen.dart';
 
 class ServicesWidget extends StatelessWidget {
-  const ServicesWidget({
+  final c = Get.put(AllSerivcesController());
+  ServicesWidget({
     super.key,
-    required this.image,
-    required this.name,
+    required this.services,
   });
-  final String image;
-  final String name;
+  final Services services;
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.to(() => ServiceDescriptionScreen());
+        Get.to(() => ServiceDescriptionScreen(
+              service: services,
+            ));
       },
       child: Container(
         height: 135,
@@ -34,13 +39,31 @@ class ServicesWidget extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset(
-              image,
-              filterQuality: FilterQuality.high,
-              height: 75,
+            // ClipRRect(
+            //   child: CachedNetworkImage(
+            //     placeholder: (context, url) =>
+            //         const Center(child: CircularProgressIndicator()),
+            //     fit: BoxFit.cover,
+            //     height: 75,
+            //     filterQuality: FilterQuality.high,
+            //     imageUrl: c.serviceImages[services.name] ?? "",
+            //     errorWidget: (context, url, error) => Image.asset(
+            //       ImagePath.blankImage,
+            //       height: 75,
+            //       fit: BoxFit.fill,
+            //     ),
+            //   ),
+            // ),
+            ClipRRect(
+              child: Image.asset(
+                c.serviceImages[services.name] ??
+                    ImagePath.blankImage, // Use asset image
+                height: 75,
+                fit: BoxFit.cover,
+              ),
             ),
             const SizedBox(height: 9),
-            Text(name, style: CustomTextStyles.f14W400())
+            Text(services.name ?? "", style: CustomTextStyles.f14W400())
           ],
         ),
       ),

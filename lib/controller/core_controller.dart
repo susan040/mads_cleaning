@@ -12,7 +12,7 @@ class CoreController extends GetxController {
 
   @override
   void onInit() async {
-    log("dsfsdfsdfdsfdsfsdf");
+    //log("dsfsdfsdfdsfdsfsdf");
     await loadCurrentUser();
     super.onInit();
   }
@@ -20,8 +20,8 @@ class CoreController extends GetxController {
   Future<void> loadCurrentUser() async {
     currentUser.value = StorageHelper.getUser();
     userToken.value = StorageHelper.getToken();
-    log("current user--------------------- ${currentUser.value?.email}--");
-    log("current user--------------------- ${currentUser.value?.token}--");
+    log("user token ${currentUser.value?.token}--");
+    //log("email-${currentUser.value?.email}--");
   }
 
   bool isUserLoggendIn() {

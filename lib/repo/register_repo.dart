@@ -29,7 +29,7 @@ class RegisterRepo {
         "confirm_password": confirmPassword,
       };
       http.Response response = await HttpRequestMadsCleaning.post(
-          Uri.parse(Api.register),
+          Uri.parse(Api.registerUrl),
           headers: headers,
           body: body);
       dynamic data = jsonDecode(response.body);
