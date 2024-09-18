@@ -3,10 +3,13 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mads_cleaning/controller/core_controller.dart';
+import 'package:mads_cleaning/repo/lease_cleaning_repo.dart';
 import 'package:mads_cleaning/utils/colors.dart';
+import 'package:mads_cleaning/utils/custom_snackbar.dart';
+import 'package:mads_cleaning/views/service_booking/service_congratulation.dart';
 
-class LeaseCleaningController extends GetxController{
-   @override
+class LeaseCleaningController extends GetxController {
+  @override
   void onInit() {
     super.onInit();
     populateUserDetails();
@@ -28,25 +31,41 @@ class LeaseCleaningController extends GetxController{
   final emailController = TextEditingController();
   final phoneNoController = TextEditingController();
   final messageController = TextEditingController();
-  final noOfWindowsController = TextEditingController();
-  final noOfStoryController = TextEditingController();
+  final noOfBedroomController = TextEditingController();
+  final noOfBathroomController = TextEditingController();
+  final noOfWallsCleaningController = TextEditingController();
+  final carpetSteamCleaningUnit = TextEditingController();
+  final carpetSteamCleaningArea = TextEditingController();
   final selectDateController = TextEditingController();
   final selectTimeController = TextEditingController();
 
   var desireDate = DateTime.now().obs;
   var desireTime = TimeOfDay.now().obs;
 
-  var windowsTrackCleaning = ''.obs;
-  var selectWhereToClean = "".obs;
-  final List<String> whereToCleanOption = ['Inside', 'Outside', 'Both'];
-  final List<String> windowsTrackCleaningOption = ['Track', 'Frame', 'Both'];
+  var selectWindowCleaning = "".obs;
+  var selectOvenCleaning = "".obs;
+  var selectStoveCleaning = "".obs;
+  final List<String> windowCleaningOption = ['Inside', 'Outside', 'Both'];
+  final List<String> cleaningOption = ['Yes', 'No'];
 
-  void updateSelectedWhereToClean(String value) {
-    selectWhereToClean.value = value;
+  void updateSelectWindowCleaning(String value) {
+    selectWindowCleaning.value = value;
   }
 
-  void updateSelectedTrack(String value) {
-    windowsTrackCleaning.value = value;
+  void updateSelectOvenCleaning(String value) {
+    selectOvenCleaning.value = value;
+  }
+
+  void updateSelectStoveCleaning(String value) {
+    selectStoveCleaning.value = value;
+  }
+
+  int get updateSelectedOvenValue {
+    return selectOvenCleaning.value == 'Yes' ? 1 : 0;
+  }
+
+  int get updateSelectedStoveValue {
+    return selectStoveCleaning.value == 'Yes' ? 1 : 0;
   }
 
   RxBool loading = RxBool(false);
@@ -113,43 +132,36 @@ class LeaseCleaningController extends GetxController{
     }
   }
 
-  // bookHouseCleaningService(
-  //     String name,
-  //     String email,
-  //     String phone,
-  //     String location,
-  //     String noOfWindows,
-  //     String noOfStory,
-  //     String message,
-  //     String type,
-  //     String windowsTrackFrame,
-  //     String serviceDate,
-  //     String serviceTime) async {
-  //   loading.value = true;
+  bookLeaseCleaningService() async {
+    loading.value = true;
 
-  //   await WindowsCleaningBookingRepo.windowsCleaningBookRepo(
-  //       fullName: name,
-  //       email: email,
-  //       phone: phone,
-  //       location: location,
-  //       noOfWindows: noOfWindows,
-  //       noOfStory: noOfStory,
-  //       message: message,
-  //       type: type,
-  //       date: serviceDate,
-  //       time: serviceTime,
-  //       windowsTrackFrame: windowsTrackFrame,
-  //       onSuccess: () {
-  //         loading.value = false;
-  //         Get.offAll(() => const ServiceCongratulationScreen());
-  //         CustomSnackBar.success(
-  //             title: "Window Cleaning Services",
-  //             message: "Window Cleaning Services successfully booked.");
-  //       },
-  //       onError: ((message) {
-  //         loading.value = false;
-  //         CustomSnackBar.error(
-  //             title: "Window Cleaning Service Booking", message: message);
-  //       }));
-  // }
+    await BookLeaseCleaningRepo.bookLeaseCleaningRepo(
+        fullName: fullNameController.text,
+        email: emailController.text,
+        phone: phoneNoController.text,
+        location: addressController.text,
+        date: selectDateController.text,
+        time: selectTimeController.text,
+        noOfBedroom: noOfBedroomController.text,
+        noOfBathroom: noOfBathroomController.text,
+        message: messageController.text,
+        ovenCleaning: updateSelectedOvenValue.toString(),
+        stoveCleaning: updateSelectedStoveValue.toString(),
+        noOfWallsToClean: noOfWallsCleaningController.text,
+        carpetSteamCleaningUnit: carpetSteamCleaningUnit.text,
+        carpetSteamCleaningArea: carpetSteamCleaningArea.text,
+        windowCleaning: selectWindowCleaning.value,
+        onSuccess: () {
+          loading.value = false;
+          Get.offAll(() => const ServiceCongratulationScreen());
+          CustomSnackBar.success(
+              title: "Lease Cleaning Services",
+              message: "Lease Cleaning Services successfully booked.");
+        },
+        onError: ((message) {
+          loading.value = false;
+          CustomSnackBar.error(
+              title: "Lease Cleaning Service Booking", message: message);
+        }));
+  }
 }

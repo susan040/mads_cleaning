@@ -6,19 +6,23 @@ import 'package:http/http.dart' as http;
 import 'package:mads_cleaning/utils/api.dart';
 import 'package:mads_cleaning/utils/http_request.dart';
 
-class HouseCleaningBookRepo {
-  static Future<void> bookHouseCleaningRepo(
+class BookLeaseCleaningRepo {
+  static Future<void> bookLeaseCleaningRepo(
       {required String fullName,
       required String email,
       required String phone,
       required String location,
+      required String date,
+      required String time,
       required String noOfBedroom,
       required String noOfBathroom,
       required String message,
-      required String frequency,
-      required String date,
-      required String time,
-      required String noOfStory,
+      required String ovenCleaning,
+      required String stoveCleaning,
+      required String noOfWallsToClean,
+      required String carpetSteamCleaningUnit,
+      required String carpetSteamCleaningArea,
+      required String windowCleaning,
       required Function() onSuccess,
       required Function(String message) onError}) async {
     try {
@@ -32,22 +36,26 @@ class HouseCleaningBookRepo {
         'name': fullName,
         'email': email,
         'phone': phone,
-        'number_of_bedroom': noOfBedroom,
-        'number_of_bathroom': noOfBathroom,
-        'number_of_story': noOfStory,
-        'message': message,
+        'location': location,
         'service_date': date,
         'service_time': time,
-        'frequency': frequency,
-        'location': location
+        'number_of_bedrooms': noOfBedroom,
+        'number_of_bathrooms': noOfBathroom,
+        'oven_cleaning': ovenCleaning,
+        'stove_cleaning': stoveCleaning,
+        'number_of_walls_cleaned': noOfWallsToClean,
+        'carpet_steam_cleaning_unit': carpetSteamCleaningUnit,
+        'carpet_steam_cleaning_area': carpetSteamCleaningArea,
+        'window_cleaning': windowCleaning,
+        'message': message
       };
       http.Response response = await HttpRequestMadsCleaning.post(
-          Uri.parse(Api.houseCleaningServiceUrl),
+          Uri.parse(Api.leaseCleaningServiceUrl),
           headers: headers,
           body: body);
 
-      // log(json.encode(body));
-      // log(response.body);
+      log(json.encode(body));
+      log(response.body);
 
       dynamic data = json.decode(response.body);
       if (response.statusCode >= 200 && response.statusCode < 300) {
