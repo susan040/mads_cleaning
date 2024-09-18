@@ -28,7 +28,7 @@ class AllServicesScreen extends StatelessWidget {
               style: CustomTextStyles.f14W700(color: AppColors.textColor)),
         ),
         body: Padding(
-          padding: EdgeInsets.only(left: 18, right: 18, top: 20),
+          padding: const EdgeInsets.only(left: 18, right: 18, top: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

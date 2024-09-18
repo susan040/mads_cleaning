@@ -34,7 +34,6 @@ class LeaseCleaningController extends GetxController {
   final noOfBedroomController = TextEditingController();
   final noOfBathroomController = TextEditingController();
   final noOfWallsCleaningController = TextEditingController();
-  final carpetSteamCleaningUnit = TextEditingController();
   final carpetSteamCleaningArea = TextEditingController();
   final selectDateController = TextEditingController();
   final selectTimeController = TextEditingController();
@@ -45,8 +44,10 @@ class LeaseCleaningController extends GetxController {
   var selectWindowCleaning = "".obs;
   var selectOvenCleaning = "".obs;
   var selectStoveCleaning = "".obs;
+  var carpetSteamCleaningUnit = "".obs;
   final List<String> windowCleaningOption = ['Inside', 'Outside', 'Both'];
   final List<String> cleaningOption = ['Yes', 'No'];
+  final List<String> carpetSteamCleaningUnitOption = ['sqft', 'sqm'];
 
   void updateSelectWindowCleaning(String value) {
     selectWindowCleaning.value = value;
@@ -58,6 +59,10 @@ class LeaseCleaningController extends GetxController {
 
   void updateSelectStoveCleaning(String value) {
     selectStoveCleaning.value = value;
+  }
+
+  void updatecarpetSteamCleaningUnit(String value) {
+    carpetSteamCleaningUnit.value = value;
   }
 
   int get updateSelectedOvenValue {
@@ -132,6 +137,22 @@ class LeaseCleaningController extends GetxController {
     }
   }
 
+  void validateDate() {
+    // Check if the date field is empty after date selection
+    if (selectDateController.text.isEmpty) {
+      // Trigger form validation
+      formKey.currentState?.validate();
+    }
+  }
+
+  void validateTime() {
+    // Check if the time field is empty after time selection
+    if (selectTimeController.text.isEmpty) {
+      // Trigger form validation
+      formKey.currentState?.validate();
+    }
+  }
+
   bookLeaseCleaningService() async {
     loading.value = true;
 
@@ -148,7 +169,7 @@ class LeaseCleaningController extends GetxController {
         ovenCleaning: updateSelectedOvenValue.toString(),
         stoveCleaning: updateSelectedStoveValue.toString(),
         noOfWallsToClean: noOfWallsCleaningController.text,
-        carpetSteamCleaningUnit: carpetSteamCleaningUnit.text,
+        carpetSteamCleaningUnit: carpetSteamCleaningUnit.value,
         carpetSteamCleaningArea: carpetSteamCleaningArea.text,
         windowCleaning: selectWindowCleaning.value,
         onSuccess: () {

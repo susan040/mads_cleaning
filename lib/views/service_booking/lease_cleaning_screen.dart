@@ -38,8 +38,16 @@ class LeaseCleaningScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(
                       left: 18, right: 18, top: 20, bottom: 10),
-                  child: Text("Personal details",
-                      style: CustomTextStyles.f14W700()),
+                  child: Row(
+                    children: [
+                      Text("Personal details",
+                          style: CustomTextStyles.f14W700()),
+                      Text(
+                        '*',
+                        style: CustomTextStyles.f18W700(color: Colors.red),
+                      )
+                    ],
+                  ),
                 ),
                 Padding(
                   padding:
@@ -123,8 +131,15 @@ class LeaseCleaningScreen extends StatelessWidget {
                 Padding(
                   padding:
                       const EdgeInsets.only(left: 18, right: 18, bottom: 10),
-                  child:
+                  child: Row(
+                    children: [
                       Text("No of Bedrooms", style: CustomTextStyles.f14W700()),
+                      Text(
+                        '*',
+                        style: CustomTextStyles.f18W700(color: Colors.red),
+                      )
+                    ],
+                  ),
                 ),
                 Padding(
                   padding:
@@ -139,8 +154,16 @@ class LeaseCleaningScreen extends StatelessWidget {
                 Padding(
                   padding:
                       const EdgeInsets.only(left: 18, right: 18, bottom: 10),
-                  child: Text("No of Bathrooms",
-                      style: CustomTextStyles.f14W700()),
+                  child: Row(
+                    children: [
+                      Text("No of Bathrooms",
+                          style: CustomTextStyles.f14W700()),
+                      Text(
+                        '*',
+                        style: CustomTextStyles.f18W700(color: Colors.red),
+                      )
+                    ],
+                  ),
                 ),
                 Padding(
                   padding:
@@ -155,7 +178,15 @@ class LeaseCleaningScreen extends StatelessWidget {
                 Padding(
                   padding:
                       const EdgeInsets.only(left: 18, right: 18, bottom: 10),
-                  child: Text("Select Date", style: CustomTextStyles.f14W700()),
+                  child: Row(
+                    children: [
+                      Text("Select Date", style: CustomTextStyles.f14W700()),
+                      Text(
+                        '*',
+                        style: CustomTextStyles.f18W700(color: Colors.red),
+                      )
+                    ],
+                  ),
                 ),
                 Padding(
                   padding:
@@ -173,7 +204,15 @@ class LeaseCleaningScreen extends StatelessWidget {
                 Padding(
                   padding:
                       const EdgeInsets.only(left: 18, right: 18, bottom: 10),
-                  child: Text("Select Time", style: CustomTextStyles.f14W700()),
+                  child: Row(
+                    children: [
+                      Text("Select Time", style: CustomTextStyles.f14W700()),
+                      Text(
+                        '*',
+                        style: CustomTextStyles.f18W700(color: Colors.red),
+                      )
+                    ],
+                  ),
                 ),
                 Padding(
                   padding:
@@ -187,6 +226,74 @@ class LeaseCleaningScreen extends StatelessWidget {
                       hint: "YYYY-MM-DD",
                       textInputAction: TextInputAction.done,
                       textInputType: TextInputType.none),
+                ),
+                Padding(
+                  padding:
+                      const EdgeInsets.only(left: 18, right: 18, bottom: 10),
+                  child: Row(
+                    children: [
+                      Text("Select Where to Cleaning",
+                          style: CustomTextStyles.f14W700()),
+                      Text(
+                        '*',
+                        style: CustomTextStyles.f18W700(color: Colors.red),
+                      )
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding:
+                      const EdgeInsets.only(left: 18, right: 18, bottom: 22),
+                  child: Theme(
+                    data: Theme.of(context)
+                        .copyWith(canvasColor: AppColors.extraWhite),
+                    child: Obx(() => DropdownButtonFormField<String>(
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'This field is required';
+                            }
+                            return null;
+                          },
+                          value: c.selectWindowCleaning.value.isEmpty
+                              ? null
+                              : c.selectWindowCleaning.value,
+                          hint: Text(
+                            "Select where to clean",
+                            style: CustomTextStyles.f14W400(
+                                color: AppColors.secondaryTextColor),
+                          ),
+                          decoration: const InputDecoration(
+                            contentPadding: EdgeInsets.symmetric(
+                                horizontal: 12, vertical: 18),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: AppColors.secondaryTextColor,
+                                  width: 1),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: AppColors.primaryColor, width: 1),
+                            ),
+                            errorBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.red, width: 1),
+                            ),
+                            focusedErrorBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.red, width: 1),
+                            ),
+                          ),
+                          items: c.windowCleaningOption
+                              .map((option) => DropdownMenuItem<String>(
+                                    value: option,
+                                    child: Text(option),
+                                  ))
+                              .toList(),
+                          onChanged: (value) {
+                            c.updateSelectWindowCleaning(value!);
+                          },
+                        )),
+                  ),
                 ),
                 Row(
                   children: [
@@ -234,6 +341,14 @@ class LeaseCleaningScreen extends StatelessWidget {
                                         color: AppColors.primaryColor,
                                         width: 1),
                                   ),
+                                  errorBorder: OutlineInputBorder(
+                                    borderSide:
+                                        BorderSide(color: Colors.red, width: 1),
+                                  ),
+                                  focusedErrorBorder: OutlineInputBorder(
+                                    borderSide:
+                                        BorderSide(color: Colors.red, width: 1),
+                                  ),
                                 ),
                                 items: c.cleaningOption
                                     .map((option) => DropdownMenuItem<String>(
@@ -277,6 +392,14 @@ class LeaseCleaningScreen extends StatelessWidget {
                                         color: AppColors.primaryColor,
                                         width: 1),
                                   ),
+                                  errorBorder: OutlineInputBorder(
+                                    borderSide:
+                                        BorderSide(color: Colors.red, width: 1),
+                                  ),
+                                  focusedErrorBorder: OutlineInputBorder(
+                                    borderSide:
+                                        BorderSide(color: Colors.red, width: 1),
+                                  ),
                                 ),
                                 items: c.cleaningOption
                                     .map((option) => DropdownMenuItem<String>(
@@ -296,52 +419,6 @@ class LeaseCleaningScreen extends StatelessWidget {
                 Padding(
                   padding:
                       const EdgeInsets.only(left: 18, right: 18, bottom: 10),
-                  child: Text("Select Cleaning",
-                      style: CustomTextStyles.f14W700()),
-                ),
-                Padding(
-                  padding:
-                      const EdgeInsets.only(left: 18, right: 18, bottom: 22),
-                  child: Theme(
-                    data: Theme.of(context)
-                        .copyWith(canvasColor: AppColors.extraWhite),
-                    child: Obx(() => DropdownButtonFormField<String>(
-                          value: c.selectWindowCleaning.value.isEmpty
-                              ? null
-                              : c.selectWindowCleaning.value,
-                          hint: Text(
-                            "Select where to clean",
-                            style: CustomTextStyles.f14W400(
-                                color: AppColors.secondaryTextColor),
-                          ),
-                          decoration: const InputDecoration(
-                            contentPadding: EdgeInsets.symmetric(
-                                horizontal: 12, vertical: 18),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: AppColors.secondaryTextColor,
-                                  width: 1),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: AppColors.primaryColor, width: 1),
-                            ),
-                          ),
-                          items: c.windowCleaningOption
-                              .map((option) => DropdownMenuItem<String>(
-                                    value: option,
-                                    child: Text(option),
-                                  ))
-                              .toList(),
-                          onChanged: (value) {
-                            c.updateSelectWindowCleaning(value!);
-                          },
-                        )),
-                  ),
-                ),
-                Padding(
-                  padding:
-                      const EdgeInsets.only(left: 18, right: 18, bottom: 10),
                   child: Text("No of walls to clean",
                       style: CustomTextStyles.f14W700()),
                 ),
@@ -350,7 +427,7 @@ class LeaseCleaningScreen extends StatelessWidget {
                       const EdgeInsets.only(left: 18, right: 18, bottom: 20),
                   child: CustomTextField(
                       controller: c.noOfWallsCleaningController,
-                      validator: Validators.checkFieldEmpty,
+                      //validator: Validators.checkFieldEmpty,
                       hint: "No of walls to clean",
                       textInputAction: TextInputAction.done,
                       textInputType: TextInputType.number),
@@ -366,7 +443,7 @@ class LeaseCleaningScreen extends StatelessWidget {
                       const EdgeInsets.only(left: 18, right: 18, bottom: 22),
                   child: CustomTextField(
                       controller: c.carpetSteamCleaningArea,
-                      validator: Validators.checkFieldEmpty,
+                      //validator: Validators.checkFieldEmpty,
                       hint: "Carpet Steam Cleaning Area",
                       textInputAction: TextInputAction.done,
                       textInputType: TextInputType.number),
@@ -374,19 +451,56 @@ class LeaseCleaningScreen extends StatelessWidget {
                 Padding(
                   padding:
                       const EdgeInsets.only(left: 18, right: 18, bottom: 10),
-                  child: Text("Carpet Steam Cleaning Unit sqft/sqm",
+                  child: Text("Carpet Steam Cleaning Unit",
                       style: CustomTextStyles.f14W700()),
                 ),
                 Padding(
                   padding:
                       const EdgeInsets.only(left: 18, right: 18, bottom: 22),
-                  child: CustomTextField(
-                      controller: c.carpetSteamCleaningUnit,
-                      validator: Validators.checkFieldEmpty,
-                      hint: "Carpet Steam Cleaning Unit sqft/sqm",
-                      textInputAction: TextInputAction.done,
-                      textCapitalization: TextCapitalization.none,
-                      textInputType: TextInputType.text),
+                  child: Theme(
+                    data: Theme.of(context)
+                        .copyWith(canvasColor: AppColors.extraWhite),
+                    child: Obx(() => DropdownButtonFormField<String>(
+                          value: c.carpetSteamCleaningUnit.value.isEmpty
+                              ? null
+                              : c.carpetSteamCleaningUnit.value,
+                          hint: Text(
+                            "Select carpet Steam Cleaning Unit",
+                            style: CustomTextStyles.f14W400(
+                                color: AppColors.secondaryTextColor),
+                          ),
+                          decoration: const InputDecoration(
+                            contentPadding: EdgeInsets.symmetric(
+                                horizontal: 12, vertical: 18),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: AppColors.secondaryTextColor,
+                                  width: 1),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: AppColors.primaryColor, width: 1),
+                            ),
+                            errorBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.red, width: 1),
+                            ),
+                            focusedErrorBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.red, width: 1),
+                            ),
+                          ),
+                          items: c.carpetSteamCleaningUnitOption
+                              .map((option) => DropdownMenuItem<String>(
+                                    value: option,
+                                    child: Text(option),
+                                  ))
+                              .toList(),
+                          onChanged: (value) {
+                            c.updatecarpetSteamCleaningUnit(value!);
+                          },
+                        )),
+                  ),
                 ),
                 Padding(
                   padding:
@@ -425,7 +539,7 @@ class LeaseCleaningScreen extends StatelessWidget {
                       hintStyle: CustomTextStyles.f16W400(
                           color: AppColors.secondaryTextColor),
                     ),
-                    validator: Validators.checkFieldEmpty,
+                    //validator: Validators.checkFieldEmpty,
                     controller: c.messageController,
                   ),
                 )
@@ -440,7 +554,12 @@ class LeaseCleaningScreen extends StatelessWidget {
           child: CustomElevatedButton(
               title: "Submit",
               onTap: () {
-                c.bookLeaseCleaningService();
+                if (c.formKey.currentState?.validate() ?? false) {
+                  c.bookLeaseCleaningService();
+                } else {
+                  // Form is invalid, show errors
+                  print('Form is invalid');
+                }
               }),
         ),
       ),

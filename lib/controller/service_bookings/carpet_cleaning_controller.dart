@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mads_cleaning/utils/colors.dart';
 
-class CarpetCleaningController extends GetxController{
+class CarpetCleaningController extends GetxController {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   final inside = false.obs;
@@ -17,11 +17,10 @@ class CarpetCleaningController extends GetxController{
   final messageController = TextEditingController();
   final selectDateController = TextEditingController();
   final selectTimeController = TextEditingController();
-  final noOfBedroomsController = TextEditingController();
-  final noOfBathroomsController = TextEditingController();
-  final noOfCarpetSteamController = TextEditingController();
-  RxString selectWindowOption = ''.obs;
-  RxString selectFrequencyOfCleaning = ''.obs;
+  final carpetSteamCleaningArea = TextEditingController();
+  final carpetStainCleaningArea = TextEditingController();
+  RxString carpetSteamCleaningUnit = ''.obs;
+  RxString carpetStainCleaningUnit = ''.obs;
 
   var desireDate = DateTime.now().obs;
   var desireTime = TimeOfDay.now().obs;

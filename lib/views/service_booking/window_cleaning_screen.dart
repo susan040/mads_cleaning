@@ -38,8 +38,16 @@ class WindowCleaningScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(
                       left: 18, right: 18, top: 20, bottom: 10),
-                  child: Text("Personal details",
-                      style: CustomTextStyles.f14W700()),
+                  child: Row(
+                    children: [
+                      Text("Personal details",
+                          style: CustomTextStyles.f14W700()),
+                      Text(
+                        '*',
+                        style: CustomTextStyles.f18W700(color: Colors.red),
+                      )
+                    ],
+                  ),
                 ),
                 Padding(
                   padding:
@@ -123,7 +131,15 @@ class WindowCleaningScreen extends StatelessWidget {
                 Padding(
                   padding:
                       const EdgeInsets.only(left: 18, right: 18, bottom: 10),
-                  child: Text("Select Date", style: CustomTextStyles.f14W700()),
+                  child: Row(
+                    children: [
+                      Text("Select Date", style: CustomTextStyles.f14W700()),
+                      Text(
+                        '*',
+                        style: CustomTextStyles.f18W700(color: Colors.red),
+                      )
+                    ],
+                  ),
                 ),
                 Padding(
                   padding:
@@ -141,7 +157,15 @@ class WindowCleaningScreen extends StatelessWidget {
                 Padding(
                   padding:
                       const EdgeInsets.only(left: 18, right: 18, bottom: 10),
-                  child: Text("Select Time", style: CustomTextStyles.f14W700()),
+                  child: Row(
+                    children: [
+                      Text("Select Time", style: CustomTextStyles.f14W700()),
+                      Text(
+                        '*',
+                        style: CustomTextStyles.f18W700(color: Colors.red),
+                      )
+                    ],
+                  ),
                 ),
                 Padding(
                   padding:
@@ -159,8 +183,16 @@ class WindowCleaningScreen extends StatelessWidget {
                 Padding(
                   padding:
                       const EdgeInsets.only(left: 18, right: 18, bottom: 10),
-                  child: Text("Where to clean?",
-                      style: CustomTextStyles.f14W700()),
+                  child: Row(
+                    children: [
+                      Text("Where to clean?",
+                          style: CustomTextStyles.f14W700()),
+                      Text(
+                        '*',
+                        style: CustomTextStyles.f18W700(color: Colors.red),
+                      )
+                    ],
+                  ),
                 ),
                 Padding(
                   padding:
@@ -169,6 +201,12 @@ class WindowCleaningScreen extends StatelessWidget {
                     data: Theme.of(context)
                         .copyWith(canvasColor: AppColors.extraWhite),
                     child: Obx(() => DropdownButtonFormField<String>(
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'This field is required';
+                            }
+                            return null;
+                          },
                           value: c.selectWhereToClean.value.isEmpty
                               ? null
                               : c.selectWhereToClean.value,
@@ -189,6 +227,14 @@ class WindowCleaningScreen extends StatelessWidget {
                               borderSide: BorderSide(
                                   color: AppColors.primaryColor, width: 1),
                             ),
+                            errorBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.red, width: 1),
+                            ),
+                            focusedErrorBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.red, width: 1),
+                            ),
                           ),
                           items: c.whereToCleanOption
                               .map((option) => DropdownMenuItem<String>(
@@ -205,8 +251,15 @@ class WindowCleaningScreen extends StatelessWidget {
                 Padding(
                   padding:
                       const EdgeInsets.only(left: 18, right: 18, bottom: 10),
-                  child:
+                  child: Row(
+                    children: [
                       Text("No of Windows", style: CustomTextStyles.f14W700()),
+                      Text(
+                        '*',
+                        style: CustomTextStyles.f18W700(color: Colors.red),
+                      )
+                    ],
+                  ),
                 ),
                 Padding(
                   padding:
@@ -221,7 +274,15 @@ class WindowCleaningScreen extends StatelessWidget {
                 Padding(
                   padding:
                       const EdgeInsets.only(left: 18, right: 18, bottom: 10),
-                  child: Text("No of Story", style: CustomTextStyles.f14W700()),
+                  child: Row(
+                    children: [
+                      Text("No of Story", style: CustomTextStyles.f14W700()),
+                      Text(
+                        '*',
+                        style: CustomTextStyles.f18W700(color: Colors.red),
+                      )
+                    ],
+                  ),
                 ),
                 Padding(
                   padding:
@@ -236,8 +297,16 @@ class WindowCleaningScreen extends StatelessWidget {
                 Padding(
                   padding:
                       const EdgeInsets.only(left: 18, right: 18, bottom: 10),
-                  child: Text("Windows Tracks and frames",
-                      style: CustomTextStyles.f14W700()),
+                  child: Row(
+                    children: [
+                      Text("Windows Tracks and frames",
+                          style: CustomTextStyles.f14W700()),
+                      Text(
+                        '*',
+                        style: CustomTextStyles.f18W700(color: Colors.red),
+                      )
+                    ],
+                  ),
                 ),
                 Padding(
                   padding:
@@ -246,6 +315,12 @@ class WindowCleaningScreen extends StatelessWidget {
                     data: Theme.of(context)
                         .copyWith(canvasColor: AppColors.extraWhite),
                     child: Obx(() => DropdownButtonFormField<String>(
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'This field is required';
+                            }
+                            return null;
+                          },
                           value: c.windowsTrackCleaning.value.isEmpty
                               ? null
                               : c.windowsTrackCleaning.value,
@@ -265,6 +340,14 @@ class WindowCleaningScreen extends StatelessWidget {
                             focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(
                                   color: AppColors.primaryColor, width: 1),
+                            ),
+                            errorBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.red, width: 1),
+                            ),
+                            focusedErrorBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.red, width: 1),
                             ),
                           ),
                           items: c.windowsTrackCleaningOption
@@ -316,7 +399,6 @@ class WindowCleaningScreen extends StatelessWidget {
                       hintStyle: CustomTextStyles.f16W400(
                           color: AppColors.secondaryTextColor),
                     ),
-                    validator: Validators.checkFieldEmpty,
                     controller: c.messageController,
                   ),
                 )
@@ -331,18 +413,23 @@ class WindowCleaningScreen extends StatelessWidget {
           child: CustomElevatedButton(
               title: "Submit",
               onTap: () {
-                c.bookHouseCleaningService(
-                    c.fullNameController.text,
-                    c.emailController.text,
-                    c.phoneNoController.text,
-                    c.addressController.text,
-                    c.noOfWindowsController.text,
-                    c.noOfStoryController.text,
-                    c.messageController.text,
-                    c.selectWhereToClean.value,
-                    c.windowsTrackCleaning.value,
-                    c.selectDateController.text,
-                    c.selectTimeController.text);
+                if (c.formKey.currentState?.validate() ?? false) {
+                  c.bookWindowCleaningService(
+                      c.fullNameController.text,
+                      c.emailController.text,
+                      c.phoneNoController.text,
+                      c.addressController.text,
+                      c.noOfWindowsController.text,
+                      c.noOfStoryController.text,
+                      c.messageController.text,
+                      c.selectWhereToClean.value,
+                      c.windowsTrackCleaning.value,
+                      c.selectDateController.text,
+                      c.selectTimeController.text);
+                } else {
+                  // Form is invalid, show errors
+                  print('Form is invalid');
+                }
               }),
         ),
       ),

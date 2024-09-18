@@ -11,7 +11,7 @@ import 'package:mads_cleaning/views/dash_screen.dart';
 import 'package:simple_fontellico_progress_dialog/simple_fontico_loading.dart';
 
 class LoginScreenController extends GetxController {
-  final key = GlobalKey<FormState>();
+  final keys = GlobalKey<FormState>();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
@@ -26,7 +26,7 @@ class LoginScreenController extends GetxController {
       context: Get.context!, barrierDimisable: false);
 
   void onSubmit() async {
-    if (key.currentState!.validate()) {
+    if (keys.currentState!.validate()) {
       loading.show(message: "Please wait..");
 
       await LoginRepo.login(

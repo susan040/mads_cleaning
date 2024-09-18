@@ -38,8 +38,16 @@ class HouseCleaingScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(
                       left: 18, right: 18, top: 20, bottom: 10),
-                  child: Text("Personal details",
-                      style: CustomTextStyles.f14W700()),
+                  child: Row(
+                    children: [
+                      Text("Personal details",
+                          style: CustomTextStyles.f14W700()),
+                      Text(
+                        '*',
+                        style: CustomTextStyles.f18W700(color: Colors.red),
+                      )
+                    ],
+                  ),
                 ),
                 Padding(
                   padding:
@@ -123,7 +131,15 @@ class HouseCleaingScreen extends StatelessWidget {
                 Padding(
                   padding:
                       const EdgeInsets.only(left: 18, right: 18, bottom: 10),
-                  child: Text("Select Date", style: CustomTextStyles.f14W700()),
+                  child: Row(
+                    children: [
+                      Text("Select Date", style: CustomTextStyles.f14W700()),
+                      Text(
+                        '*',
+                        style: CustomTextStyles.f18W700(color: Colors.red),
+                      )
+                    ],
+                  ),
                 ),
                 Padding(
                   padding:
@@ -141,7 +157,15 @@ class HouseCleaingScreen extends StatelessWidget {
                 Padding(
                   padding:
                       const EdgeInsets.only(left: 18, right: 18, bottom: 10),
-                  child: Text("Select Time", style: CustomTextStyles.f14W700()),
+                  child: Row(
+                    children: [
+                      Text("Select Time", style: CustomTextStyles.f14W700()),
+                      Text(
+                        '*',
+                        style: CustomTextStyles.f18W700(color: Colors.red),
+                      )
+                    ],
+                  ),
                 ),
                 Padding(
                   padding:
@@ -159,8 +183,15 @@ class HouseCleaingScreen extends StatelessWidget {
                 Padding(
                   padding:
                       const EdgeInsets.only(left: 18, right: 18, bottom: 10),
-                  child:
+                  child: Row(
+                    children: [
                       Text("No of Bedrooms", style: CustomTextStyles.f14W700()),
+                      Text(
+                        '*',
+                        style: CustomTextStyles.f18W700(color: Colors.red),
+                      )
+                    ],
+                  ),
                 ),
                 Padding(
                   padding:
@@ -175,8 +206,16 @@ class HouseCleaingScreen extends StatelessWidget {
                 Padding(
                   padding:
                       const EdgeInsets.only(left: 18, right: 18, bottom: 10),
-                  child: Text("No of Bathrooms",
-                      style: CustomTextStyles.f14W700()),
+                  child: Row(
+                    children: [
+                      Text("No of Bathrooms",
+                          style: CustomTextStyles.f14W700()),
+                      Text(
+                        '*',
+                        style: CustomTextStyles.f18W700(color: Colors.red),
+                      )
+                    ],
+                  ),
                 ),
                 Padding(
                   padding:
@@ -191,7 +230,15 @@ class HouseCleaingScreen extends StatelessWidget {
                 Padding(
                   padding:
                       const EdgeInsets.only(left: 18, right: 18, bottom: 10),
-                  child: Text("No of Story", style: CustomTextStyles.f14W700()),
+                  child: Row(
+                    children: [
+                      Text("No of Story", style: CustomTextStyles.f14W700()),
+                      Text(
+                        '*',
+                        style: CustomTextStyles.f18W700(color: Colors.red),
+                      )
+                    ],
+                  ),
                 ),
                 Padding(
                   padding:
@@ -206,8 +253,16 @@ class HouseCleaingScreen extends StatelessWidget {
                 Padding(
                   padding:
                       const EdgeInsets.only(left: 18, right: 18, bottom: 10),
-                  child: Text("Frequency of Cleaning",
-                      style: CustomTextStyles.f14W700()),
+                  child: Row(
+                    children: [
+                      Text("Frequency of Cleaning",
+                          style: CustomTextStyles.f14W700()),
+                      Text(
+                        '*',
+                        style: CustomTextStyles.f18W700(color: Colors.red),
+                      )
+                    ],
+                  ),
                 ),
                 Padding(
                   padding:
@@ -216,6 +271,12 @@ class HouseCleaingScreen extends StatelessWidget {
                     data: Theme.of(context)
                         .copyWith(canvasColor: AppColors.extraWhite),
                     child: Obx(() => DropdownButtonFormField<String>(
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'This field is required';
+                            }
+                            return null;
+                          },
                           value: c.selectFrequencyOfCleaning.value.isEmpty
                               ? null
                               : c.selectFrequencyOfCleaning.value,
@@ -235,6 +296,14 @@ class HouseCleaingScreen extends StatelessWidget {
                             focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(
                                   color: AppColors.primaryColor, width: 1),
+                            ),
+                            errorBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.red, width: 1),
+                            ),
+                            focusedErrorBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.red, width: 1),
                             ),
                           ),
                           items: c.frequencyOfCleaningOption
@@ -286,7 +355,6 @@ class HouseCleaingScreen extends StatelessWidget {
                       hintStyle: CustomTextStyles.f16W400(
                           color: AppColors.secondaryTextColor),
                     ),
-                    validator: Validators.checkFieldEmpty,
                     controller: c.messageController,
                   ),
                 )
@@ -301,7 +369,12 @@ class HouseCleaingScreen extends StatelessWidget {
           child: CustomElevatedButton(
               title: "Submit",
               onTap: () {
-                c.bookHouseCleaningService();
+                if (c.formKey.currentState?.validate() ?? false) {
+                  c.bookHouseCleaningService();
+                } else {
+                  // Form is invalid, show errors
+                  print('Form is invalid');
+                }
               }),
         ),
       ),

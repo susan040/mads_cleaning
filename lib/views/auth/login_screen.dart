@@ -22,7 +22,7 @@ class LoginScreen extends StatelessWidget {
             child: Padding(
           padding: const EdgeInsets.only(left: 18, right: 18, top: 100),
           child: Form(
-            key: c.key,
+            key: c.keys,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -76,6 +76,8 @@ class LoginScreen extends StatelessWidget {
                 CustomElevatedButton(
                     title: "Login",
                     onTap: () {
+                      
+                      
                       c.onSubmit();
                     }),
                 const SizedBox(height: 28),

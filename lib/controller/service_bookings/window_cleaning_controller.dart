@@ -115,7 +115,7 @@ class WindowBookingController extends GetxController {
     }
   }
 
-  bookHouseCleaningService(
+  bookWindowCleaningService(
       String name,
       String email,
       String phone,
