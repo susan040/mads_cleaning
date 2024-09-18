@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:mads_cleaning/controller/core_controller.dart';
 import 'package:mads_cleaning/controller/dashboard/all_serivces_controller.dart';
 import 'package:mads_cleaning/model/all_services.dart';
 import 'package:mads_cleaning/utils/colors.dart';
@@ -13,6 +14,7 @@ import 'package:mads_cleaning/widgets/services_widget.dart';
 
 class HomeScreen extends StatelessWidget {
   final c = Get.put(AllSerivcesController());
+  final coreController = Get.put(CoreController());
   HomeScreen({super.key});
 
   @override

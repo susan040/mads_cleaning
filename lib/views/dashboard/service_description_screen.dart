@@ -4,9 +4,12 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:mads_cleaning/model/all_services.dart';
 import 'package:mads_cleaning/utils/colors.dart';
+import 'package:mads_cleaning/utils/custom_snackbar.dart';
 import 'package:mads_cleaning/utils/custom_text_style.dart';
 import 'package:mads_cleaning/utils/image_path.dart';
 import 'package:mads_cleaning/views/appointment/appointment_booking_screen.dart';
+import 'package:mads_cleaning/views/service_booking/house_cleaning_screen.dart';
+import 'package:mads_cleaning/views/service_booking/lease_cleaning_screen.dart';
 import 'package:mads_cleaning/views/service_booking/window_cleaning_screen.dart';
 import 'package:mads_cleaning/widgets/custom/elevated_button.dart';
 
@@ -30,7 +33,7 @@ class ServiceDescriptionScreen extends StatelessWidget {
             color: Colors.black,
           ),
         ),
-        title: Text(service.name ?? "",
+        title: Text("${service.name} Service",
             style: CustomTextStyles.f14W700(color: AppColors.textColor)),
       ),
       body: SafeArea(
@@ -41,10 +44,13 @@ class ServiceDescriptionScreen extends StatelessWidget {
               ClipRRect(
                 child: CachedNetworkImage(
                   fit: BoxFit.cover,
-                  height: MediaQuery.of(context).size.height / 2.75,
+                  height: MediaQuery.of(context).size.height / 3,
                   width: double.infinity,
-                  imageUrl:
-                      "https://ecoglowcleaning.com/wp-content/uploads/2022/11/Cleaning-service-employees-wit.jpg",
+                  imageUrl: service.imageUrl ?? "",
+                  filterQuality: FilterQuality.high,
+                  placeholder: (context, url) => const Center(
+                    child: CircularProgressIndicator(),
+                  ),
                   errorWidget: (context, url, error) => Image.asset(
                     ImagePath.blankImage, // Replace with your asset path
                     height: MediaQuery.of(context).size.height / 2.7,
@@ -53,7 +59,7 @@ class ServiceDescriptionScreen extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 18, right: 18, top: 20),
+                padding: const EdgeInsets.only(left: 18, right: 18, top: 14),
                 child:
                     Text(service.name ?? "", style: CustomTextStyles.f18W700()),
               ),
@@ -213,7 +219,17 @@ class ServiceDescriptionScreen extends StatelessWidget {
           child: CustomElevatedButton(
               title: "Book Now",
               onTap: () {
-                Get.to(() => WindowCleaningScreen());
+                if (service.name == "Window Cleaning") {
+                  Get.to(() => WindowCleaningScreen());
+                } else if (service.name == "House Cleaning") {
+                  Get.to(() => HouseCleaingScreen());
+                } else if (service.name == "Lease Cleaning") {
+                  Get.to(() => LeaseCleaningScreen());
+                } else {
+                  CustomSnackBar.error(
+                      title: "Error",
+                      message: "Service not available for booking yet.");
+                }
               }),
         ),
       ),

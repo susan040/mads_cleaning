@@ -1,47 +1,55 @@
 import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mads_cleaning/repo/windows_cleaning_repo.dart';
+import 'package:mads_cleaning/controller/core_controller.dart';
+import 'package:mads_cleaning/repo/house_cleaning_repo.dart';
 import 'package:mads_cleaning/utils/colors.dart';
 import 'package:mads_cleaning/utils/custom_snackbar.dart';
 import 'package:mads_cleaning/views/service_booking/service_congratulation.dart';
 
-class WindowBookingController extends GetxController {
-  GlobalKey<FormState> formKey = GlobalKey<FormState>();
+class HouseCleaningController extends GetxController {
+  @override
+  void onInit() {
+    super.onInit();
+    populateUserDetails();
+  }
 
-  final inside = false.obs;
-  final outside = false.obs;
+  void populateUserDetails() {
+    var user = Get.find<CoreController>().currentUser.value;
+    if (user != null) {
+      fullNameController.text = user.name ?? "";
+      addressController.text = user.address ?? "";
+      emailController.text = user.email ?? "";
+      phoneNoController.text = user.phone ?? "";
+    }
+  }
+
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  RxBool loading = RxBool(false);
 
   final fullNameController = TextEditingController();
   final addressController = TextEditingController();
   final emailController = TextEditingController();
   final phoneNoController = TextEditingController();
   final messageController = TextEditingController();
-  final noOfWindowsController = TextEditingController();
-  final windowsTrackAndFrames = TextEditingController();
-  final noOfStoryController = TextEditingController();
   final selectDateController = TextEditingController();
   final selectTimeController = TextEditingController();
+  final noOfBedroomsController = TextEditingController();
+  final noOfBathroomsController = TextEditingController();
+  final noOfStoryController = TextEditingController();
+  var selectFrequencyOfCleaning = ''.obs;
 
   var desireDate = DateTime.now().obs;
   var desireTime = TimeOfDay.now().obs;
+  final List<String> frequencyOfCleaningOption = [
+    'weekly',
+    'fortnightly',
+    'monthly'
+  ];
 
-  RxString selectWindowOption = ''.obs;
-
-  RxBool loading = RxBool(false);
-
-  void toggleInside(bool value) {
-    if (value) {
-      outside.value = false; // Unselect Outside when Inside is selected
-    }
-    inside.value = value;
-  }
-
-  void toggleOutside(bool value) {
-    if (value) {
-      inside.value = false; // Unselect Inside when Outside is selected
-    }
-    outside.value = value;
+  void updateFrequencyOfCleaning(String value) {
+    selectFrequencyOfCleaning.value = value;
   }
 
   chooseDate(BuildContext context) async {
@@ -98,46 +106,38 @@ class WindowBookingController extends GetxController {
 
     if (pickedTime != null) {
       desireTime.value = pickedTime;
-      selectTimeController.text = desireTime.value.format(context);
+      // Format the time as H:i
+      String formattedTime =
+          '${pickedTime.hour.toString().padLeft(2, '0')}:${pickedTime.minute.toString().padLeft(2, '0')}';
+      selectTimeController.text = formattedTime;
       log('Selected Time: ${selectTimeController.text}');
     }
   }
 
-  addBooking(
-      String name,
-      String email,
-      String phone,
-      String location,
-      int noOfWindows,
-      int noOfStory,
-      String message,
-      String type,
-      String windowsTrackFrame,
-      String serviceDate,
-      String serviceTime) async {
-    loading.value = true;
-
-    await WindowsCleaningBookingRepo.windowsCleaningBookRepo(
-        fullName: name,
-        email: email,
-        phone: phone,
-        location: location,
-        noOfWindows: noOfWindows,
-        noOfStory: noOfStory,
-        message: message,
-        type: type,
-        date: serviceDate,
-        time: serviceTime,
-        windowsTrackFrame: windowsTrackFrame,
+  bookHouseCleaningService() async {
+    await HouseCleaningBookRepo.bookHouseCleaningRepo(
+        fullName: fullNameController.text,
+        email: emailController.text,
+        phone: phoneNoController.text,
+        location: addressController.text,
+        noOfBedroom: noOfBedroomsController.text,
+        noOfBathroom: noOfBathroomsController.text,
+        message: messageController.text,
+        frequency: selectFrequencyOfCleaning.value,
+        date: selectDateController.text,
+        time: selectTimeController.text,
+        noOfStory: noOfStoryController.text,
         onSuccess: () {
           loading.value = false;
           Get.offAll(() => const ServiceCongratulationScreen());
           CustomSnackBar.success(
-              title: "Services", message: "Services Booking is sucessful");
+              title: "House Cleaning Services",
+              message: "House Cleaning Services successfully booked.");
         },
         onError: ((message) {
           loading.value = false;
-          CustomSnackBar.error(title: "Appointment", message: message);
+          CustomSnackBar.error(
+              title: "House Cleaning Service Booking", message: message);
         }));
   }
 }

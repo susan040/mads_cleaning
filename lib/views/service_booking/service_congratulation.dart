@@ -30,7 +30,7 @@ class ServiceCongratulationScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 120, right: 120),
             child: Text(
-              "Your service has been placed",
+              "Your service has been Booked",
               style: CustomTextStyles.f14W400(color: AppColors.textGreyColor),
               textAlign: TextAlign.center,
             ),

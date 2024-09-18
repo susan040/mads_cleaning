@@ -5,4 +5,7 @@ class Api {
   static const String windowsCleaningServicesUrl =
       "$baseUrl/windows-cleaning-services";
   static const String getServicesUrl = "$baseUrl/services";
+  static const String houseCleaningServiceUrl =
+      "$baseUrl/house-cleaning-services";
+  static const String leaseCleaningServiceUrl = "$baseUrl/lease-cleanings";
 }
