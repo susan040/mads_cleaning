@@ -8,6 +8,7 @@ import 'package:mads_cleaning/utils/custom_snackbar.dart';
 import 'package:mads_cleaning/utils/custom_text_style.dart';
 import 'package:mads_cleaning/utils/image_path.dart';
 import 'package:mads_cleaning/views/appointment/appointment_booking_screen.dart';
+import 'package:mads_cleaning/views/service_booking/carpet_cleaning_screen.dart';
 import 'package:mads_cleaning/views/service_booking/house_cleaning_screen.dart';
 import 'package:mads_cleaning/views/service_booking/lease_cleaning_screen.dart';
 import 'package:mads_cleaning/views/service_booking/window_cleaning_screen.dart';
@@ -225,6 +226,8 @@ class ServiceDescriptionScreen extends StatelessWidget {
                   Get.to(() => HouseCleaingScreen());
                 } else if (service.name == "Lease Cleaning") {
                   Get.to(() => LeaseCleaningScreen());
+                } else if (service.name == "Carpet Cleaning") {
+                  Get.to(() => CarpetCleaningScreen());
                 } else {
                   CustomSnackBar.error(
                       title: "Error",

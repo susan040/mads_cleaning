@@ -2,14 +2,27 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mads_cleaning/controller/core_controller.dart';
 import 'package:mads_cleaning/utils/colors.dart';
 
 class CarpetCleaningController extends GetxController {
+  @override
+  void onInit() {
+    super.onInit();
+    populateUserDetails();
+  }
+
+  void populateUserDetails() {
+    var user = Get.find<CoreController>().currentUser.value;
+    if (user != null) {
+      fullNameController.text = user.name ?? "";
+      addressController.text = user.address ?? "";
+      emailController.text = user.email ?? "";
+      phoneNoController.text = user.phone ?? "";
+    }
+  }
+
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
-
-  final inside = false.obs;
-  final outside = false.obs;
-
   final fullNameController = TextEditingController();
   final addressController = TextEditingController();
   final emailController = TextEditingController();
@@ -21,23 +34,17 @@ class CarpetCleaningController extends GetxController {
   final carpetStainCleaningArea = TextEditingController();
   RxString carpetSteamCleaningUnit = ''.obs;
   RxString carpetStainCleaningUnit = ''.obs;
+  final List<String> carpetCleaningUnitOption = ['sqft', 'sqm'];
+  void updatecarpetSteamCleaningUnit(String value) {
+    carpetSteamCleaningUnit.value = value;
+  }
+
+  void updatecarpetStainCleaningUnit(String value) {
+    carpetStainCleaningUnit.value = value;
+  }
 
   var desireDate = DateTime.now().obs;
   var desireTime = TimeOfDay.now().obs;
-  void toggleInside(bool value) {
-    if (value) {
-      outside.value = false; // Unselect Outside when Inside is selected
-    }
-    inside.value = value;
-  }
-
-  void toggleOutside(bool value) {
-    if (value) {
-      inside.value = false; // Unselect Inside when Outside is selected
-    }
-    outside.value = value;
-  }
-
   chooseDate(BuildContext context) async {
     log("choose date");
     DateTime? pickedDate = await showDatePicker(

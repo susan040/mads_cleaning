@@ -136,23 +136,6 @@ class LeaseCleaningController extends GetxController {
       log('Selected Time: ${selectTimeController.text}');
     }
   }
-
-  void validateDate() {
-    // Check if the date field is empty after date selection
-    if (selectDateController.text.isEmpty) {
-      // Trigger form validation
-      formKey.currentState?.validate();
-    }
-  }
-
-  void validateTime() {
-    // Check if the time field is empty after time selection
-    if (selectTimeController.text.isEmpty) {
-      // Trigger form validation
-      formKey.currentState?.validate();
-    }
-  }
-
   bookLeaseCleaningService() async {
     loading.value = true;
 
