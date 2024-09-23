@@ -12,6 +12,7 @@ class ImagePath {
   static const String leaseCleaning = "$baseImagePath/lease.png";
   static const String commercialCleaning = "$baseImagePath/commercial.png";
   static const String domesticCleaning = "$baseImagePath/domestic.png";
+  static const String rubbishRemoval = "$baseImagePath/rubbish_removal.png";
   static const String noService = "$baseImagePath/no_service.png";
   static const String blankImage = "$baseImagePath/blank_photo.jpg";
   static const String networkError = "$baseImagePath/network_error.png";
@@ -21,7 +22,8 @@ class ImagePath {
   static const String forgotPassword = "$baseImagePath/forgot_password.png";
   static const String verifyEmail = "$baseImagePath/verify_email.png";
   static const String newPassword = "$baseImagePath/new_password.png";
-  static const String appointmentBooked = "$baseImagePath/appointment_booked.png";
+  static const String appointmentBooked =
+      "$baseImagePath/appointment_booked.png";
   static const String serviceBooked = "$baseImagePath/service_booked.png";
 
   static const String eye = "$baseIconPath/eye.svg";

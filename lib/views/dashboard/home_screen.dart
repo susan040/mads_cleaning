@@ -9,6 +9,7 @@ import 'package:mads_cleaning/utils/colors.dart';
 import 'package:mads_cleaning/utils/custom_text_style.dart';
 import 'package:mads_cleaning/utils/image_path.dart';
 import 'package:mads_cleaning/views/dashboard/all_services_screen.dart';
+import 'package:mads_cleaning/views/dashboard/chat_bot_screen.dart';
 import 'package:mads_cleaning/widgets/rating_widget.dart';
 import 'package:mads_cleaning/widgets/services_widget.dart';
 
@@ -199,13 +200,18 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
       ),
-      floatingActionButton: Container(
-          height: 40,
-          width: 40,
-          decoration: BoxDecoration(
-              color: AppColors.primaryColor,
-              borderRadius: BorderRadius.circular(100)),
-          child: Center(child: SvgPicture.asset(ImagePath.message))),
+      floatingActionButton: InkWell(
+        onTap: () {
+          Get.to(ChatBotScreen());
+        },
+        child: Container(
+            height: 40,
+            width: 40,
+            decoration: BoxDecoration(
+                color: AppColors.primaryColor,
+                borderRadius: BorderRadius.circular(100)),
+            child: Center(child: SvgPicture.asset(ImagePath.message))),
+      ),
     );
   }
 }

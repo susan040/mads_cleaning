@@ -23,6 +23,7 @@ class ServicesWidget extends StatelessWidget {
     'Lease Cleaning': ImagePath.leaseCleaning,
     'House Cleaning': ImagePath.domesticCleaning,
     'Commercial Cleaning': ImagePath.commercialCleaning,
+    'Rubbish Removal': ImagePath.rubbishRemoval,
   };
 
   @override

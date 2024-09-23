@@ -8,4 +8,6 @@ class Api {
   static const String houseCleaningServiceUrl =
       "$baseUrl/house-cleaning-services";
   static const String leaseCleaningServiceUrl = "$baseUrl/lease-cleanings";
+  static const String carpetCleaningServiceUrl =
+      "$baseUrl/carpet-cleaning-services";
 }

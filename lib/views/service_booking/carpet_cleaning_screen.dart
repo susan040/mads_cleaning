@@ -374,7 +374,7 @@ class CarpetCleaningScreen extends StatelessWidget {
               title: "Submit",
               onTap: () {
                 if (c.formKey.currentState?.validate() ?? false) {
-                  //c.bookLeaseCleaningService();
+                  c.bookCarpetCleaningService();
                 } else {
                   // Form is invalid, show errors
                   print('Form is invalid');

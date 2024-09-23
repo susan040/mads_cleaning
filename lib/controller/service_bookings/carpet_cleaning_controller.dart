@@ -3,7 +3,10 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mads_cleaning/controller/core_controller.dart';
+import 'package:mads_cleaning/repo/carpet_cleaning_repo.dart';
 import 'package:mads_cleaning/utils/colors.dart';
+import 'package:mads_cleaning/utils/custom_snackbar.dart';
+import 'package:mads_cleaning/views/service_booking/service_congratulation.dart';
 
 class CarpetCleaningController extends GetxController {
   @override
@@ -99,8 +102,41 @@ class CarpetCleaningController extends GetxController {
 
     if (pickedTime != null) {
       desireTime.value = pickedTime;
-      selectTimeController.text = desireTime.value.format(context);
+      // Format the time as H:i
+      String formattedTime =
+          '${pickedTime.hour.toString().padLeft(2, '0')}:${pickedTime.minute.toString().padLeft(2, '0')}';
+      selectTimeController.text = formattedTime;
       log('Selected Time: ${selectTimeController.text}');
     }
+  }
+
+  RxBool loading = RxBool(false);
+
+  bookCarpetCleaningService() async {
+    loading.value = true;
+    await BookCarpetCleaningRepo.bookCarpetCleaningRepo(
+        fullName: fullNameController.text,
+        email: emailController.text,
+        phone: phoneNoController.text,
+        location: addressController.text,
+        date: selectDateController.text,
+        time: selectTimeController.text,
+        message: messageController.text,
+        carpetSteamCleaningUnit: carpetSteamCleaningUnit.value,
+        carpetSteamCleaningArea: carpetSteamCleaningArea.text,
+        carpetStainCleaningUnit: carpetStainCleaningUnit.value,
+        carpetStainCleaningArea: carpetStainCleaningArea.text,
+        onSuccess: () {
+          loading.value = false;
+          Get.offAll(() => const ServiceCongratulationScreen());
+          CustomSnackBar.success(
+              title: "Carpet Cleaning Services",
+              message: "Carpet Cleaning Services successfully booked.");
+        },
+        onError: ((message) {
+          loading.value = false;
+          CustomSnackBar.error(
+              title: "Carpet Cleaning Service Booking", message: message);
+        }));
   }
 }
