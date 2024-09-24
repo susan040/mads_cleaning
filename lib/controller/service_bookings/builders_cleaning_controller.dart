@@ -1,0 +1,178 @@
+import 'dart:developer';
+
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:mads_cleaning/controller/core_controller.dart';
+import 'package:mads_cleaning/utils/colors.dart';
+
+class BuildersCleaningController extends GetxController {
+  @override
+  void onInit() {
+    super.onInit();
+    populateUserDetails();
+  }
+
+  void populateUserDetails() {
+    var user = Get.find<CoreController>().currentUser.value;
+    if (user != null) {
+      fullNameController.text = user.name ?? "";
+      addressController.text = user.address ?? "";
+      emailController.text = user.email ?? "";
+      phoneNoController.text = user.phone ?? "";
+    }
+  }
+
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  final fullNameController = TextEditingController();
+  final addressController = TextEditingController();
+  final emailController = TextEditingController();
+  final phoneNoController = TextEditingController();
+  final messageController = TextEditingController();
+  final selectDateController = TextEditingController();
+  final selectTimeController = TextEditingController();
+  final priceController = TextEditingController();
+  final commercialSpaceController = TextEditingController();
+
+  var isSiteVisitRequired = false.obs;
+  var isSiteVisitNotRequired = true.obs;
+  final selectSiteVistDateController = TextEditingController();
+  RxString selectTypeOfCommercialSpace = ''.obs;
+  final List<String> typeOfCommericialOption = [
+    'Office',
+    'Retail Store',
+    'WareHouse',
+    'Restaurant',
+    'Other'
+  ];
+  void updateTypeOfCommercialSpace(String value) {
+    selectTypeOfCommercialSpace.value = value;
+  }
+
+  var desireDate = DateTime.now().obs;
+  var desireTime = TimeOfDay.now().obs;
+  var siteVistedDate = DateTime.now().obs;
+  chooseDate(BuildContext context) async {
+    log("choose date");
+    DateTime? pickedDate = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(
+          DateTime.now().year, DateTime.now().month, DateTime.now().day),
+      lastDate: DateTime(2050),
+      builder: (context, child) {
+        return Theme(
+          data: ThemeData.light().copyWith(
+            primaryColor: AppColors.primaryColor,
+            hintColor: AppColors.primaryColor,
+            colorScheme: const ColorScheme.light(
+              primary: AppColors.primaryColor,
+            ),
+            buttonTheme: const ButtonThemeData(
+              textTheme: ButtonTextTheme.primary,
+            ),
+          ),
+          child: child ?? Container(),
+        );
+      },
+    );
+
+    if (pickedDate != null) {
+      desireDate.value = pickedDate;
+      selectDateController.text = desireDate.value.toString().split(" ")[0];
+      log('Selected Date: ${selectDateController.text}');
+    }
+  }
+
+  chooseVisitedDate(BuildContext context) async {
+    log("choose date");
+    DateTime? pickedDate = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(
+          DateTime.now().year, DateTime.now().month, DateTime.now().day),
+      lastDate: DateTime(2050),
+      builder: (context, child) {
+        return Theme(
+          data: ThemeData.light().copyWith(
+            primaryColor: AppColors.primaryColor,
+            hintColor: AppColors.primaryColor,
+            colorScheme: const ColorScheme.light(
+              primary: AppColors.primaryColor,
+            ),
+            buttonTheme: const ButtonThemeData(
+              textTheme: ButtonTextTheme.primary,
+            ),
+          ),
+          child: child ?? Container(),
+        );
+      },
+    );
+
+    if (pickedDate != null) {
+      siteVistedDate.value = pickedDate;
+      selectSiteVistDateController.text =
+          siteVistedDate.value.toString().split(" ")[0];
+      log('Selected Date: ${selectSiteVistDateController.text}');
+    }
+  }
+
+  chooseTime(BuildContext context) async {
+    log("choose time");
+    TimeOfDay? pickedTime = await showTimePicker(
+      context: context,
+      initialTime: TimeOfDay.now(),
+      builder: (context, child) {
+        return Theme(
+          data: ThemeData.light().copyWith(
+            primaryColor: AppColors.primaryColor,
+            hintColor: AppColors.primaryColor,
+            timePickerTheme: const TimePickerThemeData(
+              dialHandColor: AppColors.primaryColor,
+              hourMinuteTextColor: AppColors.primaryColor,
+            ),
+          ),
+          child: child ?? Container(),
+        );
+      },
+    );
+
+    if (pickedTime != null) {
+      desireTime.value = pickedTime;
+      // Format the time as H:i
+      String formattedTime =
+          '${pickedTime.hour.toString().padLeft(2, '0')}:${pickedTime.minute.toString().padLeft(2, '0')}';
+      selectTimeController.text = formattedTime;
+      log('Selected Time: ${selectTimeController.text}');
+    }
+  }
+
+  RxBool loading = RxBool(false);
+
+  // bookCommercialCleaningService() async {
+  //   loading.value = true;
+  //   await BookCommericalCleaningRepo.bookCommercialCleaningRepo(
+  //       fullName: fullNameController.text,
+  //       email: emailController.text,
+  //       phone: phoneNoController.text,
+  //       location: addressController.text,
+  //       date: selectDateController.text,
+  //       time: selectTimeController.text,
+  //       message: messageController.text,
+  //       siteVisitDate: selectSiteVistDateController.text,
+  //       typeOfCommercialSpace: selectTypeOfCommercialSpace.value,
+  //       price: priceController.text,
+  //       onSuccess: () {
+  //         loading.value = false;
+  //         Get.offAll(() => const ServiceCongratulationScreen());
+  //         CustomSnackBar.success(
+  //             title: "Commercial Cleaning Services",
+  //             message: "Commercial Cleaning Services successfully booked.");
+  //       },
+  //       onError: ((message) {
+  //         loading.value = false;
+  //         CustomSnackBar.error(
+  //             title: "Commercial Cleaning Service Booking", message: message);
+  //       }));
+
+  // }
+}

@@ -4,12 +4,12 @@ import 'colors.dart';
 
 class PaymentButton extends StatelessWidget {
   const PaymentButton({
-    Key? key,
+    super.key,
     required this.name,
     required this.image,
     required this.isSelected,
     required this.onTap,
-  }) : super(key: key);
+  });
 
   final bool isSelected;
   final String name;

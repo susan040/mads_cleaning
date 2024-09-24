@@ -15,10 +15,9 @@ ThemeData basicTheme() {
       textTheme: getBasicTextTheme(),
       colorScheme: const ColorScheme.light().copyWith(
           primary: AppColors.primaryColor,
-          background: AppColors.backGroundColor,
+          surface: AppColors.backGroundColor,
           outline: AppColors.lGrey,
           onSurface: AppColors.lGrey,
-          onBackground: AppColors.textColor,
           shadow: AppColors.shadowColor,
           error: AppColors.errorColor));
 }

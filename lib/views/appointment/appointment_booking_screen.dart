@@ -240,7 +240,7 @@ class AppointmentBookingScreen extends StatelessWidget {
           child: CustomElevatedButton(
               title: "Submit",
               onTap: () {
-                Get.offAll(() => CongratulationScreen());
+                Get.offAll(() => const CongratulationScreen());
               }),
         ),
       ),

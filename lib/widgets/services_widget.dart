@@ -18,9 +18,9 @@ class ServicesWidget extends StatelessWidget {
   final Map<String, String> serviceImages = {
     'Window Cleaning': ImagePath.windowCleaning,
     'Carpet Cleaning': ImagePath.carpetCleaning,
-    'Office Cleaning': ImagePath.officeCleaning,
-    'Garden Cleaning': ImagePath.gardenCleaning,
-    'Lease Cleaning': ImagePath.leaseCleaning,
+    'Builders Cleaning': ImagePath.officeCleaning,
+    'Lawn Cleaning': ImagePath.gardenCleaning,
+    'End of Lease Cleaning': ImagePath.leaseCleaning,
     'House Cleaning': ImagePath.domesticCleaning,
     'Commercial Cleaning': ImagePath.commercialCleaning,
     'Rubbish Removal': ImagePath.rubbishRemoval,

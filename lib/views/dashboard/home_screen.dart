@@ -202,7 +202,7 @@ class HomeScreen extends StatelessWidget {
       ),
       floatingActionButton: InkWell(
         onTap: () {
-          Get.to(ChatBotScreen());
+          Get.to(const ChatBotScreen());
         },
         child: Container(
             height: 40,

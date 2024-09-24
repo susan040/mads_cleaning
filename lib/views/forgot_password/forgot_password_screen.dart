@@ -64,7 +64,7 @@ class ForgotPasswordScreen extends StatelessWidget {
           child: CustomElevatedButton(
               title: "Send",
               onTap: () {
-                Get.to(() => EmailVerificationScreen());
+                Get.to(() => const EmailVerificationScreen());
               }),
         ),
       ),
