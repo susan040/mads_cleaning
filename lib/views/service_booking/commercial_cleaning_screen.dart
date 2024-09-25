@@ -347,7 +347,7 @@ class CommercialCleaningScreen extends StatelessWidget {
                                 left: 18, right: 18, bottom: 15),
                             child: CustomTextField(
                               readOnly: true,
-                              onTap: () => c.chooseDate(context),
+                              onTap: () => c.chooseVisitedDate(context),
                               controller: c.selectSiteVistDateController,
                               preIconPath: (Icons.calendar_month),
                               hint: "YYYY-MM-DD",

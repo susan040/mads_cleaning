@@ -17,7 +17,7 @@ class SplashScreenController extends GetxController {
   // }
 
   void onInit() {
-    Timer(const Duration(seconds: 3), () async {
+    Timer(const Duration(seconds: 2), () async {
       if (c.isUserLoggendIn()) {
         Get.offAll(() => DashScreen());
       } else {
