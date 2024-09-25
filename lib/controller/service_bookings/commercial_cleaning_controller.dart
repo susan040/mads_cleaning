@@ -39,7 +39,7 @@ class CommercialCleaningController extends GetxController {
   final List<String> typeOfCommericialOption = [
     'Office',
     'Retail Store',
-    'WareHouse',
+    'Warehouse',
     'Restaurant',
     'Other'
   ];

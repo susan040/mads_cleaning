@@ -245,8 +245,7 @@ class BuildersCleaningScreen extends StatelessWidget {
                                 fillColor:
                                     WidgetStateProperty.resolveWith<Color?>(
                                   (Set<WidgetState> states) {
-                                    if (states
-                                        .contains(WidgetState.selected)) {
+                                    if (states.contains(WidgetState.selected)) {
                                       return AppColors
                                           .secondaryColor; // Fill color when selected
                                     }
@@ -285,8 +284,7 @@ class BuildersCleaningScreen extends StatelessWidget {
                                 fillColor:
                                     WidgetStateProperty.resolveWith<Color?>(
                                   (Set<WidgetState> states) {
-                                    if (states
-                                        .contains(WidgetState.selected)) {
+                                    if (states.contains(WidgetState.selected)) {
                                       return AppColors
                                           .secondaryColor; // Fill color when selected
                                     }
@@ -335,7 +333,7 @@ class BuildersCleaningScreen extends StatelessWidget {
                               left: 18, right: 18, bottom: 15),
                           child: CustomTextField(
                             readOnly: true,
-                            onTap: () => c.chooseDate(context),
+                            onTap: () => c.chooseVisitedDate(context),
                             controller: c.selectSiteVistDateController,
                             preIconPath: (Icons.calendar_month),
                             hint: "YYYY-MM-DD",
@@ -422,7 +420,7 @@ class BuildersCleaningScreen extends StatelessWidget {
               title: "Submit",
               onTap: () {
                 if (c.formKey.currentState?.validate() ?? false) {
-                  //c.bookCommercialCleaningService();
+                  c.bookBuilderCleaningService();
                 } else {
                   // ignore: avoid_print
                   print('Form is invalid');

@@ -3,7 +3,10 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mads_cleaning/controller/core_controller.dart';
+import 'package:mads_cleaning/repo/builder_cleaning_repo.dart';
 import 'package:mads_cleaning/utils/colors.dart';
+import 'package:mads_cleaning/utils/custom_snackbar.dart';
+import 'package:mads_cleaning/views/service_booking/service_congratulation.dart';
 
 class BuildersCleaningController extends GetxController {
   @override
@@ -34,13 +37,13 @@ class BuildersCleaningController extends GetxController {
   final commercialSpaceController = TextEditingController();
 
   var isSiteVisitRequired = false.obs;
-  var isSiteVisitNotRequired = true.obs;
+  var isSiteVisitNotRequired = false.obs;
   final selectSiteVistDateController = TextEditingController();
   RxString selectTypeOfCommercialSpace = ''.obs;
   final List<String> typeOfCommericialOption = [
     'Office',
     'Retail Store',
-    'WareHouse',
+    'Warehouse',
     'Restaurant',
     'Other'
   ];
@@ -148,31 +151,31 @@ class BuildersCleaningController extends GetxController {
 
   RxBool loading = RxBool(false);
 
-  // bookCommercialCleaningService() async {
-  //   loading.value = true;
-  //   await BookCommericalCleaningRepo.bookCommercialCleaningRepo(
-  //       fullName: fullNameController.text,
-  //       email: emailController.text,
-  //       phone: phoneNoController.text,
-  //       location: addressController.text,
-  //       date: selectDateController.text,
-  //       time: selectTimeController.text,
-  //       message: messageController.text,
-  //       siteVisitDate: selectSiteVistDateController.text,
-  //       typeOfCommercialSpace: selectTypeOfCommercialSpace.value,
-  //       price: priceController.text,
-  //       onSuccess: () {
-  //         loading.value = false;
-  //         Get.offAll(() => const ServiceCongratulationScreen());
-  //         CustomSnackBar.success(
-  //             title: "Commercial Cleaning Services",
-  //             message: "Commercial Cleaning Services successfully booked.");
-  //       },
-  //       onError: ((message) {
-  //         loading.value = false;
-  //         CustomSnackBar.error(
-  //             title: "Commercial Cleaning Service Booking", message: message);
-  //       }));
+  bookBuilderCleaningService() async {
+    loading.value = true;
+    await BookBuilderCleaningRepo.bookBuilderCleaningRepo(
+        fullName: fullNameController.text,
+        email: emailController.text,
+        phone: phoneNoController.text,
+        location: addressController.text,
+        date: selectDateController.text,
+        time: selectTimeController.text,
+        message: messageController.text,
+        siteVisitDate: selectSiteVistDateController.text,
+        typeOfCommercialSpace: selectTypeOfCommercialSpace.value,
+        price: priceController.text,
+        onSuccess: () {
+          loading.value = false;
+          Get.offAll(() => const ServiceCongratulationScreen());
+          CustomSnackBar.success(
+              title: "Builder Cleaning Services",
+              message: "Builder Cleaning Services successfully booked.");
+        },
+        onError: ((message) {
+          loading.value = false;
+          CustomSnackBar.error(
+              title: "Builder Cleaning Service Booking", message: message);
+        }));
 
-  // }
+  }
 }

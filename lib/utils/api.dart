@@ -12,4 +12,6 @@ class Api {
       "$baseUrl/carpet-cleaning-services";
   static const String commercialCleaningServiceUrl =
       "$baseUrl/commercial-cleaning-services";
+  static const String builderCleaningServiceUrl =
+      "$baseUrl/builder-cleaning-services";
 }
