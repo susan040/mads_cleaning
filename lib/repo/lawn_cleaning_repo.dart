@@ -6,19 +6,17 @@ import 'package:http/http.dart' as http;
 import 'package:mads_cleaning/utils/api.dart';
 import 'package:mads_cleaning/utils/http_request.dart';
 
-class WindowsCleaningBookingRepo {
-  static Future<void> windowsCleaningBookRepo(
+class BookLawnCleaningRepo {
+  static Future<void> bookLawnCleaningRepo(
       {required String fullName,
       required String email,
       required String phone,
       required String location,
-      required String noOfWindows,
-      required String noOfStory,
-      required String message,
-      required String type,
       required String date,
       required String time,
-      required String windowsTrackFrame,
+      required String message,
+      required String typeOfLawnService,
+      required String price,
       required Function() onSuccess,
       required Function(String message) onError}) async {
     try {
@@ -32,22 +30,20 @@ class WindowsCleaningBookingRepo {
         'name': fullName,
         'email': email,
         'phone': phone,
-        'number_of_windows': noOfWindows,
-        'number_of_story': noOfStory,
-        'message': message,
+        'location': location,
         'service_date': date,
         'service_time': time,
-        'type': type,
-        'windows_track_frame': windowsTrackFrame,
-        'location': location,
+        'type_of_lawn_service': typeOfLawnService,
+        'price': price,
+        'message_box': message,
       };
       http.Response response = await HttpRequestMadsCleaning.post(
-          Uri.parse(Api.windowsCleaningServicesUrl),
+          Uri.parse(Api.lawneaningServiceUrl),
           headers: headers,
           body: body);
 
-      // log(json.encode(body));
-      // log(response.body);
+      log(json.encode(body));
+      log(response.body);
 
       dynamic data = json.decode(response.body);
       if (response.statusCode >= 200 && response.statusCode < 300) {

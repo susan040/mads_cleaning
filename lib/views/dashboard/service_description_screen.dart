@@ -12,7 +12,9 @@ import 'package:mads_cleaning/views/service_booking/building_cleaning_screen.dar
 import 'package:mads_cleaning/views/service_booking/carpet_cleaning_screen.dart';
 import 'package:mads_cleaning/views/service_booking/commercial_cleaning_screen.dart';
 import 'package:mads_cleaning/views/service_booking/house_cleaning_screen.dart';
+import 'package:mads_cleaning/views/service_booking/lawn_cleaning_screen.dart';
 import 'package:mads_cleaning/views/service_booking/lease_cleaning_screen.dart';
+import 'package:mads_cleaning/views/service_booking/rubbish_removal_screen.dart';
 import 'package:mads_cleaning/views/service_booking/window_cleaning_screen.dart';
 import 'package:mads_cleaning/widgets/custom/elevated_button.dart';
 
@@ -234,6 +236,10 @@ class ServiceDescriptionScreen extends StatelessWidget {
                   Get.to(() => CommercialCleaningScreen());
                 } else if (service.name == "Builders Cleaning") {
                   Get.to(() => BuildersCleaningScreen());
+                } else if (service.name == "Lawn Cleaning") {
+                  Get.to(() => LawnCleaningScreen());
+                } else if (service.name == "Rubbish Removal") {
+                  Get.to(() => RubbishRemovalScreen());
                 } else {
                   CustomSnackBar.error(
                       title: "Error",

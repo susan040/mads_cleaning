@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
-import 'package:mads_cleaning/controller/service_bookings/rubbish_removal_controller.dart';
+import 'package:mads_cleaning/controller/service_bookings/lawn_cleaing_controller.dart';
 import 'package:mads_cleaning/utils/colors.dart';
 import 'package:mads_cleaning/utils/custom_text_style.dart';
 import 'package:mads_cleaning/utils/validator.dart';
 import 'package:mads_cleaning/widgets/custom/custom_textfield.dart';
 import 'package:mads_cleaning/widgets/custom/elevated_button.dart';
 
-class RubbishRemovalScreen extends StatelessWidget {
-  final c = Get.put(RubbishRemovalController());
-  RubbishRemovalScreen({super.key});
-
+class LawnCleaningScreen extends StatelessWidget {
+  LawnCleaningScreen({super.key});
+  final c = Get.put(LawnCleaingController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,7 +26,7 @@ class RubbishRemovalScreen extends StatelessWidget {
             color: Colors.black,
           ),
         ),
-        title: Text("Rubbish Removal Service",
+        title: Text("Lawn/Garden Cleaning Service",
             style: CustomTextStyles.f14W700(color: AppColors.textColor)),
       ),
       body: SingleChildScrollView(
@@ -186,6 +185,74 @@ class RubbishRemovalScreen extends StatelessWidget {
                       const EdgeInsets.only(left: 18, right: 18, bottom: 10),
                   child: Row(
                     children: [
+                      Text("Type of Lawn Service",
+                          style: CustomTextStyles.f14W700()),
+                      Text(
+                        '*',
+                        style: CustomTextStyles.f18W700(color: Colors.red),
+                      )
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding:
+                      const EdgeInsets.only(left: 18, right: 18, bottom: 22),
+                  child: Theme(
+                    data: Theme.of(context)
+                        .copyWith(canvasColor: AppColors.extraWhite),
+                    child: Obx(() => DropdownButtonFormField<String>(
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'This field is required';
+                            }
+                            return null;
+                          },
+                          value: c.selectTypeOfLawnService.value.isEmpty
+                              ? null
+                              : c.selectTypeOfLawnService.value,
+                          hint: Text(
+                            "Select lawn service",
+                            style: CustomTextStyles.f14W400(
+                                color: AppColors.secondaryTextColor),
+                          ),
+                          decoration: const InputDecoration(
+                            contentPadding: EdgeInsets.symmetric(
+                                horizontal: 12, vertical: 18),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: AppColors.secondaryTextColor,
+                                  width: 1),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: AppColors.primaryColor, width: 1),
+                            ),
+                            errorBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.red, width: 1),
+                            ),
+                            focusedErrorBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.red, width: 1),
+                            ),
+                          ),
+                          items: c.typeOfLawnServiceOption
+                              .map((option) => DropdownMenuItem<String>(
+                                    value: option,
+                                    child: Text(option),
+                                  ))
+                              .toList(),
+                          onChanged: (value) {
+                            c.updateTypeOfLawnService(value!);
+                          },
+                        )),
+                  ),
+                ),
+                Padding(
+                  padding:
+                      const EdgeInsets.only(left: 18, right: 18, bottom: 10),
+                  child: Row(
+                    children: [
                       Text("Price", style: CustomTextStyles.f14W700()),
                       Text(
                         '*',
@@ -201,78 +268,6 @@ class RubbishRemovalScreen extends StatelessWidget {
                       controller: c.priceController,
                       validator: Validators.checkFieldEmpty,
                       hint: "Enter Price",
-                      textInputAction: TextInputAction.done,
-                      textInputType: TextInputType.number),
-                ),
-                Padding(
-                  padding:
-                      const EdgeInsets.only(left: 18, right: 18, bottom: 10),
-                  child: Row(
-                    children: [
-                      Text("Number of Tyres",
-                          style: CustomTextStyles.f14W700()),
-                      Text(
-                        '*',
-                        style: CustomTextStyles.f18W700(color: Colors.red),
-                      )
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding:
-                      const EdgeInsets.only(left: 18, right: 18, bottom: 20),
-                  child: CustomTextField(
-                      controller: c.numberOfTyresController,
-                      validator: Validators.checkFieldEmpty,
-                      hint: "Enter number of tyres",
-                      textInputAction: TextInputAction.done,
-                      textInputType: TextInputType.number),
-                ),
-                Padding(
-                  padding:
-                      const EdgeInsets.only(left: 18, right: 18, bottom: 10),
-                  child: Row(
-                    children: [
-                      Text("Number of furniture",
-                          style: CustomTextStyles.f14W700()),
-                      Text(
-                        '*',
-                        style: CustomTextStyles.f18W700(color: Colors.red),
-                      )
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding:
-                      const EdgeInsets.only(left: 18, right: 18, bottom: 20),
-                  child: CustomTextField(
-                      controller: c.numberOfFurnitureController,
-                      validator: Validators.checkFieldEmpty,
-                      hint: "Enter number of furniture",
-                      textInputAction: TextInputAction.done,
-                      textInputType: TextInputType.number),
-                ),
-                Padding(
-                  padding:
-                      const EdgeInsets.only(left: 18, right: 18, bottom: 10),
-                  child: Row(
-                    children: [
-                      Text("Number of mattress",
-                          style: CustomTextStyles.f14W700()),
-                      Text(
-                        '*',
-                        style: CustomTextStyles.f18W700(color: Colors.red),
-                      )
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding:
-                      const EdgeInsets.only(left: 18, right: 18, bottom: 20),
-                  child: CustomTextField(
-                      controller: c.numberOfMattressController,
-                      validator: Validators.checkFieldEmpty,
-                      hint: "Enter number of mattress",
                       textInputAction: TextInputAction.done,
                       textInputType: TextInputType.number),
                 ),
@@ -329,7 +324,7 @@ class RubbishRemovalScreen extends StatelessWidget {
               title: "Submit",
               onTap: () {
                 if (c.formKey.currentState?.validate() ?? false) {
-                  c.bookRubbishRemovalService();
+                  c.bookLawnCleaningService();
                 } else {
                   // Form is invalid, show errors
                   print('Form is invalid');

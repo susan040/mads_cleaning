@@ -3,12 +3,12 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mads_cleaning/controller/core_controller.dart';
-import 'package:mads_cleaning/repo/house_cleaning_repo.dart';
+import 'package:mads_cleaning/repo/lawn_cleaning_repo.dart';
 import 'package:mads_cleaning/utils/colors.dart';
 import 'package:mads_cleaning/utils/custom_snackbar.dart';
 import 'package:mads_cleaning/views/service_booking/service_congratulation.dart';
 
-class HouseCleaningController extends GetxController {
+class LawnCleaingController extends GetxController {
   @override
   void onInit() {
     super.onInit();
@@ -26,8 +26,6 @@ class HouseCleaningController extends GetxController {
   }
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  RxBool loading = RxBool(false);
-
   final fullNameController = TextEditingController();
   final addressController = TextEditingController();
   final emailController = TextEditingController();
@@ -35,23 +33,22 @@ class HouseCleaningController extends GetxController {
   final messageController = TextEditingController();
   final selectDateController = TextEditingController();
   final selectTimeController = TextEditingController();
-  final noOfBedroomsController = TextEditingController();
-  final noOfBathroomsController = TextEditingController();
-  final noOfStoryController = TextEditingController();
-  var selectFrequencyOfCleaning = ''.obs;
+  final priceController = TextEditingController();
+  RxString selectTypeOfLawnService = ''.obs;
+  final List<String> typeOfLawnServiceOption = [
+    'Mowing',
+    'Trimming',
+    'Weeding',
+    'Pruning',
+    'Other'
+  ];
+  void updateTypeOfLawnService(String value) {
+    selectTypeOfLawnService.value = value;
+  }
 
   var desireDate = DateTime.now().obs;
   var desireTime = TimeOfDay.now().obs;
-  final List<String> frequencyOfCleaningOption = [
-    'Weekly',
-    'Fortnightly',
-    'Monthly'
-  ];
-
-  void updateFrequencyOfCleaning(String value) {
-    selectFrequencyOfCleaning.value = value;
-  }
-
+  var siteVistedDate = DateTime.now().obs;
   chooseDate(BuildContext context) async {
     log("choose date");
     DateTime? pickedDate = await showDatePicker(
@@ -114,30 +111,31 @@ class HouseCleaningController extends GetxController {
     }
   }
 
-  bookHouseCleaningService() async {
-    await HouseCleaningBookRepo.bookHouseCleaningRepo(
+  RxBool loading = RxBool(false);
+
+  bookLawnCleaningService() async {
+    loading.value = true;
+    await BookLawnCleaningRepo.bookLawnCleaningRepo(
         fullName: fullNameController.text,
         email: emailController.text,
         phone: phoneNoController.text,
         location: addressController.text,
-        noOfBedroom: noOfBedroomsController.text,
-        noOfBathroom: noOfBathroomsController.text,
-        message: messageController.text,
-        frequency: selectFrequencyOfCleaning.value,
         date: selectDateController.text,
         time: selectTimeController.text,
-        noOfStory: noOfStoryController.text,
+        message: messageController.text,
+        typeOfLawnService: selectTypeOfLawnService.value,
+        price: priceController.text,
         onSuccess: () {
           loading.value = false;
           Get.offAll(() => const ServiceCongratulationScreen());
           CustomSnackBar.success(
-              title: "House Cleaning Services",
-              message: "House Cleaning Services successfully booked.");
+              title: "Lawn Cleaning Services",
+              message: "Lawn Cleaning Services successfully booked.");
         },
         onError: ((message) {
           loading.value = false;
           CustomSnackBar.error(
-              title: "House Cleaning Service Booking", message: message);
+              title: "Lawn Cleaning Service Booking", message: message);
         }));
   }
 }
