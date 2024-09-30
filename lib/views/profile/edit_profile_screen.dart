@@ -35,7 +35,7 @@ class EditProfileScreen extends StatelessWidget {
         child: Form(
           key: c.formKey,
           child: Column(children: [
-            const SizedBox(height: 40),
+            const SizedBox(height: 25),
             Obx(
               () => ClipRRect(
                 borderRadius: BorderRadius.circular(60),
@@ -47,15 +47,14 @@ class EditProfileScreen extends StatelessWidget {
                         width: 100,
                       )
                     : CachedNetworkImage(
-                        imageUrl:
-                            "https://images.pexels.com/photos/1386604/pexels-photo-1386604.jpeg",
+                        imageUrl: c.avatarUrl.value!,
                         fit: BoxFit.cover,
                         height: 100,
                         width: 100,
                         placeholder: (context, url) =>
                             const CircularProgressIndicator(),
                         errorWidget: (context, url, error) => Image.network(
-                          "https://edu.ceskatelevize.cz/storage/video/placeholder.jpg",
+                          "https://www.shutterstock.com/image-vector/blank-avatar-photo-place-holder-600nw-1095249842.jpg",
                           fit: BoxFit.cover,
                           height: 100,
                           width: 100,
@@ -85,7 +84,16 @@ class EditProfileScreen extends StatelessWidget {
                       //labelText: "Username",
                       textInputAction: TextInputAction.next,
                       textInputType: TextInputType.text),
-                  const SizedBox(height: 30),
+                  const SizedBox(height: 25),
+                  CustomTextField(
+                      controller: c.emailController,
+                      validator: Validators.checkFieldEmpty,
+                      hint: "Enter your Email",
+                      //labelText: "Username",
+                      readOnly: true,
+                      textInputAction: TextInputAction.next,
+                      textInputType: TextInputType.text),
+                  const SizedBox(height: 25),
                   CustomTextField(
                       controller: c.addressController,
                       validator: Validators.checkFieldEmpty,
@@ -93,15 +101,7 @@ class EditProfileScreen extends StatelessWidget {
                       //labelText: "Username",
                       textInputAction: TextInputAction.next,
                       textInputType: TextInputType.text),
-                  const SizedBox(height: 30),
-                  CustomTextField(
-                      controller: c.addressController,
-                      validator: Validators.checkFieldEmpty,
-                      hint: "Enter your address",
-                      //labelText: "Username",
-                      textInputAction: TextInputAction.next,
-                      textInputType: TextInputType.text),
-                  const SizedBox(height: 30),
+                  const SizedBox(height: 25),
                   IntlPhoneField(
                     controller: c.phoneController,
                     decoration: InputDecoration(
@@ -142,7 +142,30 @@ class EditProfileScreen extends StatelessWidget {
                       print(phone.completeNumber);
                     },
                   ),
-                  const SizedBox(height: 22),
+                  const SizedBox(height: 15),
+                  Container(
+                    padding: const EdgeInsets.only(
+                        left: 16, right: 16, top: 12, bottom: 12),
+                    margin: const EdgeInsets.symmetric(vertical: 10.0),
+                    decoration: BoxDecoration(
+                      color: const Color.fromARGB(255, 255, 208,
+                          208), // Light background color for the note
+                      borderRadius: BorderRadius.circular(8.0),
+                      border: Border.all(color: Colors.grey, width: 0.5),
+                    ),
+                    child: Row(
+                      children: [
+                        const Icon(Icons.warning_amber_rounded,
+                            color: AppColors.textColor,
+                            size: 22), // Warning icon
+                        const SizedBox(width: 10),
+                        Expanded(
+                          child: Text('You cannot change your email',
+                              style: CustomTextStyles.f14W400()),
+                        ),
+                      ],
+                    ),
+                  )
                 ],
               ),
             ),

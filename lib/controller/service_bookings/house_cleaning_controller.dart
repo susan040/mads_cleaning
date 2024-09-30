@@ -114,7 +114,7 @@ class HouseCleaningController extends GetxController {
     }
   }
 
-  bookHouseCleaningService() async {
+  bookHouseCleaningService(String price) async {
     await HouseCleaningBookRepo.bookHouseCleaningRepo(
         fullName: fullNameController.text,
         email: emailController.text,
@@ -127,6 +127,7 @@ class HouseCleaningController extends GetxController {
         date: selectDateController.text,
         time: selectTimeController.text,
         noOfStory: noOfStoryController.text,
+        price: price,
         onSuccess: () {
           loading.value = false;
           Get.offAll(() => const ServiceCongratulationScreen());

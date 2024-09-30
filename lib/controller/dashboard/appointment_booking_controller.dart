@@ -2,9 +2,26 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mads_cleaning/controller/core_controller.dart';
 import 'package:mads_cleaning/utils/colors.dart';
 
 class AppointmentBookingController extends GetxController {
+  @override
+  void onInit() {
+    super.onInit();
+    populateUserDetails();
+  }
+
+  void populateUserDetails() {
+    var user = Get.find<CoreController>().currentUser.value;
+    if (user != null) {
+      fullNameController.text = user.name ?? "";
+      addressController.text = user.address ?? "";
+      emailController.text = user.email ?? "";
+      phoneNoController.text = user.phone ?? "";
+    }
+  }
+
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final fullNameController = TextEditingController();
   final addressController = TextEditingController();

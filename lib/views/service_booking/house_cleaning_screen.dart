@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:mads_cleaning/controller/service_bookings/house_cleaning_controller.dart';
+import 'package:mads_cleaning/model/all_services.dart';
 import 'package:mads_cleaning/utils/colors.dart';
 import 'package:mads_cleaning/utils/custom_text_style.dart';
 import 'package:mads_cleaning/utils/validator.dart';
@@ -10,8 +11,8 @@ import 'package:mads_cleaning/widgets/custom/elevated_button.dart';
 
 class HouseCleaingScreen extends StatelessWidget {
   final c = Get.put(HouseCleaningController());
-  HouseCleaingScreen({super.key});
-
+  HouseCleaingScreen({super.key, required this.service});
+  final Services service;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -370,7 +371,7 @@ class HouseCleaingScreen extends StatelessWidget {
               title: "Submit",
               onTap: () {
                 if (c.formKey.currentState?.validate() ?? false) {
-                  c.bookHouseCleaningService();
+                  c.bookHouseCleaningService(service.price??"");
                 } else {
                   // Form is invalid, show errors
                   print('Form is invalid');

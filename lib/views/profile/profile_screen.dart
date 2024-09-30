@@ -35,7 +35,7 @@ class ProfileScreen extends StatelessWidget {
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                ClipRRect(
+                Obx(()=>ClipRRect(
                   borderRadius: BorderRadius.circular(100),
                   child: CachedNetworkImage(
                     placeholder: (context, url) =>
@@ -44,7 +44,7 @@ class ProfileScreen extends StatelessWidget {
                     height: 77,
                     width: 77,
                     imageUrl:
-                        "https://images.pexels.com/photos/1386604/pexels-photo-1386604.jpeg",
+                        coreController.currentUser.value?.avatar??"",
                     errorWidget: (context, url, error) => Image.network(
                       "https://www.shutterstock.com/image-vector/blank-avatar-photo-place-holder-600nw-1095249842.jpg",
                       height: 77,
@@ -52,7 +52,7 @@ class ProfileScreen extends StatelessWidget {
                       fit: BoxFit.cover,
                     ),
                   ),
-                ),
+                )),
                 const SizedBox(width: 14),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,

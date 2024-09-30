@@ -5,8 +5,16 @@ class Users {
   String? phone;
   String? address;
   String? token;
+  String? avatar;
 
-  Users({this.id, this.name, this.email, this.phone, this.address, this.token});
+  Users(
+      {this.id,
+      this.name,
+      this.email,
+      this.phone,
+      this.address,
+      this.token,
+      this.avatar});
 
   Users.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -15,6 +23,7 @@ class Users {
     phone = json['phone'];
     address = json['address'];
     token = json['token'];
+    avatar = json['avatar'];
   }
 
   Map<String, dynamic> toJson() {
@@ -25,6 +34,7 @@ class Users {
     data['phone'] = phone;
     data['address'] = address;
     data['token'] = token;
+    data['avatar'] = avatar;
     return data;
   }
 }

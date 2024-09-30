@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:mads_cleaning/views/appointment/appointment_booking_screen.dart';
 import 'package:mads_cleaning/views/dashboard/chat_bot_screen.dart';
 import 'package:mads_cleaning/widgets/rating_widget.dart';
 import 'package:shimmer/shimmer.dart'; // Import shimmer package
@@ -212,7 +213,9 @@ class HomeScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 10),
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Get.to(() => AppointmentBookingScreen());
+                  },
                   child: Container(
                       width: 100,
                       height: 28,

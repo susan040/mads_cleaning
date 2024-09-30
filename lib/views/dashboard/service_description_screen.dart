@@ -227,7 +227,9 @@ class ServiceDescriptionScreen extends StatelessWidget {
                 if (service.name == "Window Cleaning") {
                   Get.to(() => WindowCleaningScreen());
                 } else if (service.name == "House Cleaning") {
-                  Get.to(() => HouseCleaingScreen());
+                  Get.to(() => HouseCleaingScreen(
+                        service: service,
+                      ));
                 } else if (service.name == "Lease Cleaning") {
                   Get.to(() => LeaseCleaningScreen());
                 } else if (service.name == "Carpet Cleaning") {

@@ -1,10 +1,10 @@
 import 'dart:developer';
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mads_cleaning/controller/core_controller.dart';
+import 'package:mads_cleaning/model/users.dart';
 
 class EditProfileController extends GetxController {
   @override
@@ -20,9 +20,7 @@ class EditProfileController extends GetxController {
       addressController.text = user.address ?? "";
       emailController.text = user.email ?? "";
       phoneController.text = user.phone ?? "";
-      // if (user.imageUrl != null) {
-      //   image.value = File(user.imageUrl!);
-      // }
+      avatarUrl.value = user.avatar ?? ""; // Assign the avatar URL here
     }
   }
 
@@ -34,7 +32,10 @@ class EditProfileController extends GetxController {
   final phoneController = TextEditingController();
   final picker = ImagePicker();
 
-  Rxn<File> image = Rxn<File>();
+  Rxn<Users> user = Rxn<Users>();
+  Rxn<File> image = Rxn<File>(); // This is for local image (from gallery)
+  Rxn<String> avatarUrl = Rxn<String>(); // This is for the image URL
+
   void pickImage() async {
     log("Picking image");
     final pickedImage = await picker.pickImage(
@@ -44,7 +45,7 @@ class EditProfileController extends GetxController {
         maxWidth: 500);
 
     if (pickedImage != null) {
-      image.value = File(pickedImage.path);
+      image.value = File(pickedImage.path); // Assign local image
     }
   }
 }

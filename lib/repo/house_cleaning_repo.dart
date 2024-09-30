@@ -19,6 +19,7 @@ class HouseCleaningBookRepo {
       required String date,
       required String time,
       required String noOfStory,
+      required String price,
       required Function() onSuccess,
       required Function(String message) onError}) async {
     try {
@@ -28,6 +29,7 @@ class HouseCleaningBookRepo {
         'Accept': 'application/json',
         'Authorization': 'Bearer $token',
       };
+
       var body = {
         'name': fullName,
         'email': email,
@@ -39,15 +41,16 @@ class HouseCleaningBookRepo {
         'service_date': date,
         'service_time': time,
         'frequency': frequency,
-        'location': location
+        'location': location,
+        'price': price
       };
       http.Response response = await HttpRequestMadsCleaning.post(
           Uri.parse(Api.houseCleaningServiceUrl),
           headers: headers,
           body: body);
 
-      // log(json.encode(body));
-      // log(response.body);
+      log(json.encode(body));
+      log(response.body);
 
       dynamic data = json.decode(response.body);
       if (response.statusCode >= 200 && response.statusCode < 300) {
