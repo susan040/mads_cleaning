@@ -38,7 +38,8 @@ class BookBuilderCleaningRepo {
         'site_visit_date': siteVisitDate,
         'price': price,
         'message_box': message,
-        'status': 'Pending'
+        'status': 'Pending',
+        
       };
       http.Response response = await HttpRequestMadsCleaning.post(
           Uri.parse(Api.builderCleaningServiceUrl),

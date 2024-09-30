@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:mads_cleaning/controller/service_bookings/carpet_cleaning_controller.dart';
+import 'package:mads_cleaning/model/all_services.dart';
 import 'package:mads_cleaning/utils/colors.dart';
 import 'package:mads_cleaning/utils/custom_text_style.dart';
 import 'package:mads_cleaning/utils/validator.dart';
@@ -10,8 +11,8 @@ import 'package:mads_cleaning/widgets/custom/elevated_button.dart';
 
 class CarpetCleaningScreen extends StatelessWidget {
   final c = Get.put(CarpetCleaningController());
-  CarpetCleaningScreen({super.key});
-
+  CarpetCleaningScreen({super.key, required this.service});
+  final Services service;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -374,7 +375,7 @@ class CarpetCleaningScreen extends StatelessWidget {
               title: "Submit",
               onTap: () {
                 if (c.formKey.currentState?.validate() ?? false) {
-                  c.bookCarpetCleaningService();
+                  c.bookCarpetCleaningService(service.price ?? "");
                 } else {
                   // Form is invalid, show errors
                   print('Form is invalid');

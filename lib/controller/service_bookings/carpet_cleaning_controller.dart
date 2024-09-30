@@ -112,7 +112,7 @@ class CarpetCleaningController extends GetxController {
 
   RxBool loading = RxBool(false);
 
-  bookCarpetCleaningService() async {
+  bookCarpetCleaningService(String price) async {
     loading.value = true;
     await BookCarpetCleaningRepo.bookCarpetCleaningRepo(
         fullName: fullNameController.text,
@@ -126,6 +126,7 @@ class CarpetCleaningController extends GetxController {
         carpetSteamCleaningArea: carpetSteamCleaningArea.text,
         carpetStainCleaningUnit: carpetStainCleaningUnit.value,
         carpetStainCleaningArea: carpetStainCleaningArea.text,
+        price: price,
         onSuccess: () {
           loading.value = false;
           Get.offAll(() => const ServiceCongratulationScreen());
