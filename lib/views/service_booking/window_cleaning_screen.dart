@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:mads_cleaning/controller/service_bookings/window_cleaning_controller.dart';
+import 'package:mads_cleaning/model/all_services.dart';
 import 'package:mads_cleaning/utils/colors.dart';
 import 'package:mads_cleaning/utils/custom_text_style.dart';
 import 'package:mads_cleaning/utils/validator.dart';
@@ -10,8 +11,8 @@ import 'package:mads_cleaning/widgets/custom/elevated_button.dart';
 
 class WindowCleaningScreen extends StatelessWidget {
   final c = Get.put(WindowBookingController());
-  WindowCleaningScreen({super.key});
-
+  WindowCleaningScreen({super.key, required this.service});
+  final Services service;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -414,18 +415,7 @@ class WindowCleaningScreen extends StatelessWidget {
               title: "Submit",
               onTap: () {
                 if (c.formKey.currentState?.validate() ?? false) {
-                  c.bookWindowCleaningService(
-                      c.fullNameController.text,
-                      c.emailController.text,
-                      c.phoneNoController.text,
-                      c.addressController.text,
-                      c.noOfWindowsController.text,
-                      c.noOfStoryController.text,
-                      c.messageController.text,
-                      c.selectWhereToClean.value,
-                      c.windowsTrackCleaning.value,
-                      c.selectDateController.text,
-                      c.selectTimeController.text);
+                  c.bookWindowCleaningService(service.price ?? "");
                 } else {
                   // Form is invalid, show errors
                   print('Form is invalid');

@@ -115,32 +115,22 @@ class WindowBookingController extends GetxController {
     }
   }
 
-  bookWindowCleaningService(
-      String name,
-      String email,
-      String phone,
-      String location,
-      String noOfWindows,
-      String noOfStory,
-      String message,
-      String type,
-      String windowsTrackFrame,
-      String serviceDate,
-      String serviceTime) async {
+  bookWindowCleaningService(String price) async {
     loading.value = true;
 
     await WindowsCleaningBookingRepo.windowsCleaningBookRepo(
-        fullName: name,
-        email: email,
-        phone: phone,
-        location: location,
-        noOfWindows: noOfWindows,
-        noOfStory: noOfStory,
-        message: message,
-        type: type,
-        date: serviceDate,
-        time: serviceTime,
-        windowsTrackFrame: windowsTrackFrame,
+        fullName: fullNameController.text,
+        email: emailController.text,
+        phone: phoneNoController.text,
+        location: addressController.text,
+        noOfWindows: noOfStoryController.text,
+        noOfStory: noOfStoryController.text,
+        message: messageController.text,
+        type: selectWhereToClean.value,
+        date: selectDateController.text,
+        time: selectTimeController.text,
+        windowsTrackFrame: windowsTrackCleaning.value,
+        price: price,
         onSuccess: () {
           loading.value = false;
           Get.offAll(() => const ServiceCongratulationScreen());

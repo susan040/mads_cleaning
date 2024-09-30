@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:mads_cleaning/controller/service_bookings/builders_cleaning_controller.dart';
+import 'package:mads_cleaning/model/all_services.dart';
 import 'package:mads_cleaning/utils/colors.dart';
 import 'package:mads_cleaning/utils/custom_text_style.dart';
 import 'package:mads_cleaning/utils/validator.dart';
@@ -11,8 +12,8 @@ import 'package:mads_cleaning/widgets/custom/elevated_button.dart';
 class BuildersCleaningScreen extends StatelessWidget {
   final c = Get.put(BuildersCleaningController()); // Create instance
 
-  BuildersCleaningScreen({super.key});
-
+  BuildersCleaningScreen({super.key, required this.service});
+  final Services service;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -130,7 +131,16 @@ class BuildersCleaningScreen extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 18, right: 18, bottom: 10),
-                child: Text("Select Date", style: CustomTextStyles.f14W700()),
+                child: Row(
+                  children: [
+                    Text("Select Visit Date",
+                        style: CustomTextStyles.f14W700()),
+                    Text(
+                      '*',
+                      style: CustomTextStyles.f18W700(color: Colors.red),
+                    )
+                  ],
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 18, right: 18, bottom: 22),
@@ -138,6 +148,7 @@ class BuildersCleaningScreen extends StatelessWidget {
                     readOnly: true,
                     onTap: () => c.chooseDate(context),
                     controller: c.selectDateController,
+                    validator: Validators.checkFieldEmpty,
                     preIconPath: (Icons.calendar_month),
                     hint: "YYYY-MM-DD",
                     textInputAction: TextInputAction.done,
@@ -145,7 +156,15 @@ class BuildersCleaningScreen extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 18, right: 18, bottom: 10),
-                child: Text("Select Time", style: CustomTextStyles.f14W700()),
+                child: Row(
+                  children: [
+                    Text("Select Time", style: CustomTextStyles.f14W700()),
+                    Text(
+                      '*',
+                      style: CustomTextStyles.f18W700(color: Colors.red),
+                    )
+                  ],
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 18, right: 18, bottom: 22),
@@ -154,6 +173,7 @@ class BuildersCleaningScreen extends StatelessWidget {
                     onTap: () => c.chooseTime(context),
                     controller: c.selectTimeController,
                     preIconPath: (Icons.timelapse),
+                    validator: Validators.checkFieldEmpty,
                     hint: "YYYY-MM-DD",
                     textInputAction: TextInputAction.done,
                     textInputType: TextInputType.none),
@@ -222,154 +242,6 @@ class BuildersCleaningScreen extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(
-                  left: 18,
-                  right: 18,
-                ),
-                child: Text("Is Site Vist required?",
-                    style: CustomTextStyles.f14W700()),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 8, right: 90, bottom: 4),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Obx(
-                      () => Row(
-                        children: [
-                          Theme(
-                            data: Theme.of(context).copyWith(
-                              unselectedWidgetColor:
-                                  Colors.black, // Border color
-                              checkboxTheme: CheckboxThemeData(
-                                fillColor:
-                                    WidgetStateProperty.resolveWith<Color?>(
-                                  (Set<WidgetState> states) {
-                                    if (states.contains(WidgetState.selected)) {
-                                      return AppColors
-                                          .secondaryColor; // Fill color when selected
-                                    }
-                                    return AppColors
-                                        .extraWhite; // Fill color when not selected
-                                  },
-                                ),
-                                checkColor: WidgetStateProperty.all(
-                                    AppColors.extraWhite), // Check color
-                              ),
-                            ),
-                            child: Checkbox(
-                              value: c.isSiteVisitRequired.value,
-                              onChanged: (bool? newValue) {
-                                c.isSiteVisitRequired.value = newValue ?? false;
-                                c.isSiteVisitNotRequired.value =
-                                    false; // Unselect the other checkbox
-                              },
-                            ),
-                          ),
-                          Text(
-                            "Yes",
-                            style: CustomTextStyles.f14W400(),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Obx(
-                      () => Row(
-                        children: [
-                          Theme(
-                            data: Theme.of(context).copyWith(
-                              unselectedWidgetColor:
-                                  Colors.black, // Border color
-                              checkboxTheme: CheckboxThemeData(
-                                fillColor:
-                                    WidgetStateProperty.resolveWith<Color?>(
-                                  (Set<WidgetState> states) {
-                                    if (states.contains(WidgetState.selected)) {
-                                      return AppColors
-                                          .secondaryColor; // Fill color when selected
-                                    }
-                                    return AppColors
-                                        .extraWhite; // Fill color when not selected
-                                  },
-                                ),
-                                checkColor: WidgetStateProperty.all(
-                                    AppColors.extraWhite), // Check color
-                              ),
-                            ),
-                            child: Checkbox(
-                              value: c.isSiteVisitNotRequired.value,
-                              onChanged: (bool? newValue) {
-                                c.isSiteVisitNotRequired.value =
-                                    newValue ?? false;
-                                c.isSiteVisitRequired.value =
-                                    false; // Unselect the other checkbox
-                              },
-                            ),
-                          ),
-                          Text(
-                            "No",
-                            style: CustomTextStyles.f14W400(),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Obx(
-                () {
-                  if (c.isSiteVisitRequired.value) {
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              left: 18, right: 18, bottom: 10),
-                          child: Text("Select Site Visit Date",
-                              style: CustomTextStyles.f14W700()),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              left: 18, right: 18, bottom: 15),
-                          child: CustomTextField(
-                            readOnly: true,
-                            onTap: () => c.chooseVisitedDate(context),
-                            controller: c.selectSiteVistDateController,
-                            preIconPath: (Icons.calendar_month),
-                            hint: "YYYY-MM-DD",
-                            textInputAction: TextInputAction.done,
-                            textInputType: TextInputType.none,
-                          ),
-                        ),
-                      ],
-                    );
-                  } else {
-                    return const SizedBox(); // Return an empty widget when not required
-                  }
-                },
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 18, right: 18, bottom: 10),
-                child: Row(
-                  children: [
-                    Text("Price", style: CustomTextStyles.f14W700()),
-                    Text(
-                      '*',
-                      style: CustomTextStyles.f18W700(color: Colors.red),
-                    )
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 18, right: 18, bottom: 20),
-                child: CustomTextField(
-                    controller: c.priceController,
-                    validator: Validators.checkFieldEmpty,
-                    hint: "Enter Price",
-                    textInputAction: TextInputAction.done,
-                    textInputType: TextInputType.number),
-              ),
-              Padding(
                 padding: const EdgeInsets.only(left: 18, right: 18, bottom: 10),
                 child: Text("Message", style: CustomTextStyles.f14W700()),
               ),
@@ -420,7 +292,7 @@ class BuildersCleaningScreen extends StatelessWidget {
               title: "Submit",
               onTap: () {
                 if (c.formKey.currentState?.validate() ?? false) {
-                  c.bookBuilderCleaningService();
+                  c.bookBuilderCleaningService(service.price ?? "");
                 } else {
                   // ignore: avoid_print
                   print('Form is invalid');

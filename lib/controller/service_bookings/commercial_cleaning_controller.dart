@@ -33,8 +33,6 @@ class CommercialCleaningController extends GetxController {
   final messageController = TextEditingController();
   final selectDateController = TextEditingController();
   final selectTimeController = TextEditingController();
-  final priceController = TextEditingController();
-  final selectSiteVistDateController = TextEditingController();
   RxString selectTypeOfCommercialSpace = ''.obs;
   final List<String> typeOfCommericialOption = [
     'Office',
@@ -84,39 +82,6 @@ class CommercialCleaningController extends GetxController {
     }
   }
 
-  chooseVisitedDate(BuildContext context) async {
-    log("choose date");
-    DateTime? pickedDate = await showDatePicker(
-      context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime(
-          DateTime.now().year, DateTime.now().month, DateTime.now().day),
-      lastDate: DateTime(2050),
-      builder: (context, child) {
-        return Theme(
-          data: ThemeData.light().copyWith(
-            primaryColor: AppColors.primaryColor,
-            hintColor: AppColors.primaryColor,
-            colorScheme: const ColorScheme.light(
-              primary: AppColors.primaryColor,
-            ),
-            buttonTheme: const ButtonThemeData(
-              textTheme: ButtonTextTheme.primary,
-            ),
-          ),
-          child: child ?? Container(),
-        );
-      },
-    );
-
-    if (pickedDate != null) {
-      siteVistedDate.value = pickedDate;
-      selectSiteVistDateController.text =
-          siteVistedDate.value.toString().split(" ")[0];
-      log('Selected Date: ${selectSiteVistDateController.text}');
-    }
-  }
-
   chooseTime(BuildContext context) async {
     log("choose time");
     TimeOfDay? pickedTime = await showTimePicker(
@@ -149,19 +114,18 @@ class CommercialCleaningController extends GetxController {
 
   RxBool loading = RxBool(false);
 
-  bookCommercialCleaningService() async {
+  bookCommercialCleaningService(String price) async {
     loading.value = true;
     await BookCommericalCleaningRepo.bookCommercialCleaningRepo(
         fullName: fullNameController.text,
         email: emailController.text,
         phone: phoneNoController.text,
         location: addressController.text,
-        date: selectDateController.text,
         time: selectTimeController.text,
         message: messageController.text,
-        siteVisitDate: selectSiteVistDateController.text,
+        siteVisitDate: selectDateController.text,
         typeOfCommercialSpace: selectTypeOfCommercialSpace.value,
-        price: priceController.text,
+        price: price,
         onSuccess: () {
           loading.value = false;
           Get.offAll(() => const ServiceCongratulationScreen());

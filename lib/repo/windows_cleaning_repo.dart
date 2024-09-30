@@ -18,6 +18,7 @@ class WindowsCleaningBookingRepo {
       required String type,
       required String date,
       required String time,
+      required String price,
       required String windowsTrackFrame,
       required Function() onSuccess,
       required Function(String message) onError}) async {
@@ -40,14 +41,15 @@ class WindowsCleaningBookingRepo {
         'type': type,
         'windows_track_frame': windowsTrackFrame,
         'location': location,
+        'price': price
       };
       http.Response response = await HttpRequestMadsCleaning.post(
           Uri.parse(Api.windowsCleaningServicesUrl),
           headers: headers,
           body: body);
 
-      // log(json.encode(body));
-      // log(response.body);
+      log(json.encode(body));
+      log(response.body);
 
       dynamic data = json.decode(response.body);
       if (response.statusCode >= 200 && response.statusCode < 300) {

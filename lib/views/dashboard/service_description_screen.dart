@@ -225,7 +225,7 @@ class ServiceDescriptionScreen extends StatelessWidget {
               title: "Book Now",
               onTap: () {
                 if (service.name == "Window Cleaning") {
-                  Get.to(() => WindowCleaningScreen());
+                  Get.to(() => WindowCleaningScreen(service: service));
                 } else if (service.name == "House Cleaning") {
                   Get.to(() => HouseCleaingScreen(
                         service: service,
@@ -233,11 +233,13 @@ class ServiceDescriptionScreen extends StatelessWidget {
                 } else if (service.name == "Lease Cleaning") {
                   Get.to(() => LeaseCleaningScreen());
                 } else if (service.name == "Carpet Cleaning") {
-                  Get.to(() => CarpetCleaningScreen(service: service,));
+                  Get.to(() => CarpetCleaningScreen(
+                        service: service,
+                      ));
                 } else if (service.name == "Commercial Cleaning") {
-                  Get.to(() => CommercialCleaningScreen());
+                  Get.to(() => CommercialCleaningScreen(service: service));
                 } else if (service.name == "Builders Cleaning") {
-                  Get.to(() => BuildersCleaningScreen());
+                  Get.to(() => BuildersCleaningScreen(service: service));
                 } else if (service.name == "Lawn Cleaning") {
                   Get.to(() => LawnCleaningScreen());
                 } else if (service.name == "Rubbish Removal") {

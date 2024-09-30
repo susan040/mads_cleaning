@@ -33,12 +33,7 @@ class BuildersCleaningController extends GetxController {
   final messageController = TextEditingController();
   final selectDateController = TextEditingController();
   final selectTimeController = TextEditingController();
-  final priceController = TextEditingController();
   final commercialSpaceController = TextEditingController();
-
-  var isSiteVisitRequired = false.obs;
-  var isSiteVisitNotRequired = false.obs;
-  final selectSiteVistDateController = TextEditingController();
   RxString selectTypeOfCommercialSpace = ''.obs;
   final List<String> typeOfCommericialOption = [
     'Office',
@@ -86,39 +81,6 @@ class BuildersCleaningController extends GetxController {
     }
   }
 
-  chooseVisitedDate(BuildContext context) async {
-    log("choose date");
-    DateTime? pickedDate = await showDatePicker(
-      context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime(
-          DateTime.now().year, DateTime.now().month, DateTime.now().day),
-      lastDate: DateTime(2050),
-      builder: (context, child) {
-        return Theme(
-          data: ThemeData.light().copyWith(
-            primaryColor: AppColors.primaryColor,
-            hintColor: AppColors.primaryColor,
-            colorScheme: const ColorScheme.light(
-              primary: AppColors.primaryColor,
-            ),
-            buttonTheme: const ButtonThemeData(
-              textTheme: ButtonTextTheme.primary,
-            ),
-          ),
-          child: child ?? Container(),
-        );
-      },
-    );
-
-    if (pickedDate != null) {
-      siteVistedDate.value = pickedDate;
-      selectSiteVistDateController.text =
-          siteVistedDate.value.toString().split(" ")[0];
-      log('Selected Date: ${selectSiteVistDateController.text}');
-    }
-  }
-
   chooseTime(BuildContext context) async {
     log("choose time");
     TimeOfDay? pickedTime = await showTimePicker(
@@ -151,19 +113,18 @@ class BuildersCleaningController extends GetxController {
 
   RxBool loading = RxBool(false);
 
-  bookBuilderCleaningService() async {
+  bookBuilderCleaningService(String price) async {
     loading.value = true;
     await BookBuilderCleaningRepo.bookBuilderCleaningRepo(
         fullName: fullNameController.text,
         email: emailController.text,
         phone: phoneNoController.text,
         location: addressController.text,
-        date: selectDateController.text,
         time: selectTimeController.text,
         message: messageController.text,
-        siteVisitDate: selectSiteVistDateController.text,
+        siteVisitDate: selectDateController.text,
         typeOfCommercialSpace: selectTypeOfCommercialSpace.value,
-        price: priceController.text,
+        price: price,
         onSuccess: () {
           loading.value = false;
           Get.offAll(() => const ServiceCongratulationScreen());
@@ -176,6 +137,5 @@ class BuildersCleaningController extends GetxController {
           CustomSnackBar.error(
               title: "Builder Cleaning Service Booking", message: message);
         }));
-
   }
 }
