@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:mads_cleaning/controller/service_bookings/lease_cleaning_controller.dart';
+import 'package:mads_cleaning/model/all_services.dart';
 import 'package:mads_cleaning/utils/colors.dart';
 import 'package:mads_cleaning/utils/custom_text_style.dart';
 import 'package:mads_cleaning/utils/validator.dart';
@@ -10,7 +11,8 @@ import 'package:mads_cleaning/widgets/custom/elevated_button.dart';
 
 class LeaseCleaningScreen extends StatelessWidget {
   final c = Get.put(LeaseCleaningController());
-  LeaseCleaningScreen({super.key});
+  final Services service;
+  LeaseCleaningScreen({super.key, required this.service});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +28,7 @@ class LeaseCleaningScreen extends StatelessWidget {
             color: Colors.black,
           ),
         ),
-        title: Text("Lease Cleaning Service",
+        title: Text("${service.name} Service",
             style: CustomTextStyles.f14W700(color: AppColors.textColor)),
       ),
       body: SingleChildScrollView(
@@ -419,15 +421,23 @@ class LeaseCleaningScreen extends StatelessWidget {
                 Padding(
                   padding:
                       const EdgeInsets.only(left: 18, right: 18, bottom: 10),
-                  child: Text("No of walls to clean",
-                      style: CustomTextStyles.f14W700()),
+                  child: Row(
+                    children: [
+                      Text("No of walls to clean",
+                          style: CustomTextStyles.f14W700()),
+                      Text(
+                        '*',
+                        style: CustomTextStyles.f18W700(color: Colors.red),
+                      )
+                    ],
+                  ),
                 ),
                 Padding(
                   padding:
                       const EdgeInsets.only(left: 18, right: 18, bottom: 20),
                   child: CustomTextField(
                       controller: c.noOfWallsCleaningController,
-                      //validator: Validators.checkFieldEmpty,
+                      validator: Validators.checkFieldEmpty,
                       hint: "No of walls to clean",
                       textInputAction: TextInputAction.done,
                       textInputType: TextInputType.number),
@@ -435,15 +445,23 @@ class LeaseCleaningScreen extends StatelessWidget {
                 Padding(
                   padding:
                       const EdgeInsets.only(left: 18, right: 18, bottom: 10),
-                  child: Text("Carpet Steam Cleaning Area",
-                      style: CustomTextStyles.f14W700()),
+                  child: Row(
+                    children: [
+                      Text("Carpet Steam Cleaning Area",
+                          style: CustomTextStyles.f14W700()),
+                      Text(
+                        '*',
+                        style: CustomTextStyles.f18W700(color: Colors.red),
+                      )
+                    ],
+                  ),
                 ),
                 Padding(
                   padding:
                       const EdgeInsets.only(left: 18, right: 18, bottom: 22),
                   child: CustomTextField(
                       controller: c.carpetSteamCleaningArea,
-                      //validator: Validators.checkFieldEmpty,
+                      validator: Validators.checkFieldEmpty,
                       hint: "Carpet Steam Cleaning Area",
                       textInputAction: TextInputAction.done,
                       textInputType: TextInputType.number),
@@ -451,8 +469,16 @@ class LeaseCleaningScreen extends StatelessWidget {
                 Padding(
                   padding:
                       const EdgeInsets.only(left: 18, right: 18, bottom: 10),
-                  child: Text("Carpet Steam Cleaning Unit",
-                      style: CustomTextStyles.f14W700()),
+                  child: Row(
+                    children: [
+                      Text("Carpet Steam Cleaning Unit",
+                          style: CustomTextStyles.f14W700()),
+                      Text(
+                        '*',
+                        style: CustomTextStyles.f18W700(color: Colors.red),
+                      )
+                    ],
+                  ),
                 ),
                 Padding(
                   padding:
@@ -461,6 +487,12 @@ class LeaseCleaningScreen extends StatelessWidget {
                     data: Theme.of(context)
                         .copyWith(canvasColor: AppColors.extraWhite),
                     child: Obx(() => DropdownButtonFormField<String>(
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'This field is required';
+                            }
+                            return null;
+                          },
                           value: c.carpetSteamCleaningUnit.value.isEmpty
                               ? null
                               : c.carpetSteamCleaningUnit.value,
@@ -555,7 +587,7 @@ class LeaseCleaningScreen extends StatelessWidget {
               title: "Submit",
               onTap: () {
                 if (c.formKey.currentState?.validate() ?? false) {
-                  c.bookLeaseCleaningService();
+                  c.bookLeaseCleaningService(service.price ?? "");
                 } else {
                   // Form is invalid, show errors
                   print('Form is invalid');

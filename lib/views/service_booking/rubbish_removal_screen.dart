@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:mads_cleaning/controller/service_bookings/rubbish_removal_controller.dart';
+import 'package:mads_cleaning/model/all_services.dart';
 import 'package:mads_cleaning/utils/colors.dart';
 import 'package:mads_cleaning/utils/custom_text_style.dart';
 import 'package:mads_cleaning/utils/validator.dart';
@@ -10,8 +11,8 @@ import 'package:mads_cleaning/widgets/custom/elevated_button.dart';
 
 class RubbishRemovalScreen extends StatelessWidget {
   final c = Get.put(RubbishRemovalController());
-  RubbishRemovalScreen({super.key});
-
+  RubbishRemovalScreen({super.key, required this.service});
+  final Services service;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,7 +28,7 @@ class RubbishRemovalScreen extends StatelessWidget {
             color: Colors.black,
           ),
         ),
-        title: Text("Rubbish Removal Service",
+        title: Text("${service.name} Service",
             style: CustomTextStyles.f14W700(color: AppColors.textColor)),
       ),
       body: SingleChildScrollView(
@@ -186,29 +187,6 @@ class RubbishRemovalScreen extends StatelessWidget {
                       const EdgeInsets.only(left: 18, right: 18, bottom: 10),
                   child: Row(
                     children: [
-                      Text("Price", style: CustomTextStyles.f14W700()),
-                      Text(
-                        '*',
-                        style: CustomTextStyles.f18W700(color: Colors.red),
-                      )
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding:
-                      const EdgeInsets.only(left: 18, right: 18, bottom: 20),
-                  child: CustomTextField(
-                      controller: c.priceController,
-                      validator: Validators.checkFieldEmpty,
-                      hint: "Enter Price",
-                      textInputAction: TextInputAction.done,
-                      textInputType: TextInputType.number),
-                ),
-                Padding(
-                  padding:
-                      const EdgeInsets.only(left: 18, right: 18, bottom: 10),
-                  child: Row(
-                    children: [
                       Text("Number of Tyres",
                           style: CustomTextStyles.f14W700()),
                       Text(
@@ -329,7 +307,7 @@ class RubbishRemovalScreen extends StatelessWidget {
               title: "Submit",
               onTap: () {
                 if (c.formKey.currentState?.validate() ?? false) {
-                  c.bookRubbishRemovalService();
+                  c.bookRubbishRemovalService(service.price ?? "");
                 } else {
                   // Form is invalid, show errors
                   print('Form is invalid');

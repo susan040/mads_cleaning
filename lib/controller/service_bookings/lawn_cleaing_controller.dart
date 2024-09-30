@@ -33,7 +33,6 @@ class LawnCleaingController extends GetxController {
   final messageController = TextEditingController();
   final selectDateController = TextEditingController();
   final selectTimeController = TextEditingController();
-  final priceController = TextEditingController();
   RxString selectTypeOfLawnService = ''.obs;
   final List<String> typeOfLawnServiceOption = [
     'Mowing',
@@ -113,7 +112,7 @@ class LawnCleaingController extends GetxController {
 
   RxBool loading = RxBool(false);
 
-  bookLawnCleaningService() async {
+  bookLawnCleaningService(String price) async {
     loading.value = true;
     await BookLawnCleaningRepo.bookLawnCleaningRepo(
         fullName: fullNameController.text,
@@ -124,7 +123,7 @@ class LawnCleaingController extends GetxController {
         time: selectTimeController.text,
         message: messageController.text,
         typeOfLawnService: selectTypeOfLawnService.value,
-        price: priceController.text,
+        price: price,
         onSuccess: () {
           loading.value = false;
           Get.offAll(() => const ServiceCongratulationScreen());

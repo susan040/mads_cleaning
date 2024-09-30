@@ -33,7 +33,6 @@ class RubbishRemovalController extends GetxController {
   final messageController = TextEditingController();
   final selectDateController = TextEditingController();
   final selectTimeController = TextEditingController();
-  final priceController = TextEditingController();
   final numberOfTyresController = TextEditingController();
   final numberOfFurnitureController = TextEditingController();
   final numberOfMattressController = TextEditingController();
@@ -104,7 +103,7 @@ class RubbishRemovalController extends GetxController {
 
   RxBool loading = RxBool(false);
 
-  bookRubbishRemovalService() async {
+  bookRubbishRemovalService(String price) async {
     loading.value = true;
     await BookRubbishRemovalRepo.bookRubbishRemovalRepo(
         fullName: fullNameController.text,
@@ -117,7 +116,7 @@ class RubbishRemovalController extends GetxController {
         noOfFurniture: numberOfFurnitureController.text,
         noOfMattress: numberOfMattressController.text,
         noOfTyres: numberOfTyresController.text,
-        price: priceController.text,
+        price: price,
         onSuccess: () {
           loading.value = false;
           Get.offAll(() => const ServiceCongratulationScreen());

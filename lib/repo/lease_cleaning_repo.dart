@@ -22,6 +22,7 @@ class BookLeaseCleaningRepo {
       required String noOfWallsToClean,
       required String carpetSteamCleaningUnit,
       required String carpetSteamCleaningArea,
+      required String price,
       required String windowCleaning,
       required Function() onSuccess,
       required Function(String message) onError}) async {
@@ -47,7 +48,8 @@ class BookLeaseCleaningRepo {
         'carpet_steam_cleaning_unit': carpetSteamCleaningUnit,
         'carpet_steam_cleaning_area': carpetSteamCleaningArea,
         'window_cleaning': windowCleaning,
-        'message': message
+        'message': message,
+        'price': price
       };
       http.Response response = await HttpRequestMadsCleaning.post(
           Uri.parse(Api.leaseCleaningServiceUrl),

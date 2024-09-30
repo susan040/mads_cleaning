@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:mads_cleaning/controller/service_bookings/lawn_cleaing_controller.dart';
+import 'package:mads_cleaning/model/all_services.dart';
 import 'package:mads_cleaning/utils/colors.dart';
 import 'package:mads_cleaning/utils/custom_text_style.dart';
 import 'package:mads_cleaning/utils/validator.dart';
@@ -9,8 +10,9 @@ import 'package:mads_cleaning/widgets/custom/custom_textfield.dart';
 import 'package:mads_cleaning/widgets/custom/elevated_button.dart';
 
 class LawnCleaningScreen extends StatelessWidget {
-  LawnCleaningScreen({super.key});
+  LawnCleaningScreen({super.key, required this.service});
   final c = Get.put(LawnCleaingController());
+  final Services service;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,7 +28,7 @@ class LawnCleaningScreen extends StatelessWidget {
             color: Colors.black,
           ),
         ),
-        title: Text("Lawn/Garden Cleaning Service",
+        title: Text("${service.name} Service",
             style: CustomTextStyles.f14W700(color: AppColors.textColor)),
       ),
       body: SingleChildScrollView(
@@ -251,29 +253,6 @@ class LawnCleaningScreen extends StatelessWidget {
                 Padding(
                   padding:
                       const EdgeInsets.only(left: 18, right: 18, bottom: 10),
-                  child: Row(
-                    children: [
-                      Text("Price", style: CustomTextStyles.f14W700()),
-                      Text(
-                        '*',
-                        style: CustomTextStyles.f18W700(color: Colors.red),
-                      )
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding:
-                      const EdgeInsets.only(left: 18, right: 18, bottom: 20),
-                  child: CustomTextField(
-                      controller: c.priceController,
-                      validator: Validators.checkFieldEmpty,
-                      hint: "Enter Price",
-                      textInputAction: TextInputAction.done,
-                      textInputType: TextInputType.number),
-                ),
-                Padding(
-                  padding:
-                      const EdgeInsets.only(left: 18, right: 18, bottom: 10),
                   child: Text("Message", style: CustomTextStyles.f14W700()),
                 ),
                 Padding(
@@ -324,7 +303,7 @@ class LawnCleaningScreen extends StatelessWidget {
               title: "Submit",
               onTap: () {
                 if (c.formKey.currentState?.validate() ?? false) {
-                  c.bookLawnCleaningService();
+                  c.bookLawnCleaningService(service.price??"");
                 } else {
                   // Form is invalid, show errors
                   print('Form is invalid');

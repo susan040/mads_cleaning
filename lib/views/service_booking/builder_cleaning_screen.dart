@@ -29,7 +29,7 @@ class BuildersCleaningScreen extends StatelessWidget {
             color: Colors.black,
           ),
         ),
-        title: Text("Builder Cleaning Service",
+        title: Text("${service.name} Service",
             style: CustomTextStyles.f14W700(color: AppColors.textColor)),
       ),
       body: SingleChildScrollView(

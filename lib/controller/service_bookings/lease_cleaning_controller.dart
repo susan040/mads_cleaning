@@ -136,7 +136,7 @@ class LeaseCleaningController extends GetxController {
       log('Selected Time: ${selectTimeController.text}');
     }
   }
-  bookLeaseCleaningService() async {
+  bookLeaseCleaningService(String price) async {
     loading.value = true;
 
     await BookLeaseCleaningRepo.bookLeaseCleaningRepo(
@@ -155,6 +155,7 @@ class LeaseCleaningController extends GetxController {
         carpetSteamCleaningUnit: carpetSteamCleaningUnit.value,
         carpetSteamCleaningArea: carpetSteamCleaningArea.text,
         windowCleaning: selectWindowCleaning.value,
+        price: price,
         onSuccess: () {
           loading.value = false;
           Get.offAll(() => const ServiceCongratulationScreen());

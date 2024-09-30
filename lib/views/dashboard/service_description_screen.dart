@@ -230,8 +230,10 @@ class ServiceDescriptionScreen extends StatelessWidget {
                   Get.to(() => HouseCleaingScreen(
                         service: service,
                       ));
-                } else if (service.name == "Lease Cleaning") {
-                  Get.to(() => LeaseCleaningScreen());
+                } else if (service.name == "End of Lease Cleaning") {
+                  Get.to(() => LeaseCleaningScreen(
+                        service: service,
+                      ));
                 } else if (service.name == "Carpet Cleaning") {
                   Get.to(() => CarpetCleaningScreen(
                         service: service,
@@ -241,9 +243,11 @@ class ServiceDescriptionScreen extends StatelessWidget {
                 } else if (service.name == "Builders Cleaning") {
                   Get.to(() => BuildersCleaningScreen(service: service));
                 } else if (service.name == "Lawn Cleaning") {
-                  Get.to(() => LawnCleaningScreen());
+                  Get.to(() => LawnCleaningScreen(
+                        service: service,
+                      ));
                 } else if (service.name == "Rubbish Removal") {
-                  Get.to(() => RubbishRemovalScreen());
+                  Get.to(() => RubbishRemovalScreen(service: service,));
                 } else {
                   CustomSnackBar.error(
                       title: "Error",
