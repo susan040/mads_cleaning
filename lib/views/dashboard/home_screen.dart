@@ -148,7 +148,7 @@ class HomeScreen extends StatelessWidget {
   // Welcome section
   Widget buildWelcomeSection() {
     return Padding(
-      padding: const EdgeInsets.only(left: 18, right: 18, top: 10),
+      padding: const EdgeInsets.only(left: 14, right: 14, top: 10),
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
         Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Text(
@@ -184,7 +184,7 @@ class HomeScreen extends StatelessWidget {
   // Promotion banner
   Widget buildPromotionBanner() {
     return Container(
-      margin: const EdgeInsets.all(18),
+      margin: const EdgeInsets.all(14),
       height: 160,
       width: double.infinity,
       decoration: BoxDecoration(
@@ -244,8 +244,8 @@ class HomeScreen extends StatelessWidget {
   Widget buildServicesSection() {
     return Padding(
       padding: const EdgeInsets.only(
-        left: 18,
-        right: 18,
+        left: 14,
+        right: 14,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -278,8 +278,8 @@ class HomeScreen extends StatelessWidget {
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
-                        mainAxisSpacing: 18,
-                        crossAxisSpacing: 18,
+                        mainAxisSpacing: 14,
+                        crossAxisSpacing: 14,
                         childAspectRatio: 3 / 2.5,
                       ),
                       shrinkWrap: true,
@@ -302,14 +302,14 @@ class HomeScreen extends StatelessWidget {
       children: [
         Padding(
           padding:
-              const EdgeInsets.only(left: 18, right: 18, top: 20, bottom: 10),
+              const EdgeInsets.only(left: 14, right: 14, top: 20, bottom: 10),
           child: Text("Testimonial", style: CustomTextStyles.f14W700()),
         ),
         const SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Row(
             children: [
-              SizedBox(width: 18),
+              SizedBox(width: 14),
               TestimonialWidget(
                 image:
                     "https://images.pexels.com/photos/1386604/pexels-photo-1386604.jpeg",

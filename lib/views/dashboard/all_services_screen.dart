@@ -28,7 +28,7 @@ class AllServicesScreen extends StatelessWidget {
               style: CustomTextStyles.f14W700(color: AppColors.textColor)),
         ),
         body: Padding(
-          padding: const EdgeInsets.only(left: 18, right: 18, top: 20),
+          padding: const EdgeInsets.only(left: 14, right: 14, top: 14),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -46,8 +46,8 @@ class AllServicesScreen extends StatelessWidget {
                             gridDelegate:
                                 const SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisCount: 2,
-                              mainAxisSpacing: 18,
-                              crossAxisSpacing: 18,
+                              mainAxisSpacing: 14,
+                              crossAxisSpacing: 14,
                               childAspectRatio: 3 / 2.7,
                             ),
                             shrinkWrap: true,

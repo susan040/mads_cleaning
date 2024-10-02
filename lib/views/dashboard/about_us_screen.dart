@@ -9,8 +9,7 @@ class AboutUsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.extraWhite,
-
+        backgroundColor: AppColors.extraWhite,
         appBar: AppBar(
           elevation: 2,
           centerTitle: false,
@@ -28,7 +27,7 @@ class AboutUsScreen extends StatelessWidget {
         body: SingleChildScrollView(
           child: Padding(
             padding:
-                const EdgeInsets.only(left: 18, top: 25, right: 18, bottom: 25),
+                const EdgeInsets.only(left: 16, top: 18, right: 16, bottom: 25),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
