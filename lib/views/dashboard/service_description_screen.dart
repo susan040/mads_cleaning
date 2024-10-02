@@ -172,44 +172,50 @@ class ServiceDescriptionScreen extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.only(
-                    left: 18, right: 18, top: 10, bottom: 25),
-                child: Row(
-                  children: [
-                    const Text(
-                      "Proceed for appointment",
-                      style: TextStyle(
-                          fontFamily: "Poppins",
-                          fontSize: 16,
-                          decoration: TextDecoration.underline,
-                          color: AppColors.secondaryColor,
-                          decorationColor: AppColors.secondaryColor),
-                    ),
-                    const SizedBox(width: 13),
-                    InkWell(
-                      highlightColor: Colors.black,
-                      onTap: () {
-                        Get.to(() => AppointmentBookingScreen());
-                      },
-                      child: Container(
-                        height: 28,
-                        width: 28,
-                        decoration: BoxDecoration(
-                          color: AppColors.extraWhite,
-                          borderRadius: BorderRadius.circular(100),
-                          boxShadow: const [
-                            BoxShadow(
-                              color: AppColors.borderColor,
-                              blurRadius: 2.0,
-                              offset: Offset(1, 1),
-                            )
-                          ],
-                        ),
-                        child: Center(
-                          child: SvgPicture.asset(ImagePath.arrowRight),
-                        ),
+                    left: 18, right: 140, top: 10, bottom: 25),
+                child: InkWell(
+                  highlightColor: AppColors.shimmerBase,
+                  onTap: () {
+                    Get.to(() => AppointmentBookingScreen());
+                  },
+                  child: Row(
+                    children: [
+                      const Text(
+                        "Proceed for appointment",
+                        style: TextStyle(
+                            fontFamily: "Poppins",
+                            fontSize: 16,
+                            decoration: TextDecoration.underline,
+                            color: AppColors.secondaryColor,
+                            decorationColor: AppColors.secondaryColor),
                       ),
-                    )
-                  ],
+                      const SizedBox(width: 13),
+                      InkWell(
+                        highlightColor: AppColors.shimmerBase,
+                        onTap: () {
+                          Get.to(() => AppointmentBookingScreen());
+                        },
+                        child: Container(
+                          height: 28,
+                          width: 28,
+                          decoration: BoxDecoration(
+                            color: AppColors.extraWhite,
+                            borderRadius: BorderRadius.circular(100),
+                            boxShadow: const [
+                              BoxShadow(
+                                color: AppColors.borderColor,
+                                blurRadius: 2.0,
+                                offset: Offset(1, 1),
+                              )
+                            ],
+                          ),
+                          child: Center(
+                            child: SvgPicture.asset(ImagePath.arrowRight),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               ),
             ],
@@ -247,7 +253,9 @@ class ServiceDescriptionScreen extends StatelessWidget {
                         service: service,
                       ));
                 } else if (service.name == "Rubbish Removal") {
-                  Get.to(() => RubbishRemovalScreen(service: service,));
+                  Get.to(() => RubbishRemovalScreen(
+                        service: service,
+                      ));
                 } else {
                   CustomSnackBar.error(
                       title: "Error",

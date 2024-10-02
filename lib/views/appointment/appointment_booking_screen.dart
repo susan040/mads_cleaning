@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
@@ -5,7 +7,7 @@ import 'package:mads_cleaning/controller/dashboard/appointment_booking_controlle
 import 'package:mads_cleaning/utils/colors.dart';
 import 'package:mads_cleaning/utils/custom_text_style.dart';
 import 'package:mads_cleaning/utils/validator.dart';
-import 'package:mads_cleaning/views/appointment/congratulation_screen.dart';
+import 'package:mads_cleaning/widgets/appointment_booking_widget.dart';
 import 'package:mads_cleaning/widgets/custom/custom_textfield.dart';
 import 'package:mads_cleaning/widgets/custom/elevated_button.dart';
 
@@ -40,8 +42,16 @@ class AppointmentBookingScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(
                       left: 18, right: 18, top: 20, bottom: 10),
-                  child: Text("Personal details",
-                      style: CustomTextStyles.f14W700()),
+                  child: Row(
+                    children: [
+                      Text("Personal details",
+                          style: CustomTextStyles.f14W700()),
+                      Text(
+                        '*',
+                        style: CustomTextStyles.f18W700(color: Colors.red),
+                      )
+                    ],
+                  ),
                 ),
                 Padding(
                   padding:
@@ -125,7 +135,15 @@ class AppointmentBookingScreen extends StatelessWidget {
                 Padding(
                   padding:
                       const EdgeInsets.only(left: 18, right: 18, bottom: 10),
-                  child: Text("Select Date", style: CustomTextStyles.f14W700()),
+                  child: Row(
+                    children: [
+                      Text("Select Date", style: CustomTextStyles.f14W700()),
+                      Text(
+                        '*',
+                        style: CustomTextStyles.f18W700(color: Colors.red),
+                      )
+                    ],
+                  ),
                 ),
                 Padding(
                   padding:
@@ -145,48 +163,7 @@ class AppointmentBookingScreen extends StatelessWidget {
                   child:
                       Text("Select Tardis", style: CustomTextStyles.f14W700()),
                 ),
-                Obx(() {
-                  return ListView(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    children: c.tardisSelection.keys.map((String key) {
-                      return ConstrainedBox(
-                        constraints: const BoxConstraints(maxHeight: 42),
-                        child: ListTile(
-                          leading: Transform.scale(
-                            scale: 0.95,
-                            child: Theme(
-                              data: ThemeData(
-                                checkboxTheme: const CheckboxThemeData(
-                                  side: BorderSide(
-                                    color: AppColors.secondaryColor,
-                                    width: 2.0,
-                                  ),
-                                ),
-                              ),
-                              child: Checkbox(
-                                value: c.tardisSelection[key],
-                                onChanged: (bool? value) {
-                                  c.toggleSelection(key);
-                                },
-                                activeColor: AppColors.secondaryColor,
-                                checkColor: AppColors.extraWhite,
-                              ),
-                            ),
-                          ),
-                          title: Text(
-                            key,
-                            style: CustomTextStyles.f14W400(
-                                color: AppColors.textColor),
-                          ),
-                          onTap: () {
-                            c.toggleSelection(key);
-                          },
-                        ),
-                      );
-                    }).toList(),
-                  );
-                }),
+                AppointmentBookingWidget(c: c),
                 Padding(
                   padding: const EdgeInsets.only(
                       left: 18, right: 18, top: 14, bottom: 10),
@@ -197,7 +174,6 @@ class AppointmentBookingScreen extends StatelessWidget {
                       const EdgeInsets.only(left: 18, right: 18, bottom: 18),
                   child: TextFormField(
                     style: CustomTextStyles.f14W400(),
-                    // keyboardType: TextInputType.multiline,
                     maxLines: 6,
                     textInputAction: TextInputAction.done,
                     decoration: InputDecoration(
@@ -225,7 +201,7 @@ class AppointmentBookingScreen extends StatelessWidget {
                       hintStyle: CustomTextStyles.f16W400(
                           color: AppColors.secondaryTextColor),
                     ),
-                    validator: Validators.checkFieldEmpty,
+                    //validator: Validators.checkFieldEmpty,
                     controller: c.messageController,
                   ),
                 )
@@ -240,7 +216,17 @@ class AppointmentBookingScreen extends StatelessWidget {
           child: CustomElevatedButton(
               title: "Submit",
               onTap: () {
-                Get.offAll(() => const CongratulationScreen());
+                if (c.formKey.currentState?.validate() ?? false) {
+                  c.appointmentBooking();
+                  log(c.fullNameController.text);
+                  log(c.emailController.text);
+                  log(c.phoneNoController.text);
+                  log(c.addressController.text);
+                  log(c.selectDateController.text);
+                } else {
+                  // Form is invalid, show errors
+                  print('Form is invalid');
+                }
               }),
         ),
       ),

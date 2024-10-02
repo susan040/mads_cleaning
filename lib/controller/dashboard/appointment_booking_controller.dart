@@ -3,7 +3,10 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mads_cleaning/controller/core_controller.dart';
+import 'package:mads_cleaning/repo/appointment_booking_repo.dart';
 import 'package:mads_cleaning/utils/colors.dart';
+import 'package:mads_cleaning/utils/custom_snackbar.dart';
+import 'package:mads_cleaning/views/appointment/congratulation_screen.dart';
 
 class AppointmentBookingController extends GetxController {
   @override
@@ -66,31 +69,67 @@ class AppointmentBookingController extends GetxController {
     }
   }
 
-  var tardisSelection = <String, bool>{
-    "Handyman Jobs": false,
-    "Plumbers": false,
-    "Electricians": false,
-    "Builders": false,
-    "Real Estate Agents": false,
-    "Locksmiths": false,
-    "Landscapers": false,
-    "Tree Loopers": false,
-    "Painters": false,
-    "Glass repairers / replacers (House and Vehicles)": false,
-    "Blinds and Curtain Fitters": false,
-    "Flooring": false,
-    "Carpet Layers": false,
-    "Tilers": false,
-    "Event Planners": false,
-    "Photographers": false,
-    "Cabinet Maker": false,
-    "Pest control": false,
-    "Removalists": false,
-    "CCTV installer (Any Premises)": false,
-  }.obs;
+  var handymanJobs = false.obs;
+  var plumbers = false.obs;
+  var electricians = false.obs;
+  var builders = false.obs;
+  var realEstateAgents = false.obs;
+  var locksmiths = false.obs;
+  var landscapers = false.obs;
+  var treeLoopers = false.obs;
+  var painters = false.obs;
+  var glassRepairers = false.obs;
+  var blindsAndCurtainFitters = false.obs;
+  var flooring = false.obs;
+  var carpetLayers = false.obs;
+  var tilers = false.obs;
+  var eventPlanners = false.obs;
+  var photographers = false.obs;
+  var cabinetMaker = false.obs;
+  var pestControl = false.obs;
+  var removalists = false.obs;
+  var cctvInstaller = false.obs;
+  RxBool loading = RxBool(false);
 
-  // Function to toggle the selection of a tardis
-  void toggleSelection(String key) {
-    tardisSelection[key] = !tardisSelection[key]!;
+  void appointmentBooking() async {
+    loading.value = true;
+    await AppointmentBookingRepo.appointmentBookingRepo(
+        fullName: fullNameController.text,
+        email: emailController.text,
+        phone: phoneNoController.text,
+        location: addressController.text,
+        message: messageController.text,
+        date: selectDateController.text,
+        handymanJobs: handymanJobs.value ? '1' : '0',
+        plumbers: plumbers.value ? '1' : '0',
+        electricians: electricians.value ? '1' : '0',
+        builders: builders.value ? '1' : '0',
+        realEstateAgents: realEstateAgents.value ? '1' : '0',
+        locksmiths: locksmiths.value ? '1' : '0',
+        landscapers: landscapers.value ? '1' : '0',
+        treeLoopers: treeLoopers.value ? '1' : '0',
+        painters: painters.value ? '1' : '0',
+        glassRepairers: glassRepairers.value ? '1' : '0',
+        blindsAndCurtainFitters: blindsAndCurtainFitters.value ? '1' : '0',
+        flooring: flooring.value ? '1' : '0',
+        carpetLayers: carpetLayers.value ? '1' : '0',
+        tilers: tilers.value ? '1' : '0',
+        eventPlanners: eventPlanners.value ? '1' : '0',
+        photographers: photographers.value ? '1' : '0',
+        cabinetMaker: cabinetMaker.value ? '1' : '0',
+        pestControl: pestControl.value ? '1' : '0',
+        removalists: removalists.value ? '1' : '0',
+        cctvInstaller: cctvInstaller.value ? '1' : '0',
+        onSuccess: () {
+          loading.value = false;
+          Get.offAll(() => const CongratulationScreen());
+          CustomSnackBar.success(
+              title: "Appointment Booking",
+              message: "Appointment successfully booked.");
+        },
+        onError: ((message) {
+          loading.value = false;
+          CustomSnackBar.error(title: "Appointment Booking", message: message);
+        }));
   }
 }

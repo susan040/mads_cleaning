@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:mads_cleaning/views/appointment/appointment_booking_screen.dart';
 import 'package:mads_cleaning/views/dashboard/chat_bot_screen.dart';
 import 'package:mads_cleaning/widgets/rating_widget.dart';
-import 'package:shimmer/shimmer.dart'; // Import shimmer package
+import 'package:shimmer/shimmer.dart';
 import 'package:mads_cleaning/controller/core_controller.dart';
 import 'package:mads_cleaning/controller/dashboard/all_serivces_controller.dart';
 import 'package:mads_cleaning/utils/colors.dart';
@@ -168,8 +168,7 @@ class HomeScreen extends StatelessWidget {
             fit: BoxFit.cover,
             height: 45,
             width: 45,
-            imageUrl:
-                "https://images.pexels.com/photos/1386604/pexels-photo-1386604.jpeg",
+            imageUrl: coreController.currentUser.value!.avatar ?? "",
             errorWidget: (context, url, error) => Image.network(
               "https://www.shutterstock.com/image-vector/blank-avatar-photo-place-holder-600nw-1095249842.jpg",
               height: 45,
