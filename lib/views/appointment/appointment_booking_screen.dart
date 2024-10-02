@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -218,11 +217,7 @@ class AppointmentBookingScreen extends StatelessWidget {
               onTap: () {
                 if (c.formKey.currentState?.validate() ?? false) {
                   c.appointmentBooking();
-                  log(c.fullNameController.text);
-                  log(c.emailController.text);
-                  log(c.phoneNoController.text);
-                  log(c.addressController.text);
-                  log(c.selectDateController.text);
+                 
                 } else {
                   // Form is invalid, show errors
                   print('Form is invalid');
