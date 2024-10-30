@@ -7,6 +7,7 @@ import 'package:mads_cleaning/utils/colors.dart';
 import 'package:mads_cleaning/utils/custom_snackbar.dart';
 import 'package:mads_cleaning/utils/custom_text_style.dart';
 import 'package:mads_cleaning/utils/image_path.dart';
+import 'package:mads_cleaning/views/appointment/appointment_booking_screen.dart';
 // import 'package:mads_cleaning/views/appointment/appointment_booking_screen.dart';
 // import 'package:mads_cleaning/views/service_booking/builder_cleaning_screen.dart';
 // import 'package:mads_cleaning/views/service_booking/carpet_cleaning_screen.dart';
@@ -176,7 +177,7 @@ class ServiceDescriptionScreen extends StatelessWidget {
                 child: InkWell(
                   highlightColor: AppColors.shimmerBase,
                   onTap: () {
-                    //Get.to(() => AppointmentBookingScreen());
+                    Get.to(() => AppointmentBookingScreen());
                   },
                   child: Row(
                     children: [
@@ -190,28 +191,22 @@ class ServiceDescriptionScreen extends StatelessWidget {
                             decorationColor: AppColors.secondaryColor),
                       ),
                       const SizedBox(width: 13),
-                      InkWell(
-                        highlightColor: AppColors.shimmerBase,
-                        onTap: () {
-                          //Get.to(() => AppointmentBookingScreen());
-                        },
-                        child: Container(
-                          height: 28,
-                          width: 28,
-                          decoration: BoxDecoration(
-                            color: AppColors.extraWhite,
-                            borderRadius: BorderRadius.circular(100),
-                            boxShadow: const [
-                              BoxShadow(
-                                color: AppColors.borderColor,
-                                blurRadius: 2.0,
-                                offset: Offset(1, 1),
-                              )
-                            ],
-                          ),
-                          child: Center(
-                            child: SvgPicture.asset(ImagePath.arrowRight),
-                          ),
+                      Container(
+                        height: 28,
+                        width: 28,
+                        decoration: BoxDecoration(
+                          color: AppColors.extraWhite,
+                          borderRadius: BorderRadius.circular(100),
+                          boxShadow: const [
+                            BoxShadow(
+                              color: AppColors.borderColor,
+                              blurRadius: 2.0,
+                              offset: Offset(1, 1),
+                            )
+                          ],
+                        ),
+                        child: Center(
+                          child: SvgPicture.asset(ImagePath.arrowRight),
                         ),
                       )
                     ],
