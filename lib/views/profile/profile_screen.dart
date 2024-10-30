@@ -178,29 +178,29 @@ class ProfileScreen extends StatelessWidget {
                       ],
                     ),
                   )),
-              Padding(
-                  padding: const EdgeInsets.only(top: 35),
-                  child: InkWell(
-                    //splashColor: Colors.transparent,
-                    // highlightColor: Colors.transparent,
-                    onTap: () {
-                      //Get.to(() => ChangePasswordScreen());
-                    },
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: [
-                            SvgPicture.asset(ImagePath.changePassword),
-                            const SizedBox(width: 14),
-                            Text("Change Password",
-                                style: CustomTextStyles.f14W600()),
-                          ],
-                        ),
-                        SvgPicture.asset(ImagePath.arrow)
-                      ],
-                    ),
-                  )),
+              // Padding(
+              //     padding: const EdgeInsets.only(top: 35),
+              //     child: InkWell(
+              //       //splashColor: Colors.transparent,
+              //       // highlightColor: Colors.transparent,
+              //       onTap: () {
+              //         //Get.to(() => ChangePasswordScreen());
+              //       },
+              //       child: Row(
+              //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //         children: [
+              //           Row(
+              //             children: [
+              //               SvgPicture.asset(ImagePath.changePassword),
+              //               const SizedBox(width: 14),
+              //               Text("Change Password",
+              //                   style: CustomTextStyles.f14W600()),
+              //             ],
+              //           ),
+              //           SvgPicture.asset(ImagePath.arrow)
+              //         ],
+              //       ),
+              //     )),
               Padding(
                   padding: const EdgeInsets.only(top: 35),
                   child: InkWell(

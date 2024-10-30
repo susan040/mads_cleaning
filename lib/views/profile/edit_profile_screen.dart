@@ -81,7 +81,6 @@ class EditProfileScreen extends StatelessWidget {
                       controller: c.nameController,
                       validator: Validators.checkFieldEmpty,
                       hint: "Enter your Full Name",
-                      //labelText: "Username",
                       textInputAction: TextInputAction.next,
                       textInputType: TextInputType.text),
                   const SizedBox(height: 25),
@@ -89,7 +88,6 @@ class EditProfileScreen extends StatelessWidget {
                       controller: c.emailController,
                       validator: Validators.checkFieldEmpty,
                       hint: "Enter your Email",
-                      //labelText: "Username",
                       readOnly: true,
                       textInputAction: TextInputAction.next,
                       textInputType: TextInputType.text),
@@ -98,7 +96,6 @@ class EditProfileScreen extends StatelessWidget {
                       controller: c.addressController,
                       validator: Validators.checkFieldEmpty,
                       hint: "Enter your address",
-                      //labelText: "Username",
                       textInputAction: TextInputAction.next,
                       textInputType: TextInputType.text),
                   const SizedBox(height: 25),
@@ -149,7 +146,7 @@ class EditProfileScreen extends StatelessWidget {
                     margin: const EdgeInsets.symmetric(vertical: 10.0),
                     decoration: BoxDecoration(
                       color: const Color.fromARGB(255, 255, 208,
-                          208), // Light background color for the note
+                          208), 
                       borderRadius: BorderRadius.circular(8.0),
                       border: Border.all(color: Colors.grey, width: 0.5),
                     ),
@@ -157,7 +154,7 @@ class EditProfileScreen extends StatelessWidget {
                       children: [
                         const Icon(Icons.warning_amber_rounded,
                             color: AppColors.textColor,
-                            size: 18), // Warning icon
+                            size: 18),
                         const SizedBox(width: 10),
                         Expanded(
                           child: Text('You cannot change your email',
