@@ -6,6 +6,9 @@ import 'package:mads_cleaning/controller/core_controller.dart';
 import 'package:mads_cleaning/utils/colors.dart';
 import 'package:mads_cleaning/utils/custom_text_style.dart';
 import 'package:mads_cleaning/utils/image_path.dart';
+import 'package:mads_cleaning/views/dashboard/about_us_screen.dart';
+import 'package:mads_cleaning/views/dashboard/faq_screen.dart';
+import 'package:mads_cleaning/views/dashboard/notification_screen.dart';
 import 'package:mads_cleaning/views/profile/edit_profile_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -101,7 +104,7 @@ class ProfileScreen extends StatelessWidget {
                   // splashColor: Colors.transparent,
                   // highlightColor: Colors.transparent,
                   onTap: () {
-                    //Get.to(() => const NotificationScreen());
+                    Get.to(() => const NotificationScreen());
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -140,7 +143,7 @@ class ProfileScreen extends StatelessWidget {
                     //splashColor: Colors.transparent,
                     // highlightColor: Colors.transparent,
                     onTap: () {
-                      //Get.to(() => const FaqScreen());
+                      Get.to(() => const FaqScreen());
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -162,7 +165,7 @@ class ProfileScreen extends StatelessWidget {
                     // splashColor: Colors.transparent,
                     // highlightColor: Colors.transparent,
                     onTap: () {
-                      //Get.to(() => const AboutUsScreen());
+                      Get.to(() => const AboutUsScreen());
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
