@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:mads_cleaning/controller/dashboard/all_serivces_controller.dart';
+import 'package:mads_cleaning/views/dashboard/all_services_screen.dart';
 import 'package:mads_cleaning/widgets/services_widget.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:mads_cleaning/controller/core_controller.dart';
@@ -252,7 +253,7 @@ class HomeScreen extends StatelessWidget {
               Text("Services", style: CustomTextStyles.f14W700()),
               InkWell(
                 onTap: () {
-                  //Get.to(() => AllServicesScreen());
+                  Get.to(() => AllServicesScreen());
                 },
                 child: Text("View all",
                     style: CustomTextStyles.f14W400(
