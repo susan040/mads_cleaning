@@ -9,6 +9,7 @@ import 'package:mads_cleaning/utils/custom_text_style.dart';
 import 'package:mads_cleaning/utils/image_path.dart';
 import 'package:mads_cleaning/views/appointment/appointment_booking_screen.dart';
 import 'package:mads_cleaning/views/service_booking/house_cleaning_screen.dart';
+import 'package:mads_cleaning/views/service_booking/lease_cleaning_screen.dart';
 import 'package:mads_cleaning/views/service_booking/window_cleaning_screen.dart';
 import 'package:mads_cleaning/widgets/custom/elevated_button.dart';
 
@@ -225,9 +226,9 @@ class ServiceDescriptionScreen extends StatelessWidget {
                         service: service,
                       ));
                 } else if (service.name == "End of Lease Cleaning") {
-                  // Get.to(() => LeaseCleaningScreen(
-                  //       service: service,
-                  //     ));
+                  Get.to(() => LeaseCleaningScreen(
+                        service: service,
+                      ));
                 } else if (service.name == "Carpet Cleaning") {
                   // Get.to(() => CarpetCleaningScreen(
                   //       service: service,
