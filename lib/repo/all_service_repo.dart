@@ -25,7 +25,7 @@ class AllServiceRepo {
         headers: headers,
       );
       dynamic data = json.decode(response.body);
-      //log(data.toString());
+      log("Service ${data.toString()}");
       if (response.statusCode >= 200 && response.statusCode < 300) {
         List<Services> services = serviceFromJson(data["Services"]);
 
