@@ -178,7 +178,7 @@ class CarpetCleaningScreen extends StatelessWidget {
                       controller: c.selectTimeController,
                       preIconPath: (Icons.timelapse),
                       validator: Validators.checkFieldEmpty,
-                      hint: "YYYY-MM-DD",
+                      hint: "HH:MM",
                       textInputAction: TextInputAction.done,
                       textInputType: TextInputType.none),
                 ),
