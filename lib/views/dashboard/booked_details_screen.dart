@@ -13,7 +13,6 @@ import 'package:mads_cleaning/widgets/lawn_cleaning_widget.dart';
 import 'package:mads_cleaning/widgets/rubbish_removal_widget.dart';
 import 'package:mads_cleaning/widgets/window_cleaning_widget.dart';
 
-
 class BookedDetailsScreen extends StatelessWidget {
   BookedDetailsScreen({super.key, required this.bookingDetails});
   final c = Get.put(BookingDetailsController());
@@ -303,7 +302,7 @@ class BookedDetailsScreen extends StatelessWidget {
               ImagePath.background,
               fit: BoxFit.fill,
               width: double.infinity,
-              height: 640,
+              height: 600,
             ),
           ),
 
