@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
-import 'package:mads_cleaning/controller/dashboard/commercial_cleaning_controller.dart';
+import 'package:mads_cleaning/controller/service_bookings/commercial_cleaning_controller.dart';
 import 'package:mads_cleaning/model/all_services.dart';
 import 'package:mads_cleaning/utils/colors.dart';
 import 'package:mads_cleaning/utils/custom_text_style.dart';
