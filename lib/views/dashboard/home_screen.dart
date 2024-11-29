@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:mads_cleaning/controller/dashboard/all_serivces_controller.dart';
 import 'package:mads_cleaning/controller/dashboard/network_error_controller.dart';
+import 'package:mads_cleaning/views/dashboard/all_services_screen.dart';
 import 'package:mads_cleaning/widgets/home_network_error_widget.dart';
 import 'package:mads_cleaning/widgets/rating_widget.dart';
 import 'package:mads_cleaning/widgets/services_widget.dart';
@@ -262,7 +263,7 @@ class HomeScreen extends StatelessWidget {
               Text("Services", style: CustomTextStyles.f14W700()),
               InkWell(
                 onTap: () {
-                  //Get.to(() => AllServicesScreen());
+                  Get.to(() => AllServicesScreen());
                 },
                 child: Text("View all",
                     style: CustomTextStyles.f14W400(
