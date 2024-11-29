@@ -6,6 +6,7 @@ import 'package:mads_cleaning/controller/dashboard/all_serivces_controller.dart'
 import 'package:mads_cleaning/controller/dashboard/network_error_controller.dart';
 import 'package:mads_cleaning/views/appointment/appointment_booking_screen.dart';
 import 'package:mads_cleaning/views/dashboard/all_services_screen.dart';
+import 'package:mads_cleaning/views/dashboard/chat_bot_screen.dart';
 import 'package:mads_cleaning/widgets/home_network_error_widget.dart';
 import 'package:mads_cleaning/widgets/rating_widget.dart';
 import 'package:mads_cleaning/widgets/services_widget.dart';
@@ -54,7 +55,7 @@ class HomeScreen extends StatelessWidget {
           ? Container()
           : InkWell(
               onTap: () {
-                //Get.to(() => ChatBotScreen());
+                Get.to(() => ChatBotScreen());
               },
               child: Container(
                 height: 40,
@@ -133,7 +134,7 @@ class HomeScreen extends StatelessWidget {
                 crossAxisSpacing: 18,
                 childAspectRatio: 3 / 2.5,
               ),
-              itemCount: 4, // Assuming to show 4 shimmer items
+              itemCount: 4,
               itemBuilder: (context, index) => Container(
                 color: Colors.grey[300],
               ),
