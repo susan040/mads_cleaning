@@ -11,6 +11,7 @@ import 'package:mads_cleaning/views/service_booking/builder_cleaning_screen.dart
 import 'package:mads_cleaning/views/service_booking/carpet_cleaning_screen.dart';
 import 'package:mads_cleaning/views/service_booking/commercial_cleaning_screen.dart';
 import 'package:mads_cleaning/views/service_booking/house_cleaning_screen.dart';
+import 'package:mads_cleaning/views/service_booking/lawn_cleaning_screen.dart';
 import 'package:mads_cleaning/views/service_booking/lease_cleaning_screen.dart';
 import 'package:mads_cleaning/views/service_booking/window_cleaning_screen.dart';
 import 'package:mads_cleaning/widgets/custom/elevated_button.dart';
@@ -240,9 +241,9 @@ class ServiceDescriptionScreen extends StatelessWidget {
                 } else if (service.name == "Builders Cleaning") {
                   Get.to(() => BuildersCleaningScreen(service: service));
                 } else if (service.name == "Lawn Cleaning") {
-                  // Get.to(() => LawnCleaningScreen(
-                  //       service: service,
-                  //     ));
+                  Get.to(() => LawnCleaningScreen(
+                        service: service,
+                      ));
                 } else if (service.name == "Rubbish Removal") {
                   // Get.to(() => RubbishRemovalScreen(
                   //       service: service,
