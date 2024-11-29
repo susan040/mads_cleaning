@@ -13,6 +13,7 @@ import 'package:mads_cleaning/views/service_booking/commercial_cleaning_screen.d
 import 'package:mads_cleaning/views/service_booking/house_cleaning_screen.dart';
 import 'package:mads_cleaning/views/service_booking/lawn_cleaning_screen.dart';
 import 'package:mads_cleaning/views/service_booking/lease_cleaning_screen.dart';
+import 'package:mads_cleaning/views/service_booking/rubbish_removal_screen.dart';
 import 'package:mads_cleaning/views/service_booking/window_cleaning_screen.dart';
 import 'package:mads_cleaning/widgets/custom/elevated_button.dart';
 
@@ -245,9 +246,9 @@ class ServiceDescriptionScreen extends StatelessWidget {
                         service: service,
                       ));
                 } else if (service.name == "Rubbish Removal") {
-                  // Get.to(() => RubbishRemovalScreen(
-                  //       service: service,
-                  //     ));
+                  Get.to(() => RubbishRemovalScreen(
+                        service: service,
+                      ));
                 } else {
                   CustomSnackBar.error(
                       title: "Error",
