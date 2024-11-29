@@ -5,6 +5,7 @@ import 'package:mads_cleaning/utils/colors.dart';
 import 'package:mads_cleaning/utils/custom_text_style.dart';
 import 'package:mads_cleaning/utils/validator.dart';
 import 'package:mads_cleaning/views/auth/register_screen.dart';
+import 'package:mads_cleaning/views/forgot_password/forgot_password_screen.dart';
 import 'package:mads_cleaning/widgets/custom/custom_password_fields.dart';
 import 'package:mads_cleaning/widgets/custom/custom_textfield.dart';
 import 'package:mads_cleaning/widgets/custom/elevated_button.dart';
@@ -61,7 +62,7 @@ class LoginScreen extends StatelessWidget {
                   children: [
                     InkWell(
                       onTap: () {
-                        //Get.to(() => ForgotPasswordScreen());
+                        Get.to(() => ForgotPasswordScreen());
                       },
                       child: Text(
                         "Forget Password?",
@@ -75,8 +76,6 @@ class LoginScreen extends StatelessWidget {
                 CustomElevatedButton(
                     title: "Login",
                     onTap: () {
-                      
-                      
                       c.onSubmit();
                     }),
                 const SizedBox(height: 28),
@@ -91,7 +90,8 @@ class LoginScreen extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.only(
                             left: 4, right: 4, top: 2, bottom: 2),
-                        child: Text("Sign Up", style: CustomTextStyles.f14W700()),
+                        child:
+                            Text("Sign Up", style: CustomTextStyles.f14W700()),
                       )),
                 ),
               ],
