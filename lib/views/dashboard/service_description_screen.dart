@@ -7,16 +7,8 @@ import 'package:mads_cleaning/utils/colors.dart';
 import 'package:mads_cleaning/utils/custom_snackbar.dart';
 import 'package:mads_cleaning/utils/custom_text_style.dart';
 import 'package:mads_cleaning/utils/image_path.dart';
+import 'package:mads_cleaning/views/service_booking/house_cleaning_screen.dart';
 import 'package:mads_cleaning/views/service_booking/window_cleaning_screen.dart';
-// import 'package:mads_cleaning/views/appointment/appointment_booking_screen.dart';
-// import 'package:mads_cleaning/views/service_booking/builder_cleaning_screen.dart';
-// import 'package:mads_cleaning/views/service_booking/carpet_cleaning_screen.dart';
-// import 'package:mads_cleaning/views/service_booking/commercial_cleaning_screen.dart';
-// import 'package:mads_cleaning/views/service_booking/house_cleaning_screen.dart';
-// import 'package:mads_cleaning/views/service_booking/lawn_cleaning_screen.dart';
-// import 'package:mads_cleaning/views/service_booking/lease_cleaning_screen.dart';
-// import 'package:mads_cleaning/views/service_booking/rubbish_removal_screen.dart';
-// import 'package:mads_cleaning/views/service_booking/window_cleaning_screen.dart';
 import 'package:mads_cleaning/widgets/custom/elevated_button.dart';
 
 class ServiceDescriptionScreen extends StatelessWidget {
@@ -228,9 +220,9 @@ class ServiceDescriptionScreen extends StatelessWidget {
                 if (service.name == "Window Cleaning") {
                   Get.to(() => WindowCleaningScreen(service: service));
                 } else if (service.name == "House Cleaning") {
-                  // Get.to(() => HouseCleaingScreen(
-                  //       service: service,
-                  //     ));
+                  Get.to(() => HouseCleaingScreen(
+                        service: service,
+                      ));
                 } else if (service.name == "End of Lease Cleaning") {
                   // Get.to(() => LeaseCleaningScreen(
                   //       service: service,
