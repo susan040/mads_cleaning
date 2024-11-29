@@ -7,6 +7,7 @@ import 'package:mads_cleaning/controller/dashboard/profile_screen_controller.dar
 import 'package:mads_cleaning/utils/colors.dart';
 import 'package:mads_cleaning/utils/custom_text_style.dart';
 import 'package:mads_cleaning/utils/image_path.dart';
+import 'package:mads_cleaning/views/dashboard/notification_screen.dart';
 
 import 'package:mads_cleaning/views/profile/edit_profile_screen.dart';
 
@@ -104,7 +105,7 @@ class ProfileScreen extends StatelessWidget {
                   // splashColor: Colors.transparent,
                   // highlightColor: Colors.transparent,
                   onTap: () {
-                    //Get.to(() => NotificationScreen());
+                    Get.to(() => NotificationScreen());
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
