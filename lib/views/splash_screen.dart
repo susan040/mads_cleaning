@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:mads_cleaning/controller/splash_screen_controller.dart';
 import 'package:mads_cleaning/utils/colors.dart';
 import 'package:mads_cleaning/utils/image_path.dart';
 
 class SplashScreen extends StatelessWidget {
-  //final c = Get.put(SplashScreenController());
+  final c = Get.put(SplashScreenController());
   SplashScreen({super.key});
 
   @override
