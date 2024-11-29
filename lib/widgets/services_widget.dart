@@ -5,8 +5,8 @@ import 'package:mads_cleaning/model/all_services.dart';
 import 'package:mads_cleaning/utils/colors.dart';
 import 'package:mads_cleaning/utils/custom_text_style.dart';
 import 'package:mads_cleaning/utils/image_path.dart';
+import 'package:mads_cleaning/views/dashboard/service_description_screen.dart';
 import 'package:mads_cleaning/widgets/rating_widget.dart';
-
 
 class ServicesWidget extends StatelessWidget {
   ServicesWidget({
@@ -32,9 +32,9 @@ class ServicesWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        // Get.to(() => ServiceDescriptionScreen(
-        //       service: services,
-        //     ));
+        Get.to(() => ServiceDescriptionScreen(
+              service: services,
+            ));
       },
       child: Container(
         height: 135,
