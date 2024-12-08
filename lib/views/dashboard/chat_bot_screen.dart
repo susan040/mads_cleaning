@@ -36,6 +36,16 @@ class ChatBotScreen extends StatelessWidget {
           "Chatbot",
           style: CustomTextStyles.f14W700(color: AppColors.textColor),
         ),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.refresh, color: AppColors.textColor),
+            onPressed: () {
+              c.allChats.clear();
+              c.selectedChats.clear();
+              c.getAllChats();
+            },
+          ),
+        ],
       ),
       body: Obx(() {
         if (networkController.isOffline.value) {
@@ -65,9 +75,8 @@ class ChatBotScreen extends StatelessWidget {
         });
       }),
       bottomNavigationBar: Obx(() {
-        // Show bottom navigation bar only when network is online and not loading
         if (networkController.isOffline.value || c.loading.value) {
-          return SizedBox.shrink(); // This hides the bottom navigation bar
+          return SizedBox.shrink();
         } else {
           return Container(
             height: 75,
@@ -166,7 +175,7 @@ class ChatBotScreen extends StatelessWidget {
             Container(
               padding: EdgeInsets.all(10),
               width: Get.width / 1.85,
-              height: 60,
+              height: 58,
               decoration: BoxDecoration(
                 color: AppColors.secondaryColor,
                 borderRadius: BorderRadius.circular(10),
@@ -179,8 +188,9 @@ class ChatBotScreen extends StatelessWidget {
                     style:
                         CustomTextStyles.f12W400(color: AppColors.extraWhite),
                   ),
+                  SizedBox(height: 3),
                   Text(
-                    "How may I help you today?", // Static message
+                    "How may I help you today?",
                     style:
                         CustomTextStyles.f12W400(color: AppColors.extraWhite),
                   ),
@@ -188,6 +198,15 @@ class ChatBotScreen extends StatelessWidget {
               ),
             ),
           ],
+        ),
+        SizedBox(height: 3),
+        Padding(
+          padding: const EdgeInsets.only(left: 85),
+          child: Text(
+            "${DateTime.now().hour}:${DateTime.now().minute} ${DateTime.now().hour >= 12 ? 'PM' : 'AM'}",
+            style:
+                CustomTextStyles.f10W400(color: AppColors.secondaryTextColor),
+          ),
         ),
         SizedBox(height: 18),
         for (var selectedQuestion in c.selectedChats)
